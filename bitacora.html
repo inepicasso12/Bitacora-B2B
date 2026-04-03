@@ -20,1263 +20,757 @@
     --border: #e2e8f0;
   }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; }
-
-  /* ── HEADER ── */
+  
+  /* HEADER */
   .header { background: var(--primary); color: white; padding: 12px 24px; display: flex; align-items: center; gap: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.25); position: sticky; top: 0; z-index: 200; flex-wrap: wrap; }
   .logo-box { width: 38px; height: 38px; background: var(--accent); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
   .header-text { flex-shrink: 0; }
   .header-title { font-size: 16px; font-weight: 700; }
   .header-sub { font-size: 11px; opacity: 0.6; margin-top: 1px; }
-  .search-wrap { flex: 1; min-width: 200px; max-width: 420px; position: relative; }
-  .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.7; pointer-events: none; }
-  .search-input { width: 100%; padding: 8px 40px 8px 34px; border-radius: 22px; border: none; background: rgba(255,255,255,0.15); color: white; font-size: 14px; outline: none; transition: background 0.2s; }
-  .search-input:focus { background: rgba(255,255,255,0.22); }
-  .search-input::placeholder { color: rgba(255,255,255,0.55); }
-  .ai-toggle-btn { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; cursor: pointer; border: none; background: rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); transition: all 0.2s; white-space: nowrap; }
-  .ai-toggle-btn.active { background: #f59e0b; color: #1a202c; }
-  .ai-toggle-btn:hover { background: rgba(255,255,255,0.3); }
-  .ai-toggle-btn.active:hover { background: #fbbf24; }
   .header-right { margin-left: auto; text-align: right; flex-shrink: 0; }
   .last-updated { font-size: 11px; opacity: 0.6; }
-  .refresh-hint { font-size: 10px; opacity: 0.4; margin-top: 2px; }
-  .new-entry-btn { padding: 7px 14px; border-radius: 20px; border: 1.5px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.12); color: white; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.15s; }
-  .new-entry-btn:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.7); }
-
-  /* ── AI SEARCH BAR ── */
-  .ai-search-bar { display: none; background: #fef3c7; border-bottom: 2px solid #f59e0b; padding: 8px 24px; align-items: center; gap: 10px; }
-  .ai-search-bar.visible { display: flex; }
-  .ai-icon { font-size: 18px; }
-  .ai-label { font-size: 12px; font-weight: 600; color: #92400e; }
-  .ai-desc { font-size: 12px; color: #a16207; }
-
-  /* ── FILTERS ── */
-  .filters { background: white; border-bottom: 1px solid var(--border); padding: 9px 24px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .filter-label { font-size: 11px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
-  .chip { padding: 4px 12px; border-radius: 18px; font-size: 12px; font-weight: 500; cursor: pointer; border: 1.5px solid var(--border); background: white; color: var(--text-light); transition: all 0.14s; user-select: none; white-space: nowrap; }
-  .chip:hover { border-color: #94a3b8; color: var(--text); }
-  .chip.active { color: white; border-color: transparent; }
-  [data-type="all"].chip.active    { background: var(--primary); }
-  [data-type="problema"].chip.active { background: var(--problema); }
-  [data-type="impacto"].chip.active  { background: var(--impacto); }
-  [data-type="insight"].chip.active  { background: var(--insight); }
-  [data-type="accion"].chip.active   { background: var(--accion); }
-  [data-src].chip.active { background: var(--primary); }
-  .vdiv { width: 1px; height: 20px; background: var(--border); flex-shrink: 0; }
-  .client-select { padding: 4px 12px; border-radius: 18px; font-size: 12px; font-weight: 500; border: 1.5px solid var(--border); background: white; color: var(--text); cursor: pointer; outline: none; }
-  .client-select:hover { border-color: #94a3b8; }
-  .manage-btn { padding: 4px 11px; border-radius: 18px; font-size: 12px; font-weight: 600; border: 1.5px solid var(--border); background: white; color: var(--text-light); cursor: pointer; transition: all 0.14s; }
-  .manage-btn:hover, .manage-btn.open { background: var(--primary); color: white; border-color: var(--primary); }
-
-  /* ── CLIENT PANEL ── */
-  .client-panel { display: none; background: white; border-bottom: 2px solid var(--primary); padding: 12px 24px; }
-  .client-panel.open { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
-  .cp-title { font-size: 12px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; padding-top: 4px; flex-shrink: 0; }
-  .cp-tags { display: flex; flex-wrap: wrap; gap: 7px; flex: 1; }
-  .cp-tag { display: flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 16px; background: #f0fdf4; color: #166534; font-size: 13px; font-weight: 500; }
-  .cp-tag.auto-tag { background: #f0fdf4; color: #166534; }
-  .cp-tag-del { background: none; border: none; cursor: pointer; color: inherit; opacity: 0.5; font-size: 13px; padding: 0; line-height: 1; }
-  .cp-tag-del:hover { opacity: 1; }
-  .cp-add { display: flex; gap: 7px; flex-shrink: 0; }
-  .cp-input { padding: 4px 12px; border-radius: 16px; border: 1.5px solid var(--border); font-size: 13px; outline: none; width: 180px; }
-  .cp-input:focus { border-color: var(--primary); }
-  .cp-add-btn { padding: 4px 12px; border-radius: 16px; border: none; background: var(--primary); color: white; font-size: 13px; font-weight: 600; cursor: pointer; }
-  .cp-add-btn:hover { background: #234d7a; }
-
-  /* ── TABS ── */
-  .tabs { background: white; border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; }
-  .tab { padding: 11px 18px; font-size: 14px; font-weight: 500; cursor: pointer; border-bottom: 3px solid transparent; color: var(--text-light); transition: all 0.14s; user-select: none; }
-  .tab:hover:not(.active) { color: var(--text); }
-  .tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
-
-  /* ── STATS BAR ── */
-  .stats-bar { background: white; border-bottom: 1px solid var(--border); padding: 7px 24px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-  .results-count { font-size: 13px; color: var(--text-light); }
-  .stat-item { display: flex; align-items: center; gap: 5px; font-size: 12px; }
-  .stat-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .stat-num { font-weight: 700; }
-  .stat-lbl { color: var(--text-light); }
-  .ai-mode-badge { margin-left: auto; background: #fef3c7; color: #b45309; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; }
-
-  /* ── CONTENT ── */
-  .content { padding: 18px 24px; max-width: 1100px; margin: 0 auto; }
-
-  /* ── DATE GROUP ── */
-  .date-group { margin-bottom: 18px; }
-  .date-heading { font-size: 12px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 9px; display: flex; align-items: center; gap: 10px; }
-  .date-heading::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-  /* ── NOVEDAD CARD (feed compacto) ── */
-  .nov-card { background: var(--card); border-radius: 10px; margin-bottom: 8px; border-left: 4px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.06); overflow: hidden; transition: box-shadow 0.14s; }
-  .nov-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
-  .nov-card.problema { border-left-color: var(--problema); }
-  .nov-card.impacto  { border-left-color: var(--impacto); }
-  .nov-card.insight  { border-left-color: var(--insight); }
-  .nov-card.accion   { border-left-color: var(--accion); }
-  .nov-card.manual-entry { border-right: 3px solid #8b5cf6; }
-
-  .nov-main { padding: 11px 15px; display: flex; flex-direction: column; gap: 6px; }
-  .nov-row1 { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
-  .nov-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.4; }
-  .nov-impact { font-size: 13px; color: #4a5568; line-height: 1.55; }
-  .nov-footer { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
-  .nov-date { font-size: 11px; color: var(--text-light); margin-left: auto; white-space: nowrap; }
-
-  .badge { padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; text-transform: uppercase; white-space: nowrap; }
-  .badge.problema { background: #fef2f2; color: var(--problema); }
-  .badge.impacto  { background: #fff7ed; color: var(--impacto); }
-  .badge.insight  { background: #f0fdf4; color: var(--insight); }
-  .badge.accion   { background: #eff6ff; color: var(--accion); }
-  .client-pill { background: #eef2ff; color: #4338ca; padding: 2px 9px; border-radius: 10px; font-size: 12px; font-weight: 500; }
-  .src-badge { padding: 2px 8px; border-radius: 10px; font-size: 11px; background: #f1f5f9; color: var(--text-light); }
-  .meta-item { font-size: 12px; color: var(--text-light); }
-
-  /* Link a la fuente original */
-  .source-link { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 14px; font-size: 12px; font-weight: 600; text-decoration: none; background: var(--bg); color: var(--primary); border: 1.5px solid var(--border); transition: all 0.15s; white-space: nowrap; }
-  .source-link:hover { background: var(--primary); color: white; border-color: var(--primary); }
-  .source-link.slack-link:hover { background: #4a154b; border-color: #4a154b; }
-  .source-link.gmail-link:hover { background: #c5221f; border-color: #c5221f; }
-
-  /* Botón expandir detalle */
-  .expand-btn { padding: 3px 10px; border-radius: 14px; font-size: 12px; cursor: pointer; background: none; border: 1.5px solid var(--border); color: var(--text-light); transition: all 0.14s; }
-  .expand-btn:hover { border-color: #94a3b8; color: var(--text); }
-
-  /* Panel de detalle expandible */
-  .nov-detail { display: none; padding: 11px 15px 13px; border-top: 1px solid var(--border); background: #f8fafc; }
-  .nov-detail.open { display: block; }
-  .detail-grid { display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: 12px; color: var(--text-light); margin-bottom: 8px; }
-  .detail-item strong { color: var(--text); }
-  .manual-del { padding: 3px 10px; border-radius: 14px; font-size: 12px; background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; cursor: pointer; }
-
-  /* ── PER CLIENT VIEW ── */
-  .client-block { background: var(--card); border-radius: 12px; margin-bottom: 14px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
-  .client-hdr { padding: 13px 18px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; transition: background 0.12s; border-bottom: 1px solid transparent; }
-  .client-hdr:hover { background: #f8fafc; }
-  .client-hdr.open { border-bottom-color: var(--border); }
-  .client-hdr-left { display: flex; align-items: center; gap: 10px; }
-  .client-avatar { width: 34px; height: 34px; border-radius: 9px; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; }
-  .client-hdr-name { font-size: 15px; font-weight: 700; }
-  .client-hdr-right { display: flex; align-items: center; gap: 7px; }
-  .mini-badge { padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
-  .toggle-icon { font-size: 11px; color: var(--text-light); transition: transform 0.2s; }
-  .toggle-icon.open { transform: rotate(180deg); }
-  .client-body { display: none; }
-  .client-body.open { display: block; }
-
-  /* ── MINI TIMELINE ── */
-  .client-timeline { padding: 12px 18px 8px; background: #f8fafc; border-bottom: 1px solid var(--border); overflow-x: auto; }
-  .tl-label { font-size: 11px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-  .tl-track { display: flex; gap: 3px; align-items: flex-end; min-height: 44px; }
-  .tl-day { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 26px; cursor: default; }
-  .tl-day.has-events { cursor: pointer; }
-  .tl-day.has-events:hover .tl-bar { opacity: 0.75; }
-  .tl-bar { width: 20px; border-radius: 4px 4px 0 0; transition: opacity 0.14s; min-height: 4px; }
-  .tl-bar.empty { background: #e2e8f0; min-height: 4px; }
-  .tl-date-lbl { font-size: 9px; color: var(--text-light); text-align: center; line-height: 1.2; white-space: nowrap; }
-  .tl-date-lbl.today { color: var(--primary); font-weight: 700; }
-
-  /* ── NOVEDAD LIST (per client) ── */
-  .nov-list { padding: 10px 18px 14px; display: flex; flex-direction: column; gap: 6px; }
-  .nov-list-empty { padding: 18px; text-align: center; color: #94a3b8; font-size: 13px; }
-  .nl-item { border-radius: 9px; border: 1px solid var(--border); overflow: hidden; transition: box-shadow 0.14s; }
-  .nl-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.09); }
-  .nl-item.problema { border-left: 4px solid var(--problema); }
-  .nl-item.impacto  { border-left: 4px solid var(--impacto); }
-  .nl-item.insight  { border-left: 4px solid var(--insight); }
-  .nl-item.accion   { border-left: 4px solid var(--accion); }
-  .nl-row { display: flex; align-items: center; gap: 8px; padding: 9px 12px; cursor: pointer; user-select: none; background: white; }
-  .nl-row:hover { background: #f8fafc; }
-  .nl-type-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .nl-title { flex: 1; font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.35; }
-  .nl-meta { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-  .nl-date { font-size: 11px; color: var(--text-light); white-space: nowrap; }
-  .nl-src-icon { font-size: 13px; }
-  .nl-chevron { font-size: 10px; color: var(--text-light); transition: transform 0.2s; flex-shrink: 0; }
-  .nl-chevron.open { transform: rotate(180deg); }
-  .nl-detail { display: none; padding: 10px 14px 13px; background: #f8fafc; border-top: 1px solid var(--border); }
-  .nl-detail.open { display: block; }
-  .nl-summary { font-size: 13px; color: #4a5568; line-height: 1.6; margin-bottom: 9px; }
-  .nl-detail-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 12px; color: var(--text-light); margin-bottom: 9px; }
-  .nl-detail-meta strong { color: var(--text); }
-  .nl-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-  .nl-hide-btn { padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1.5px solid #fecaca; background: #fef2f2; color: #dc2626; transition: all 0.14s; }
-  .nl-hide-btn:hover { background: #dc2626; color: white; border-color: #dc2626; }
-  .nl-del-btn { padding: 3px 10px; border-radius: 12px; font-size: 11px; background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; cursor: pointer; }
-
-  /* ── EMPTY STATE ── */
-  .empty-state { text-align: center; padding: 60px 20px; color: var(--text-light); }
-  .empty-icon { font-size: 48px; margin-bottom: 12px; }
-  .empty-msg { font-size: 16px; }
-  .empty-sub { font-size: 13px; margin-top: 5px; opacity: 0.7; }
-
-  /* ── MODAL ── */
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 500; align-items: center; justify-content: center; padding: 20px; }
-  .modal-overlay.open { display: flex; }
-  .modal { background: white; border-radius: 16px; padding: 28px; width: 100%; max-width: 560px; box-shadow: 0 20px 60px rgba(0,0,0,0.25); max-height: 90vh; overflow-y: auto; }
-  .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-  .modal-title { font-size: 18px; font-weight: 700; }
-  .modal-close { width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--bg); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; }
-  .modal-close:hover { background: #e2e8f0; }
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .form-group { display: flex; flex-direction: column; gap: 5px; }
-  .form-group.full { grid-column: 1/-1; }
-  .form-label { font-size: 12px; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.4px; }
-  .form-input, .form-select, .form-textarea { padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: inherit; outline: none; transition: border-color 0.15s; background: white; color: var(--text); }
-  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--primary); }
-  .form-textarea { resize: vertical; min-height: 80px; }
-  .form-actions { display: flex; gap: 10px; margin-top: 20px; justify-content: flex-end; }
-  .btn-cancel { padding: 9px 18px; border-radius: 8px; border: 1.5px solid var(--border); background: white; cursor: pointer; font-size: 14px; color: var(--text-light); }
-  .btn-cancel:hover { background: var(--bg); }
-  .btn-save { padding: 9px 20px; border-radius: 8px; border: none; background: var(--primary); color: white; cursor: pointer; font-size: 14px; font-weight: 600; }
-  .btn-save:hover { background: #234d7a; }
-  .type-selector { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
-  .type-option { padding: 8px 6px; border-radius: 8px; border: 2px solid var(--border); cursor: pointer; text-align: center; font-size: 12px; font-weight: 500; transition: all 0.15s; user-select: none; }
-  .type-option:hover { border-color: #94a3b8; }
-  .type-option.selected.problema { border-color: var(--problema); background: #fef2f2; color: var(--problema); }
-  .type-option.selected.impacto  { border-color: var(--impacto);  background: #fff7ed; color: var(--impacto); }
-  .type-option.selected.insight  { border-color: var(--insight);  background: #f0fdf4; color: var(--insight); }
-  .type-option.selected.accion   { border-color: var(--accion);   background: #eff6ff; color: var(--accion); }
-
-  /* ── CALENDARIO ── */
-  .cal-wrap { }
-  .cal-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
-  .cal-nav { width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--border); background: white; cursor: pointer; font-size: 14px; line-height: 1; transition: all 0.14s; flex-shrink: 0; }
-  .cal-nav:hover { background: var(--primary); color: white; border-color: var(--primary); }
-  .cal-month-lbl { font-size: 17px; font-weight: 700; text-transform: capitalize; color: var(--text); }
-  .cal-sub { font-size: 12px; color: var(--text-light); margin-left: 4px; }
-  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--border); gap: 1px; }
-  .cal-day-hdr { background: var(--primary); color: white; padding: 8px 4px; text-align: center; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-  .cal-cell { background: white; min-height: 90px; padding: 6px 5px; position: relative; cursor: default; }
-  .cal-cell.empty { background: #f8fafc; }
-  .cal-cell.today { background: #eff6ff; }
-  .cal-date-num { font-size: 11px; font-weight: 700; color: #94a3b8; margin-bottom: 4px; display: flex; align-items: center; justify-content: flex-start; }
-  .cal-cell.today .cal-date-num { color: var(--primary); }
-  .cal-day-dot { width: 20px; height: 20px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
-  .cal-chip { display: block; padding: 2px 5px; border-radius: 4px; font-size: 10px; font-weight: 500; margin-bottom: 2px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.5; transition: filter 0.12s; }
-  .cal-chip:hover { filter: brightness(0.9); }
-  .cal-chip.problema { background: #fef2f2; color: var(--problema); }
-  .cal-chip.impacto  { background: #fff7ed; color: var(--impacto); }
-  .cal-chip.insight  { background: #f0fdf4; color: var(--insight); }
-  .cal-chip.accion   { background: #eff6ff; color: var(--accion); }
-  .cal-chip.manual   { background: #ede9fe; color: #7c3aed; }
-  .cal-more { display: block; font-size: 10px; color: var(--text-light); cursor: pointer; padding: 1px 5px; margin-top: 1px; }
-  .cal-more:hover { color: var(--primary); text-decoration: underline; }
-
-  /* Panel de detalle del día */
-  .day-panel { background: white; border-radius: 12px; margin-top: 16px; border: 2px solid var(--primary); overflow: hidden; box-shadow: 0 6px 24px rgba(0,0,0,0.12); animation: fadeIn 0.18s ease; }
-  @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
-  .day-panel-hdr { background: var(--primary); color: white; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; }
-  .day-panel-title { font-weight: 700; font-size: 14px; text-transform: capitalize; }
-  .day-panel-close { background: none; border: none; color: white; cursor: pointer; font-size: 20px; line-height: 1; opacity: 0.75; padding: 0; }
-  .day-panel-close:hover { opacity: 1; }
-  .day-panel-body { padding: 14px; display: flex; flex-direction: column; gap: 0; }
-
-  /* ── OCULTAR / RESTAURAR ── */
-  .hide-btn { padding: 2px 9px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1.5px solid #fecaca; background: #fef2f2; color: #dc2626; display: none; transition: all 0.14s; white-space: nowrap; }
-  .nov-card:hover .hide-btn { display: inline-flex; }
-  .hide-btn:hover { background: #dc2626; color: white; border-color: #dc2626; }
-  .hidden-banner { display: flex; align-items: center; gap: 10px; background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 8px; padding: 8px 14px; margin-bottom: 14px; font-size: 13px; color: #9a3412; }
-  .restore-btn { padding: 3px 10px; border-radius: 10px; border: 1.5px solid #fdba74; background: white; color: #ea580c; font-size: 12px; font-weight: 600; cursor: pointer; }
-  .restore-btn:hover { background: #ea580c; color: white; border-color: #ea580c; }
-
-  /* ── SEARCH HIGHLIGHT ── */
-  mark { background: #fef08a; border-radius: 2px; padding: 0 2px; font-style: normal; }
-  mark.ai-match { background: #bbf7d0; }
-
-  @media (max-width: 640px) {
-    .header { padding: 10px 14px; }
-    .search-wrap { min-width: 100%; order: 10; }
-    .content { padding: 12px 14px; }
-    .filters { padding: 8px 14px; }
-    .form-grid { grid-template-columns: 1fr; }
-    .type-selector { grid-template-columns: repeat(2,1fr); }
-  }
+  
+  /* FILTROS */
+  .filters { background: white; padding: 16px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .filter-group { display: flex; flex-direction: column; gap: 6px; }
+  .filter-label { font-size: 12px; font-weight: 600; color: var(--text-light); text-transform: uppercase; }
+  select { padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; background: white; color: var(--text); font-size: 13px; cursor: pointer; }
+  select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(232, 93, 38, 0.1); }
+  
+  /* ESTADÍSTICAS */
+  .stats { background: white; padding: 24px; margin: 20px 24px; border-radius: 10px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .stat { text-align: center; }
+  .stat-value { font-size: 24px; font-weight: 700; color: var(--primary); }
+  .stat-label { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+  
+  /* TABLA */
+  .container { padding: 20px 24px; max-width: 1400px; margin: 0 auto; }
+  .table-wrapper { background: white; border-radius: 10px; overflow: auto; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: var(--primary); color: white; padding: 12px; text-align: left; font-weight: 600; font-size: 12px; }
+  td { padding: 12px; border-bottom: 1px solid var(--border); }
+  tr:hover { background: #f8f9fa; }
+  
+  /* BADGES */
+  .badge { display: inline-block; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+  .badge-problema { background: #fee2e2; color: var(--problema); }
+  .badge-impacto { background: #ffedd5; color: var(--impacto); }
+  .badge-insight { background: #dcfce7; color: var(--insight); }
+  .badge-accion { background: #dbeafe; color: var(--accion); }
+  
+  /* RESUMEN AL PIE */
+  .footer { background: var(--primary); color: white; padding: 16px 24px; text-align: center; font-size: 11px; opacity: 0.7; margin-top: 40px; }
 </style>
 </head>
 <body>
 
-<!-- ══════════ HEADER ══════════ -->
 <div class="header">
   <div class="logo-box">CS</div>
   <div class="header-text">
     <div class="header-title">Bitácora Customer Success</div>
-    <div class="header-sub">OCASA · Slack + Gmail · Búsqueda unificada</div>
+    <div class="header-sub">OCASA</div>
   </div>
-  <div class="search-wrap">
-    <span class="search-icon">🔍</span>
-    <input class="search-input" id="searchInput" type="text"
-      placeholder="Buscar… ej: 'faltantes calypso' o 'problemas de entrega'"
-      oninput="renderAll()">
-    <button class="ai-toggle-btn" id="aiToggleBtn" onclick="toggleAI()" title="Activar búsqueda inteligente">🤖 IA</button>
-  </div>
-  <button class="new-entry-btn" onclick="openModal()">＋ Nueva entrada</button>
   <div class="header-right">
-    <div class="last-updated" id="lastUpdated">—</div>
-    <div class="refresh-hint">Auto: 9:00 y 15:00 hs</div>
+    <div class="last-updated">Actualizado: 2026-04-03</div>
   </div>
 </div>
 
-<!-- ══════════ AI INDICATOR ══════════ -->
-<div class="ai-search-bar" id="aiBar">
-  <span class="ai-icon">🤖</span>
-  <span class="ai-label">Búsqueda IA activa</span>
-  <span class="ai-desc">— Entiende sinónimos, variantes y lenguaje natural. Resultados ordenados por relevancia.</span>
-</div>
-
-<!-- ══════════ FILTERS ══════════ -->
 <div class="filters">
-  <span class="filter-label">Tipo</span>
-  <span class="chip active" data-type="all"      onclick="setType('all',this)">Todos</span>
-  <span class="chip"        data-type="problema"  onclick="setType('problema',this)">🔴 Problema</span>
-  <span class="chip"        data-type="impacto"   onclick="setType('impacto',this)">🟠 Impacto</span>
-  <span class="chip"        data-type="insight"   onclick="setType('insight',this)">🟢 Insight</span>
-  <span class="chip"        data-type="accion"    onclick="setType('accion',this)">🔵 Acción</span>
-  <div class="vdiv"></div>
-  <span class="filter-label">Cliente</span>
-  <select class="client-select" id="clientFilter" onchange="renderAll()">
-    <option value="all">Todos los clientes</option>
-  </select>
-  <button class="manage-btn" id="manageBtnEl" onclick="toggleClientPanel()">⚙️ Clientes</button>
-  <div class="vdiv"></div>
-  <span class="filter-label">Fuente</span>
-  <span class="chip active" data-src="all"    onclick="setSrc('all',this)">Todas</span>
-  <span class="chip"        data-src="slack"  onclick="setSrc('slack',this)">💬 Slack</span>
-  <span class="chip"        data-src="gmail"  onclick="setSrc('gmail',this)">📧 Gmail</span>
-  <span class="chip"        data-src="manual" onclick="setSrc('manual',this)">✏️ Manual</span>
-</div>
-
-<!-- ══════════ PANEL: GESTIÓN DE CLIENTES ══════════ -->
-<div class="client-panel" id="clientPanel">
-  <span class="cp-title">Clientes registrados</span>
-  <div class="cp-tags" id="cpTags"></div>
-  <div class="cp-add">
-    <input class="cp-input" id="cpInput" type="text" placeholder="Ej: Farmacity, DHL…"
-      onkeydown="if(event.key==='Enter') addNewClient()">
-    <button class="cp-add-btn" onclick="addNewClient()">＋ Agregar</button>
+  <div class="filter-group">
+    <label class="filter-label">Mes</label>
+    <select id="filterMonth" onchange="applyFilters()">
+      <option value="">Todos</option>
+      <option value="2026-01">Enero 2026</option>
+      <option value="2026-02">Febrero 2026</option>
+      <option value="2026-03">Marzo 2026</option>
+      <option value="2026-04">Abril 2026</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label class="filter-label">Cliente</label>
+    <select id="filterClient" onchange="applyFilters()">
+      <option value="">Todos</option>
+      <option value="CAINIAO">CAINIAO</option>
+      <option value="DirecTV">DirecTV</option>
+      <option value="General">General</option>
+      <option value="MODO">MODO</option>
+      <option value="MeLi">MeLi</option>
+      <option value="Mercedes Benz">Mercedes Benz</option>
+      <option value="Molinos">Molinos</option>
+      <option value="N24">N24</option>
+      <option value="Pickit">Pickit</option>
+      <option value="Renault">Renault</option>
+      <option value="Transfarmaco">Transfarmaco</option>
+      <option value="UM / XBT">UM / XBT</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label class="filter-label">Tipo</label>
+    <select id="filterType" onchange="applyFilters()">
+      <option value="">Todos</option>
+      <option value="accion">Acción</option>
+      <option value="impacto">Impacto</option>
+      <option value="insight">Insight</option>
+      <option value="problema">Problema</option>
+    </select>
   </div>
 </div>
 
-<!-- ══════════ TABS ══════════ -->
-<div class="tabs">
-  <div class="tab active" data-tab="bitacora"   onclick="setTab('bitacora',this)">📋 Bitácora</div>
-  <div class="tab"        data-tab="porcliente" onclick="setTab('porcliente',this)">👥 Por Cliente</div>
-</div>
-
-<!-- ══════════ STATS ══════════ -->
-<div class="stats-bar" id="statsBar"></div>
-
-<!-- ══════════ CONTENT ══════════ -->
-<div class="content" id="mainContent"></div>
-
-
-<!-- ══════════ MODAL: NUEVA ENTRADA ══════════ -->
-<div class="modal-overlay" id="modalOverlay" onclick="overlayClick(event)">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">✏️ Nueva entrada manual</div>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-
-    <div class="form-grid">
-      <div class="form-group full">
-        <label class="form-label">Tipo de evento</label>
-        <div class="type-selector" id="typeSelector">
-          <div class="type-option selected problema" data-val="problema" onclick="selectType(this)">🔴 Problema</div>
-          <div class="type-option impacto"  data-val="impacto"  onclick="selectType(this)">🟠 Impacto</div>
-          <div class="type-option insight"  data-val="insight"  onclick="selectType(this)">🟢 Insight</div>
-          <div class="type-option accion"   data-val="accion"   onclick="selectType(this)">🔵 Acción</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Cliente *</label>
-        <input class="form-input" id="fClient" type="text" placeholder="ej: Calypso, MeLi, MODO…" list="clientList">
-        <datalist id="clientList"></datalist>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Fecha *</label>
-        <input class="form-input" id="fDate" type="date">
-      </div>
-
-      <div class="form-group full">
-        <label class="form-label">Título *</label>
-        <input class="form-input" id="fTitle" type="text" placeholder="Resumen breve del evento…">
-      </div>
-
-      <div class="form-group full">
-        <label class="form-label">Descripción / Detalle</label>
-        <textarea class="form-textarea" id="fSummary" placeholder="Detallá el problema, impacto, insight o acción…"></textarea>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Autor / Reportado por</label>
-        <input class="form-input" id="fAuthor" type="text" placeholder="Nombre o área">
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Canal / Origen</label>
-        <input class="form-input" id="fChannel" type="text" placeholder="ej: Reunión, WhatsApp, Mail…">
-      </div>
-    </div>
-
-    <div class="form-actions">
-      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
-      <button class="btn-save" onclick="saveEntry()">Guardar entrada</button>
-    </div>
+<div class="stats">
+  <div class="stat">
+    <div class="stat-value" id="totalRegistros">0</div>
+    <div class="stat-label">Total Registros</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value" id="totalClientes">0</div>
+    <div class="stat-label">Clientes</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value" id="totalProblemas">0</div>
+    <div class="stat-label">Problemas</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value" id="totalImpactos">0</div>
+    <div class="stat-label">Impactos</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value" id="totalInsights">0</div>
+    <div class="stat-label">Insights</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value" id="totalAcciones">0</div>
+    <div class="stat-label">Acciones</div>
   </div>
 </div>
 
+<div class="container">
+  <div class="table-wrapper">
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Cliente</th>
+          <th>Tipo</th>
+          <th>Título</th>
+          <th>Resumen</th>
+          <th>Autor</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<!-- ══════════ DATA (reemplazado en cada actualización) ══════════ -->
-<script id="bitacora-data">
-// ===BEGIN BITACORA DATA===
-const BITACORA_DATA = {"lastUpdated":"2026-04-02T16:46:16.380289-03:00","entries":[{"id":"gmail_19d4e4a45a31a985","date":"2026-04-02","datetime":"2026-04-02T10:14:31-03:00","source":"gmail","channel":"Reporte Notificaciones diarias MeLi","client":"MeLi","type":"impacto","title":"Reporte diario: piezas sin notificación a MeLi desde 01/01/2025 – 02/04","summary":"Reporte automático con base completa de piezas sin notificación a Mercado Libre desde el 01/01/2025. Generado por el sistema BI según lo acordado en reuniones con el equipo. Enviado a los referentes de Customer Success y operaciones.","author":"Reporte Automático BI (servicios_bi@ocasa.com)"},{"id":"gmail_19d4b6919b388e9a","date":"2026-04-01","datetime":"2026-04-01T20:38:02-03:00","source":"gmail","channel":"Transfarmaco - Notas de Crédito","client":"Transfarmaco","type":"impacto","title":"Transfarmaco: $10,5MM (29%) de $36,4MM reclamados no corresponde reconocer","summary":"Dario Navarro presenta el Reporte N°09/2026 sobre Notas de Crédito de Transfarmaco. De $36,4MM reclamados por el cliente, se validaron $10,5MM (29%) como no correspondientes de reconocer. Seguimiento de planes de acción a través de SmartSheet.","author":"Dario German Navarro"},{"id":"gmail_19d48fb769a4be91","date":"2026-04-01","datetime":"2026-04-01T09:18:47-03:00","source":"gmail","channel":"Novedades diarias MODO – 01/04","client":"MODO","type":"problema","title":"Faltantes MODO: 10 eventos el 30-03 (2 cambiados, 8 faltantes) – detalle Marzo","summary":"MODO reporta 10 eventos el 30-03: 2 cambiados y 8 faltantes. Adjunta informe completo con detalle de faltantes acumulados del mes de Marzo.","author":"MODO (manuel@grupomodo.ar)"},{"id":"gmail_19d4594cf1273348","date":"2026-03-31","datetime":"2026-03-31T17:27:44-03:00","source":"gmail","channel":"Confirmación – Nueva Iniciativa IT","client":"UM / XBT","type":"accion","title":"12 requerimientos críticos cargados en IT para mejora experiencia UM + XBT","summary":"Fiorella Taffarel confirma la carga de 12 requerimientos de prioridad Crítica y Alta en sistema IT para el proyecto de mejora en experiencia UM + XBT. Quedan pendientes los de prioridad media.","author":"Fiorella Taffarel"},{"id":"gmail_19d453d4d3eb23f7","date":"2026-03-31","datetime":"2026-03-31T15:52:29-03:00","source":"gmail","channel":"Actualización Molinos – Tabla Fact Retiros","client":"Molinos","type":"accion","title":"Tablero Molinos migrado a tabla fact_retiros – ya disponible","summary":"Agustin Gimenez informa que el tablero de Molinos fue actualizado: query migrada a la tabla fact_retiros. Desde ahora ya se pueden visualizar las órdenes actualizadas correctamente.","author":"Agustin Gimenez"},{"id":"gmail_19d4465d1d615d63","date":"2026-03-31","datetime":"2026-03-31T11:57:06-03:00","source":"gmail","channel":"Re: Incorporación de clientes Postmaster a la tabl","client":"MeLi","type":"impacto","title":"Re: Incorporación de clientes Postmaster a la tabla SLA_no_Meli","summary":"Luis, buenas. Te comparto nuevamente la matriz con el canalizador corregido. Adjunto además el listado de clientes y AP que vamos a estar agregando a la tabla. Muchas gracias. Quedo atento. Saludos","author":"Lucas Sebastian Sagasta"},{"id":"gmail_19d4400da46b5b70","date":"2026-03-31","datetime":"2026-03-31T10:16:33-03:00","source":"gmail","channel":"Reporte Notificaciones diarias MeLi","client":"MeLi","type":"impacto","title":"Piezas sin notificación a MeLi desde 01/01/2025","summary":"Reporte automático con base completa de piezas sin notificación a Mercado Libre desde el 01/01/2025. Según lo acordado en reuniones con el equipo.","author":"Reporte Automático BI (servicios_bi@ocasa.com)"},{"id":"gmail_19d43b7b57c55cef","date":"2026-03-31","datetime":"2026-03-31T08:45:00-03:00","source":"gmail","channel":"Novedades diarias MODO – 31/03","client":"MODO","type":"problema","title":"Faltantes MODO: 7 eventos el 27-03 (4 cambiados, 3 faltantes)","summary":"MODO reporta 7 eventos el 27-03: 4 cambiados y 3 faltantes. Informe adjunto con detalle de faltantes del mes de Marzo. Total acumulado en lo que va del mes.","author":"MODO (manuel@grupomodo.ar)"},{"id":"gmail_19d40b1dbc7933c3","date":"2026-03-30","datetime":"2026-03-30T17:41:30-03:00","source":"gmail","channel":"¿Qué tan integrados están tu CX, CRM y soluciones ","client":"General","type":"insight","title":"¿Qué tan integrados están tu CX, CRM y soluciones de IA?","summary":"Descubre cómo Genesys Cloud y sus socios tecnológicos estratégicos pueden ayudarte a reducir costos y aumentar la lealtad del cliente ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌","author":"Genesys"},{"id":"gmail_19d40341ecaa724c","date":"2026-03-30","datetime":"2026-03-30T16:24:24-03:00","source":"gmail","channel":"Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 -","client":"General","type":"insight","title":"Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 - 26-MAR-2026 - R1","summary":"Hola Agustina, Con relación al archivo enviado por Florencia, entiendo que se trata de un análisis inicial para evaluar cada caso y proceder con el reconforme de los remitos. Por favor, comunicá al","author":"Sergio Balella"},{"id":"gmail_19d3fe2836d57ca8","date":"2026-03-30","datetime":"2026-03-30T14:55:15-03:00","source":"gmail","channel":"Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 -","client":"General","type":"insight","title":"Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 - 26-MAR-2026 - R1","summary":"+ @Mariela Pinon Necesitamos enviarle al cliente un consolidado de lo pendiente a rendición con una fecha de entrega y de qué sucursal depende la gestión. En el archivo que envió Flor, hay detalles","author":"Fernando Salguero"},{"id":"gmail_19d3fd19220f3f8d","date":"2026-03-30","datetime":"2026-03-30T14:36:39-03:00","source":"gmail","channel":"Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 -","client":"General","type":"insight","title":"Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 - 26-MAR-2026 - R1","summary":"Buenas tardes estimados, Por favor @Sergio Balella, me confirmas si es viable mandarle el reporte compartido por @Florencia Almada, al cliente? Ya que desde comercial solicitan a customer, que","author":"Agustina Micaela Velazquez"},{"id":"gmail_19d3f4e6e23d3dc8","date":"2026-03-30","datetime":"2026-03-30T12:13:05-03:00","source":"gmail","channel":"Reporte de indicadores SLA – Carriers (02 de febre","client":"General","type":"impacto","title":"Reporte de indicadores SLA – Carriers (02 de febrero al 27 de marzo)","summary":"Buenos días, Adjuntamos el informe semanal con los principales indicadores de SLA y la efectividad en la entrega final de todos los carriers. Los datos están actualizados al día de hoy, 30 de marzo, y","author":"reportescx"},{"id":"gmail_19d3f16a1730649f","date":"2026-03-30","datetime":"2026-03-30T11:11:15-03:00","source":"gmail","channel":"Informe Semanal ALOT, Brandlive, Topper, Pickit, D","client":"Pickit","type":"insight","title":"Informe Semanal ALOT, Brandlive, Topper, Pickit, Dabra, MailAmericas, N24, Decathlon & Adidas al 032","summary":"Buenos días: Adjuntamos informe semanal sobre indicadores de SLA y efectividad de entrega al viernes 27 de marzo de ALOT, Brandlive, Topper, Pickit, Dabra, MailAmericas, N24, Decathlon &amp; Adidas.","author":"ReportesCX"},{"id":"gmail_19d3ea855fa204c8","date":"2026-03-30","datetime":"2026-03-30T09:11:21-03:00","source":"gmail","channel":"MODO Semáforo 30/03","client":"MODO","type":"insight","title":"MODO: Semáforo KPIs + archivo detalle al 30/03","summary":"MODO envía archivo semáforo con KPIs clave, detalle y gráficas correspondientes al 30 de marzo. Incluye semáforo de indicadores y performance semanal.","author":"MODO (manuel@grupomodo.ar)"},{"id":"gmail_19d304fe0f97c45a","date":"2026-03-27","datetime":"2026-03-27T17:20:32-03:00","source":"gmail","channel":"La acción Crear Tiempo de empleado para AGUSTINA M","client":"General","type":"accion","title":"La acción Crear Tiempo de empleado para AGUSTINA MICAELA VELAZQUEZ ha sido aprobada","summary":"Hola, AGUSTINA MICAELA VELAZQUEZ: La Crear Tiempo de empleado para AGUSTINA MICAELA VELAZQUEZ ha sido aprobada por SILVIA LAURA MIRANDA el 27/03/2026. Acceda a los detalles aquí https://hcm-br10.hr.","author":"SILVIA LAURA MIRANDA"},{"id":"gmail_19d30077d588da92","date":"2026-03-27","datetime":"2026-03-27T13:00:00-03:00","source":"gmail","channel":"Re: Pedido de información","client":"General","type":"insight","title":"Re: Pedido de información","summary":"Sabrina, gracias por la información. Actualicé el caso de la DIS 49474 (reclamo del 31.12.25) como monto a reconocer según tu análisis. En cuanto a la DIS 48852, corresponde una definición comercial,","author":"Antonio Maximiliano Maiale"},{"id":"gmail_19d2fbe6b660c6dc","date":"2026-03-27","datetime":"2026-03-27T11:41:59-03:00","source":"gmail","channel":"Re: BOT Mail Americas","client":"General","type":"insight","title":"Re: BOT Mail Americas","summary":"Buenos días, El dia de ayer realizamos el caso de negocio del AddressBOT para mailAmericas y fue compartido con Control de gestión. Considerando las siguientes premisas desde nuestro lado estamos Ok","author":"Ana Cazaux"},{"id":"gmail_19d2f85a1d7900db","date":"2026-03-27","datetime":"2026-03-27T10:40:02-03:00","source":"gmail","channel":"Mercedes Benz – Tablero directa","client":"Mercedes Benz","type":"accion","title":"Ajustes tablero Mercedes Benz: Celina Villar detalla cambios pendientes para BI","summary":"Celina Villar envía en limpio los ajustes necesarios para el tablero de Mercedes Benz al equipo de BI (Agus). Cambios a implementar para visualización directa del cliente.","author":"Celina Villar"},{"id":"gmail_19d2f7681268fe0e","date":"2026-03-27","datetime":"2026-03-27T10:23:27-03:00","source":"gmail","channel":"Re: Pedido de información","client":"General","type":"insight","title":"Re: Pedido de información","summary":"Hola Maxi, buenos días. En línea con lo conversado, comparto respuesta a los puntos: a) Respecto a la documentación solicitada al cliente, ni bien contemos con la factura la estaremos adjuntando. b) En","author":"Sabrina Fallet"},{"id":"gmail_19d2bac3264c473c","date":"2026-03-26","datetime":"2026-03-26T16:43:38-03:00","source":"gmail","channel":"Re: Pedido de información","client":"General","type":"insight","title":"Re: Pedido de información","summary":"Sabri, buenas tardes, como estas? De acuerdo con lo conversado, resumo a continuación los montos reclamados por el cliente TRF (años 2024, 2025 y 2026) por siniestros (AR$ 37 MM), junto con el","author":"Antonio Maximiliano Maiale"},{"id":"gmail_19d2b3d90bcf4cc2","date":"2026-03-26","datetime":"2026-03-26T14:42:31-03:00","source":"gmail","channel":"Fwd: PP asociado a DIT","client":"General","type":"insight","title":"Fwd: PP asociado a DIT","summary":"Chicas, mail inicial donde se reporta con metricas y casos puntuales donde en conversacion con la ultima milla se detecta que la demora se ocasiona en las troncales. ---------- Forwarded message ------","author":"Sabrina Fallet"},{"id":"gmail_19d2b3b374abcadb","date":"2026-03-26","datetime":"2026-03-26T14:40:12-03:00","source":"gmail","channel":"SLA COMPROMETIDO – RENAULT A021","client":"Renault","type":"problema","title":"SLA comprometido Renault en A021 (Río Gallegos–TDF): SLA acordado no viable","summary":"Carlos Esquivel reporta equipos Renault vencidos con destino Tierra del Fuego (RGA). El SLA acordado para operaciones de última milla a TDF no contempla los +7 días adicionales. Sabrina Fallet escala a CX y coordina reunión con cliente el 30/03. Reunión mensual presencial pendiente.","author":"Sabrina Fallet"},{"id":"gmail_19d275f886bbe854","date":"2026-03-25","datetime":"2026-03-25T23:41:03-03:00","source":"gmail","channel":"[Acción requerida] Tu suscripción a Confluence se ","client":"General","type":"accion","title":"[Acción requerida] Tu suscripción a Confluence se desactivará pronto","summary":"Your Confluence subscription will be deactivated soon Tu suscripción está inactiva en este momento Hola, Ine: Este es un recordatorio de que si no empiezas a utilizar la aplicación Confluence, en cx-","author":"Atlassian"},{"id":"gmail_19d270979c34e368","date":"2026-03-25","datetime":"2026-03-25T19:07:01-03:00","source":"gmail","channel":"Re: BOT Mail Americas","client":"General","type":"insight","title":"Re: BOT Mail Americas","summary":"+ @Juan Martín Sanz El mié, 25 mar 2026 a la(s) 5:49 pm, Roberto Blanco (roberto.blanco@ocasa.com) escribió: Hola Stephie como te comente sin el caso de negocios no es posible que Control de Gestion","author":"Federico Carlos Richi"},{"id":"gmail_19d26c2e0d86b48f","date":"2026-03-25","datetime":"2026-03-25T17:50:30-03:00","source":"gmail","channel":"RE: BOT Mail Americas","client":"General","type":"insight","title":"RE: BOT Mail Americas","summary":"Hola Stephie como te comente sin el caso de negocios no es posible que Control de Gestion apruebe el gasto. Entiendo que mañana por la mañana nos vamos a juntar con todos los números para validar el","author":"Roberto Blanco"},{"id":"gmail_19d2682373bfb55c","date":"2026-03-25","datetime":"2026-03-25T16:39:42-03:00","source":"gmail","channel":"Re: BOT Mail Americas","client":"General","type":"insight","title":"Re: BOT Mail Americas","summary":"Hola Nicky, Hice un cálculo estimado de cómo quedaría un mes si se mantienen los 77 equipos diarios En ese caso el costo mensual es de 281 usd, manteniéndose estas premisas: 77 equipos por dia, 2.387","author":"Stephanie Estrada"},{"id":"gmail_19d267f01bebbe11","date":"2026-03-25","datetime":"2026-03-25T16:36:11-03:00","source":"gmail","channel":"Re: Organigrama Customer Experience y consideracio","client":"General","type":"insight","title":"Re: Organigrama Customer Experience y consideraciones","summary":"Buenas tardes Sumo pendientes a considerar en color Para alinear conocimiento entre todas las partes, comparto el estado de situación actualizado al día de hoy: Migración de tareas a Life Science","author":"Gisela Falcon"},{"id":"gmail_19d2670f82027885","date":"2026-03-25","datetime":"2026-03-25T16:21:04-03:00","source":"gmail","channel":"Re: Organigrama Customer Experience y consideracio","client":"General","type":"insight","title":"Re: Organigrama Customer Experience y consideraciones","summary":"Hola, ¿cómo están? Para alinear conocimiento entre todas las partes, comparto el estado de situación actualizado al día de hoy: Migración de tareas a Life Science Pamela Soraire: Desde RRHH se confirma","author":"Maria Ines Picasso"},{"id":"gmail_19d26482563d3e66","date":"2026-03-25","datetime":"2026-03-25T15:36:15-03:00","source":"gmail","channel":"Fwd: BOT Mail Americas","client":"General","type":"insight","title":"Fwd: BOT Mail Americas","summary":"Carlos, Juanca buenas tardes Les comparto la solicitud para poder realizar la activación del Address BOT del cliente en asunto, comparto el cliente_key 177580 y código 102004945. Se aplicaría con la","author":"NICOLE TEVES"},{"id":"gmail_19d262b6a06cd031","date":"2026-03-25","datetime":"2026-03-25T15:04:29-03:00","source":"gmail","channel":"BOT Mail Americas","client":"General","type":"insight","title":"BOT Mail Americas","summary":"Buenas tardes, Por favor necesitamos prender el BOT para el cliente mail Americas, para mejorar la calidad de los datos de entrega de los equipos. Desde ya gracias y quedo a la espera de la","author":"Federico Carlos Richi"},{"id":"gmail_19d25aa8af196fa4","date":"2026-03-25","datetime":"2026-03-25T12:43:46-03:00","source":"gmail","channel":"CAINIAO – Revisión Follow up bidding","client":"CAINIAO","type":"accion","title":"CAINIAO: anexos faltantes compartidos y negociación activa post-licitación","summary":"Ignacio Pugliese comparte anexos faltantes solicitados por CAINIAO para el proceso de licitación. Estimación anual compartida: USD 1.618.800. Revisión del Anexo III (Rules for Compensation) pendiente.","author":"Ignacio Pugliese"},{"id":"gmail_19d2584e752f3e8b","date":"2026-03-25","datetime":"2026-03-25T11:02:26-03:00","source":"gmail","channel":"Webinar: Reinventando la experiencia al cliente","client":"General","type":"insight","title":"Webinar: Reinventando la experiencia al cliente","summary":"El nuevo estándar del cliente ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌","author":"Genesys"},{"id":"gmail_19d2029347db5bd0","date":"2026-03-24","datetime":"2026-03-24T14:04:22-03:00","source":"gmail","channel":"Evaluación de desempeño: cuándo usar 90°, 180° o 3","client":"General","type":"insight","title":"Evaluación de desempeño: cuándo usar 90°, 180° o 360°","summary":"Evita errores comunes al elegir tu evaluación‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌","author":"Josefina de TRAKER"},{"id":"gmail_19cf75199aeda105","date":"2026-03-16","datetime":"2026-03-16T15:44:05+00:00","source":"gmail","channel":"Análisis Penalidades MeLi","client":"MeLi","type":"insight","title":"Presentación 'Análisis de Penalidades – Mercado Libre' compartida por Camila Aquino","summary":"Camila Aquino (camila.aquino@ocasa.com) comparte presentación de Google Slides con análisis de penalidades del cliente Mercado Libre. Documento para edición y revisión del equipo.","author":"Camila Aquino"},{"id":"gmail_19cf7df89fa45192","date":"2026-03-16","datetime":"2026-03-16T15:30:10-03:00","source":"gmail","channel":"PICKIT – Impacto SLA semana 10","client":"Pickit","type":"impacto","title":"Pickit NO MeLi: shipments con impacto negativo en SLA semana 10","summary":"Reporte automático BI con detalle de shipments de Pickit canal No MeLi con impacto negativo en porcentaje de SLA durante la semana 10.","author":"Reporte Automático BI (servicios_bi@ocasa.com)"},{"id":"gmail_19cafccc8f80b717","date":"2026-03-02","datetime":"2026-03-02T15:36:54-03:00","source":"gmail","channel":"PICKIT – Impacto SLA semana 8","client":"Pickit","type":"impacto","title":"Pickit NO MeLi: shipments con impacto negativo en SLA semana 8","summary":"Reporte automático BI con detalle de shipments de Pickit (canal No MeLi) con impacto negativo en el porcentaje de SLA durante la semana 8 del año.","author":"Reporte Automático BI (servicios_bi@ocasa.com)"},{"id":"gmail_19c9bc06661d68ee","date":"2026-02-26","datetime":"2026-02-26T18:00:05-03:00","source":"gmail","channel":"Camión OCASA daña portón REDES / DirecTV","client":"DirecTV","type":"problema","title":"Camión de logística OCASA daña portón de acceso a instalación DirecTV/REDES","summary":"Transportista de OCASA causa daño en portón de acceso de DirecTV. Ignacio Pugliese coordina con Riesgos y contrataciones para que el proveedor responda. DTV solicita que el transportista se haga cargo. Gestión con seguro del transportista.","author":"Ignacio Pugliese"},{"id":"gmail_19c9a7007a7c21b3","date":"2026-02-26","datetime":"2026-02-26T11:53:05-03:00","source":"gmail","channel":"Bot Customer 2.2.1 – Integración Voice MeLi","client":"MeLi","type":"accion","title":"Voice MeLi funciona tras ajuste en Bot Customer 2.2.1","summary":"Gisela Falcon confirma que el caso Voice de MeLi ya funciona correctamente tras el ajuste de Fabián Anderle (Interaxa). Corrección verificada con caso de prueba. Se da seguimiento a las correcciones pendientes.","author":"Gisela Falcon"},{"id":"gmail_19c95f644dceec97","date":"2026-02-25","datetime":"2026-02-25T15:01:45-03:00","source":"gmail","channel":"Alta Clientes SLA","client":"Mercedes Benz","type":"accion","title":"Alta clientes Mercedes Benz y Carta Documento en indicadores SLA","summary":"Claudio Maleichuk solicita incluir en los indicadores SLA a los clientes Mercedes Benz y Carta Documento Digital. Solicitud dirigida a Anders Graffe con copia a Ines Picasso.","author":"Claudio Maleichuk"},{"id":"slack_C04D742TJNQ_1767730738","date":"2026-01-07","datetime":"2026-01-07T17:18:58-03:00","source":"slack","channel":"#soporte_customer_bi","client":"N24","type":"accion","title":"Pausa actualización automática tablero N24 – se mantiene N24-Interno","summary":"Lucas Sagasta solicita pausar la actualización automática del tablero N24 por cuestiones operativas. Se mantiene activa la actualización del tablero N24-Interno. Carlos Bateca confirma el cambio.","author":"Lucas Sagasta"},{"id":"slack_C048HH2BA48_1734440867","date":"2025-12-17","datetime":"2025-12-17T10:41:07-03:00","source":"slack","channel":"#customer","client":"DirecTV","type":"problema","title":"Pedido DirecTV: cliente solicita retiro desde Salta con destinatario en Tortuguitas","summary":"Ricardo Palavecino reporta dos pedidos con destinatario Tortuguitas donde el cliente solicita retiro desde Salta. Caso atendido por Lautaro Arredondo y Eugenia Acosta del equipo operativo. Escalamiento por casilla cxpaqueteriabo@ocasa.com.","author":"Ricardo Palavecino"}]};
-// ===END BITACORA DATA===
-</script>
+<div class="footer">
+  Bitácora Customer Success — OCASA | Período: 2026-01-01 a 2026-04-03 | Datos Consolidados
+</div>
 
-
-<!-- ══════════ APP LOGIC ══════════ -->
 <script>
-// ─────────────────────────────────────────────
-//  STATE
-// ─────────────────────────────────────────────
-let activeType   = 'all';
-let activeSrc    = 'all';
-let activeTab    = 'bitacora';
-let aiMode       = false;
-let selectedType = 'problema'; // for modal
-let calYear      = new Date().getFullYear();
-let calMonth     = new Date().getMonth();  // 0-indexed
-let _entryMap    = {};  // id → entry, rebuilt on each renderAll
+const allData = [
+  {
+    "id": "gmail_19d50681b5673147",
+    "date": "2026-04-02",
+    "datetime": "2026-04-02T19:55:04-03:00",
+    "source": "gmail",
+    "channel": "GCBA - Carta Documento Digital",
+    "client": "General",
+    "type": "impacto",
+    "title": "Reporte N°10/2026 GCBA Carta Documento Digital: debilidades en flujos operativos detectadas",
+    "summary": "Dario Navarro presenta el Reporte N°10/2026 sobre GCBA - Carta Documento Digital. Se validaron debilidades en los flujos operativos que pueden afectar el cumplimiento del servicio frente a un crecimiento significativo de volumen. Seguimiento de planes de acción a través de SmartSheet.",
+    "author": "Dario German Navarro"
+  },
+  {
+    "id": "gmail_19d4c599f1b1509a",
+    "date": "2026-04-02",
+    "datetime": "2026-04-02T01:00:31-03:00",
+    "source": "gmail",
+    "channel": "NC OCASA10025328 – SNC 6208 – Cajas Vacías Enero 2025",
+    "client": "General",
+    "type": "problema",
+    "title": "NC 6208 – Cajas vacías enero 2025: aviso de comunicación en proceso de aprobación",
+    "summary": "Notificación WFA de sistema NC (Notas de Crédito) sobre formulario NC 6208 por cajas vacías de enero 2025 (caso OCASA10025328 - SNC 6208). Aviso (2) de comunicación del proceso de aprobación interno dirigido a ines.picasso@ocasa.com.",
+    "author": "NC Solicitudes (solicitudes.nc@ocasa.com)"
+  },
+  {
+    "id": "gmail_19d4e4a45a31a985",
+    "date": "2026-04-02",
+    "datetime": "2026-04-02T10:14:31-03:00",
+    "source": "gmail",
+    "channel": "Reporte Notificaciones diarias MeLi",
+    "client": "MeLi",
+    "type": "impacto",
+    "title": "Reporte diario: piezas sin notificación a MeLi desde 01/01/2025 – 02/04",
+    "summary": "Reporte automático con base completa de piezas sin notificación a Mercado Libre desde el 01/01/2025. Generado por el sistema BI según lo acordado en reuniones con el equipo. Enviado a los referentes de Customer Success y operaciones.",
+    "author": "Reporte Automático BI (servicios_bi@ocasa.com)"
+  },
+  {
+    "id": "gmail_19d4b6919b388e9a",
+    "date": "2026-04-01",
+    "datetime": "2026-04-01T20:38:02-03:00",
+    "source": "gmail",
+    "channel": "Transfarmaco - Notas de Crédito",
+    "client": "Transfarmaco",
+    "type": "impacto",
+    "title": "Transfarmaco: $10,5MM (29%) de $36,4MM reclamados no corresponde reconocer",
+    "summary": "Dario Navarro presenta el Reporte N°09/2026 sobre Notas de Crédito de Transfarmaco. De $36,4MM reclamados por el cliente, se validaron $10,5MM (29%) como no correspondientes de reconocer. Seguimiento de planes de acción a través de SmartSheet.",
+    "author": "Dario German Navarro"
+  },
+  {
+    "id": "gmail_19d48fb769a4be91",
+    "date": "2026-04-01",
+    "datetime": "2026-04-01T09:18:47-03:00",
+    "source": "gmail",
+    "channel": "Novedades diarias MODO – 01/04",
+    "client": "MODO",
+    "type": "problema",
+    "title": "Faltantes MODO: 10 eventos el 30-03 (2 cambiados, 8 faltantes) – detalle Marzo",
+    "summary": "MODO reporta 10 eventos el 30-03: 2 cambiados y 8 faltantes. Adjunta informe completo con detalle de faltantes acumulados del mes de Marzo.",
+    "author": "MODO (manuel@grupomodo.ar)"
+  },
+  {
+    "id": "gmail_19d4594cf1273348",
+    "date": "2026-03-31",
+    "datetime": "2026-03-31T17:27:44-03:00",
+    "source": "gmail",
+    "channel": "Confirmación – Nueva Iniciativa IT",
+    "client": "UM / XBT",
+    "type": "accion",
+    "title": "12 requerimientos críticos cargados en IT para mejora experiencia UM + XBT",
+    "summary": "Fiorella Taffarel confirma la carga de 12 requerimientos de prioridad Crítica y Alta en sistema IT para el proyecto de mejora en experiencia UM + XBT. Quedan pendientes los de prioridad media.",
+    "author": "Fiorella Taffarel"
+  },
+  {
+    "id": "gmail_19d453d4d3eb23f7",
+    "date": "2026-03-31",
+    "datetime": "2026-03-31T15:52:29-03:00",
+    "source": "gmail",
+    "channel": "Actualización Molinos – Tabla Fact Retiros",
+    "client": "Molinos",
+    "type": "accion",
+    "title": "Tablero Molinos migrado a tabla fact_retiros – ya disponible",
+    "summary": "Agustin Gimenez informa que el tablero de Molinos fue actualizado: query migrada a la tabla fact_retiros. Desde ahora ya se pueden visualizar las órdenes actualizadas correctamente.",
+    "author": "Agustin Gimenez"
+  },
+  {
+    "id": "gmail_19d4465d1d615d63",
+    "date": "2026-03-31",
+    "datetime": "2026-03-31T11:57:06-03:00",
+    "source": "gmail",
+    "channel": "Re: Incorporación de clientes Postmaster a la tabl",
+    "client": "MeLi",
+    "type": "impacto",
+    "title": "Re: Incorporación de clientes Postmaster a la tabla SLA_no_Meli",
+    "summary": "Luis, buenas. Te comparto nuevamente la matriz con el canalizador corregido. Adjunto además el listado de clientes y AP que vamos a estar agregando a la tabla. Muchas gracias. Quedo atento. Saludos",
+    "author": "Lucas Sebastian Sagasta"
+  },
+  {
+    "id": "gmail_19d4400da46b5b70",
+    "date": "2026-03-31",
+    "datetime": "2026-03-31T10:16:33-03:00",
+    "source": "gmail",
+    "channel": "Reporte Notificaciones diarias MeLi",
+    "client": "MeLi",
+    "type": "impacto",
+    "title": "Piezas sin notificación a MeLi desde 01/01/2025",
+    "summary": "Reporte automático con base completa de piezas sin notificación a Mercado Libre desde el 01/01/2025. Según lo acordado en reuniones con el equipo.",
+    "author": "Reporte Automático BI (servicios_bi@ocasa.com)"
+  },
+  {
+    "id": "gmail_19d43b7b57c55cef",
+    "date": "2026-03-31",
+    "datetime": "2026-03-31T08:45:00-03:00",
+    "source": "gmail",
+    "channel": "Novedades diarias MODO – 31/03",
+    "client": "MODO",
+    "type": "problema",
+    "title": "Faltantes MODO: 7 eventos el 27-03 (4 cambiados, 3 faltantes)",
+    "summary": "MODO reporta 7 eventos el 27-03: 4 cambiados y 3 faltantes. Informe adjunto con detalle de faltantes del mes de Marzo. Total acumulado en lo que va del mes.",
+    "author": "MODO (manuel@grupomodo.ar)"
+  },
+  {
+    "id": "gmail_19d40b1dbc7933c3",
+    "date": "2026-03-30",
+    "datetime": "2026-03-30T17:41:30-03:00",
+    "source": "gmail",
+    "channel": "¿Qué tan integrados están tu CX, CRM y soluciones ",
+    "client": "General",
+    "type": "insight",
+    "title": "¿Qué tan integrados están tu CX, CRM y soluciones de IA?",
+    "summary": "Descubre cómo Genesys Cloud y sus socios tecnológicos estratégicos pueden ayudarte a reducir costos y aumentar la lealtad del cliente ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+    "author": "Genesys"
+  },
+  {
+    "id": "gmail_19d40341ecaa724c",
+    "date": "2026-03-30",
+    "datetime": "2026-03-30T16:24:24-03:00",
+    "source": "gmail",
+    "channel": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 -",
+    "client": "General",
+    "type": "insight",
+    "title": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 - 26-MAR-2026 - R1",
+    "summary": "Hola Agustina, Con relación al archivo enviado por Florencia, entiendo que se trata de un análisis inicial para evaluar cada caso y proceder con el reconforme de los remitos. Por favor, comunicá al",
+    "author": "Sergio Balella"
+  },
+  {
+    "id": "gmail_19d3fe2836d57ca8",
+    "date": "2026-03-30",
+    "datetime": "2026-03-30T14:55:15-03:00",
+    "source": "gmail",
+    "channel": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 -",
+    "client": "General",
+    "type": "insight",
+    "title": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 - 26-MAR-2026 - R1",
+    "summary": "+ @Mariela Pinon Necesitamos enviarle al cliente un consolidado de lo pendiente a rendición con una fecha de entrega y de qué sucursal depende la gestión. En el archivo que envió Flor, hay detalles",
+    "author": "Fernando Salguero"
+  },
+  {
+    "id": "gmail_19d3fd19220f3f8d",
+    "date": "2026-03-30",
+    "datetime": "2026-03-30T14:36:39-03:00",
+    "source": "gmail",
+    "channel": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 -",
+    "client": "General",
+    "type": "insight",
+    "title": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 - 26-MAR-2026 - R1",
+    "summary": "Buenas tardes estimados, Por favor @Sergio Balella, me confirmas si es viable mandarle el reporte compartido por @Florencia Almada, al cliente? Ya que desde comercial solicitan a customer, que",
+    "author": "Agustina Micaela Velazquez"
+  },
+  {
+    "id": "gmail_19d3f4e6e23d3dc8",
+    "date": "2026-03-30",
+    "datetime": "2026-03-30T12:13:05-03:00",
+    "source": "gmail",
+    "channel": "Reporte de indicadores SLA – Carriers (02 de febre",
+    "client": "General",
+    "type": "impacto",
+    "title": "Reporte de indicadores SLA – Carriers (02 de febrero al 27 de marzo)",
+    "summary": "Buenos días, Adjuntamos el informe semanal con los principales indicadores de SLA y la efectividad en la entrega final de todos los carriers. Los datos están actualizados al día de hoy, 30 de marzo, y",
+    "author": "reportescx"
+  },
+  {
+    "id": "gmail_19d3f16a1730649f",
+    "date": "2026-03-30",
+    "datetime": "2026-03-30T11:11:15-03:00",
+    "source": "gmail",
+    "channel": "Informe Semanal ALOT, Brandlive, Topper, Pickit, D",
+    "client": "Pickit",
+    "type": "insight",
+    "title": "Informe Semanal ALOT, Brandlive, Topper, Pickit, Dabra, MailAmericas, N24, Decathlon & Adidas al 032",
+    "summary": "Buenos días: Adjuntamos informe semanal sobre indicadores de SLA y efectividad de entrega al viernes 27 de marzo de ALOT, Brandlive, Topper, Pickit, Dabra, MailAmericas, N24, Decathlon &amp; Adidas.",
+    "author": "ReportesCX"
+  },
+  {
+    "id": "gmail_19d3ea855fa204c8",
+    "date": "2026-03-30",
+    "datetime": "2026-03-30T09:11:21-03:00",
+    "source": "gmail",
+    "channel": "MODO Semáforo 30/03",
+    "client": "MODO",
+    "type": "insight",
+    "title": "MODO: Semáforo KPIs + archivo detalle al 30/03",
+    "summary": "MODO envía archivo semáforo con KPIs clave, detalle y gráficas correspondientes al 30 de marzo. Incluye semáforo de indicadores y performance semanal.",
+    "author": "MODO (manuel@grupomodo.ar)"
+  },
+  {
+    "id": "gmail_19d304fe0f97c45a",
+    "date": "2026-03-27",
+    "datetime": "2026-03-27T17:20:32-03:00",
+    "source": "gmail",
+    "channel": "La acción Crear Tiempo de empleado para AGUSTINA M",
+    "client": "General",
+    "type": "accion",
+    "title": "La acción Crear Tiempo de empleado para AGUSTINA MICAELA VELAZQUEZ ha sido aprobada",
+    "summary": "Hola, AGUSTINA MICAELA VELAZQUEZ: La Crear Tiempo de empleado para AGUSTINA MICAELA VELAZQUEZ ha sido aprobada por SILVIA LAURA MIRANDA el 27/03/2026. Acceda a los detalles aquí https://hcm-br10.hr.",
+    "author": "SILVIA LAURA MIRANDA"
+  },
+  {
+    "id": "gmail_19d30077d588da92",
+    "date": "2026-03-27",
+    "datetime": "2026-03-27T13:00:00-03:00",
+    "source": "gmail",
+    "channel": "Re: Pedido de información",
+    "client": "General",
+    "type": "insight",
+    "title": "Re: Pedido de información",
+    "summary": "Sabrina, gracias por la información. Actualicé el caso de la DIS 49474 (reclamo del 31.12.25) como monto a reconocer según tu análisis. En cuanto a la DIS 48852, corresponde una definición comercial,",
+    "author": "Antonio Maximiliano Maiale"
+  },
+  {
+    "id": "gmail_19d2fbe6b660c6dc",
+    "date": "2026-03-27",
+    "datetime": "2026-03-27T11:41:59-03:00",
+    "source": "gmail",
+    "channel": "Re: BOT Mail Americas",
+    "client": "General",
+    "type": "insight",
+    "title": "Re: BOT Mail Americas",
+    "summary": "Buenos días, El dia de ayer realizamos el caso de negocio del AddressBOT para mailAmericas y fue compartido con Control de gestión. Considerando las siguientes premisas desde nuestro lado estamos Ok",
+    "author": "Ana Cazaux"
+  },
+  {
+    "id": "gmail_19d2f85a1d7900db",
+    "date": "2026-03-27",
+    "datetime": "2026-03-27T10:40:02-03:00",
+    "source": "gmail",
+    "channel": "Mercedes Benz – Tablero directa",
+    "client": "Mercedes Benz",
+    "type": "accion",
+    "title": "Ajustes tablero Mercedes Benz: Celina Villar detalla cambios pendientes para BI",
+    "summary": "Celina Villar envía en limpio los ajustes necesarios para el tablero de Mercedes Benz al equipo de BI (Agus). Cambios a implementar para visualización directa del cliente.",
+    "author": "Celina Villar"
+  },
+  {
+    "id": "gmail_19d2f7681268fe0e",
+    "date": "2026-03-27",
+    "datetime": "2026-03-27T10:23:27-03:00",
+    "source": "gmail",
+    "channel": "Re: Pedido de información",
+    "client": "General",
+    "type": "insight",
+    "title": "Re: Pedido de información",
+    "summary": "Hola Maxi, buenos días. En línea con lo conversado, comparto respuesta a los puntos: a) Respecto a la documentación solicitada al cliente, ni bien contemos con la factura la estaremos adjuntando. b) En",
+    "author": "Sabrina Fallet"
+  },
+  {
+    "id": "gmail_19d2bac3264c473c",
+    "date": "2026-03-26",
+    "datetime": "2026-03-26T16:43:38-03:00",
+    "source": "gmail",
+    "channel": "Re: Pedido de información",
+    "client": "General",
+    "type": "insight",
+    "title": "Re: Pedido de información",
+    "summary": "Sabri, buenas tardes, como estas? De acuerdo con lo conversado, resumo a continuación los montos reclamados por el cliente TRF (años 2024, 2025 y 2026) por siniestros (AR$ 37 MM), junto con el",
+    "author": "Antonio Maximiliano Maiale"
+  },
+  {
+    "id": "gmail_19d2b3d90bcf4cc2",
+    "date": "2026-03-26",
+    "datetime": "2026-03-26T14:42:31-03:00",
+    "source": "gmail",
+    "channel": "Fwd: PP asociado a DIT",
+    "client": "General",
+    "type": "insight",
+    "title": "Fwd: PP asociado a DIT",
+    "summary": "Chicas, mail inicial donde se reporta con metricas y casos puntuales donde en conversacion con la ultima milla se detecta que la demora se ocasiona en las troncales. ---------- Forwarded message ------",
+    "author": "Sabrina Fallet"
+  },
+  {
+    "id": "gmail_19d2b3b374abcadb",
+    "date": "2026-03-26",
+    "datetime": "2026-03-26T14:40:12-03:00",
+    "source": "gmail",
+    "channel": "SLA COMPROMETIDO – RENAULT A021",
+    "client": "Renault",
+    "type": "problema",
+    "title": "SLA comprometido Renault en A021 (Río Gallegos–TDF): SLA acordado no viable",
+    "summary": "Carlos Esquivel reporta equipos Renault vencidos con destino Tierra del Fuego (RGA). El SLA acordado para operaciones de última milla a TDF no contempla los +7 días adicionales. Sabrina Fallet escala a CX y coordina reunión con cliente el 30/03. Reunión mensual presencial pendiente.",
+    "author": "Sabrina Fallet"
+  },
+  {
+    "id": "gmail_19d275f886bbe854",
+    "date": "2026-03-25",
+    "datetime": "2026-03-25T23:41:03-03:00",
+    "source": "gmail",
+    "channel": "[Acción requerida] Tu suscripción a Confluence se ",
+    "client": "General",
+    "type": "accion",
+    "title": "[Acción requerida] Tu suscripción a Confluence se desactivará pronto",
+    "summary": "Your Confluence subscription will be deactivated soon Tu suscripción está inactiva en este momento Hola, Ine: Este es un recordatorio de que si no empiezas a utilizar la aplicación Confluence, en cx-",
+    "author": "Atlassian"
+  },
+  {
+    "id": "gmail_19d270979c34e368",
+    "date": "2026-03-25",
+    "datetime": "2026-03-25T19:07:01-03:00",
+    "source": "gmail",
+    "channel": "Re: BOT Mail Americas",
+    "client": "General",
+    "type": "insight",
+    "title": "Re: BOT Mail Americas",
+    "summary": "+ @Juan Martín Sanz El mié, 25 mar 2026 a la(s) 5:49 pm, Roberto Blanco (roberto.blanco@ocasa.com) escribió: Hola Stephie como te comente sin el caso de negocios no es posible que Control de Gestion",
+    "author": "Federico Carlos Richi"
+  },
+  {
+    "id": "gmail_19d26c2e0d86b48f",
+    "date": "2026-03-25",
+    "datetime": "2026-03-25T17:50:30-03:00",
+    "source": "gmail",
+    "channel": "RE: BOT Mail Americas",
+    "client": "General",
+    "type": "insight",
+    "title": "RE: BOT Mail Americas",
+    "summary": "Hola Stephie como te comente sin el caso de negocios no es posible que Control de Gestion apruebe el gasto. Entiendo que mañana por la mañana nos vamos a juntar con todos los números para validar el",
+    "author": "Roberto Blanco"
+  },
+  {
+    "id": "gmail_19d2682373bfb55c",
+    "date": "2026-03-25",
+    "datetime": "2026-03-25T16:39:42-03:00",
+    "source": "gmail",
+    "channel": "Re: BOT Mail Americas",
+    "client": "General",
+    "type": "insight",
+    "title": "Re: BOT Mail Americas",
+    "summary": "Hola Nicky, Hice un cálculo estimado de cómo quedaría un mes si se mantienen los 77 equipos diarios En ese caso el costo mensual es de 281 usd, manteniéndose estas premisas: 77 equipos por dia, 2.387",
+    "author": "Stephanie Estrada"
+  },
+  {
+    "id": "gmail_19d267f01bebbe11",
+    "date": "2026-03-25",
+    "datetime": "2026-03-25T16:36:11-03:00",
+    "source": "gmail",
+    "channel": "Re: Organigrama Customer Experience y consideracio",
+    "client": "General",
+    "type": "insight",
+    "title": "Re: Organigrama Customer Experience y consideraciones",
+    "summary": "Buenas tardes Sumo pendientes a considerar en color Para alinear conocimiento entre todas las partes, comparto el estado de situación actualizado al día de hoy: Migración de tareas a Life Science",
+    "author": "Gisela Falcon"
+  },
+  {
+    "id": "gmail_19d2670f82027885",
+    "date": "2026-03-25",
+    "datetime": "2026-03-25T16:21:04-03:00",
+    "source": "gmail",
+    "channel": "Re: Organigrama Customer Experience y consideracio",
+    "client": "General",
+    "type": "insight",
+    "title": "Re: Organigrama Customer Experience y consideraciones",
+    "summary": "Hola, ¿cómo están? Para alinear conocimiento entre todas las partes, comparto el estado de situación actualizado al día de hoy: Migración de tareas a Life Science Pamela Soraire: Desde RRHH se confirma",
+    "author": "Maria Ines Picasso"
+  },
+  {
+    "id": "gmail_19d26482563d3e66",
+    "date": "2026-03-25",
+    "datetime": "2026-03-25T15:36:15-03:00",
+    "source": "gmail",
+    "channel": "Fwd: BOT Mail Americas",
+    "client": "General",
+    "type": "insight",
+    "title": "Fwd: BOT Mail Americas",
+    "summary": "Carlos, Juanca buenas tardes Les comparto la solicitud para poder realizar la activación del Address BOT del cliente en asunto, comparto el cliente_key 177580 y código 102004945. Se aplicaría con la",
+    "author": "NICOLE TEVES"
+  },
+  {
+    "id": "gmail_19d262b6a06cd031",
+    "date": "2026-03-25",
+    "datetime": "2026-03-25T15:04:29-03:00",
+    "source": "gmail",
+    "channel": "BOT Mail Americas",
+    "client": "General",
+    "type": "insight",
+    "title": "BOT Mail Americas",
+    "summary": "Buenas tardes, Por favor necesitamos prender el BOT para el cliente mail Americas, para mejorar la calidad de los datos de entrega de los equipos. Desde ya gracias y quedo a la espera de la",
+    "author": "Federico Carlos Richi"
+  },
+  {
+    "id": "gmail_19d25aa8af196fa4",
+    "date": "2026-03-25",
+    "datetime": "2026-03-25T12:43:46-03:00",
+    "source": "gmail",
+    "channel": "CAINIAO – Revisión Follow up bidding",
+    "client": "CAINIAO",
+    "type": "accion",
+    "title": "CAINIAO: anexos faltantes compartidos y negociación activa post-licitación",
+    "summary": "Ignacio Pugliese comparte anexos faltantes solicitados por CAINIAO para el proceso de licitación. Estimación anual compartida: USD 1.618.800. Revisión del Anexo III (Rules for Compensation) pendiente.",
+    "author": "Ignacio Pugliese"
+  },
+  {
+    "id": "gmail_19d2584e752f3e8b",
+    "date": "2026-03-25",
+    "datetime": "2026-03-25T11:02:26-03:00",
+    "source": "gmail",
+    "channel": "Webinar: Reinventando la experiencia al cliente",
+    "client": "General",
+    "type": "insight",
+    "title": "Webinar: Reinventando la experiencia al cliente",
+    "summary": "El nuevo estándar del cliente ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+    "author": "Genesys"
+  },
+  {
+    "id": "gmail_19d2029347db5bd0",
+    "date": "2026-03-24",
+    "datetime": "2026-03-24T14:04:22-03:00",
+    "source": "gmail",
+    "channel": "Evaluación de desempeño: cuándo usar 90°, 180° o 3",
+    "client": "General",
+    "type": "insight",
+    "title": "Evaluación de desempeño: cuándo usar 90°, 180° o 360°",
+    "summary": "Evita errores comunes al elegir tu evaluación‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+    "author": "Josefina de TRAKER"
+  },
+  {
+    "id": "gmail_19cf75199aeda105",
+    "date": "2026-03-16",
+    "datetime": "2026-03-16T15:44:05+00:00",
+    "source": "gmail",
+    "channel": "Análisis Penalidades MeLi",
+    "client": "MeLi",
+    "type": "insight",
+    "title": "Presentación 'Análisis de Penalidades – Mercado Libre' compartida por Camila Aquino",
+    "summary": "Camila Aquino (camila.aquino@ocasa.com) comparte presentación de Google Slides con análisis de penalidades del cliente Mercado Libre. Documento para edición y revisión del equipo.",
+    "author": "Camila Aquino"
+  },
+  {
+    "id": "gmail_19cf7df89fa45192",
+    "date": "2026-03-16",
+    "datetime": "2026-03-16T15:30:10-03:00",
+    "source": "gmail",
+    "channel": "PICKIT – Impacto SLA semana 10",
+    "client": "Pickit",
+    "type": "impacto",
+    "title": "Pickit NO MeLi: shipments con impacto negativo en SLA semana 10",
+    "summary": "Reporte automático BI con detalle de shipments de Pickit canal No MeLi con impacto negativo en porcentaje de SLA durante la semana 10.",
+    "author": "Reporte Automático BI (servicios_bi@ocasa.com)"
+  },
+  {
+    "id": "gmail_19cafccc8f80b717",
+    "date": "2026-03-02",
+    "datetime": "2026-03-02T15:36:54-03:00",
+    "source": "gmail",
+    "channel": "PICKIT – Impacto SLA semana 8",
+    "client": "Pickit",
+    "type": "impacto",
+    "title": "Pickit NO MeLi: shipments con impacto negativo en SLA semana 8",
+    "summary": "Reporte automático BI con detalle de shipments de Pickit (canal No MeLi) con impacto negativo en el porcentaje de SLA durante la semana 8 del año.",
+    "author": "Reporte Automático BI (servicios_bi@ocasa.com)"
+  },
+  {
+    "id": "gmail_19c9bc06661d68ee",
+    "date": "2026-02-26",
+    "datetime": "2026-02-26T18:00:05-03:00",
+    "source": "gmail",
+    "channel": "Camión OCASA daña portón REDES / DirecTV",
+    "client": "DirecTV",
+    "type": "problema",
+    "title": "Camión de logística OCASA daña portón de acceso a instalación DirecTV/REDES",
+    "summary": "Transportista de OCASA causa daño en portón de acceso de DirecTV. Ignacio Pugliese coordina con Riesgos y contrataciones para que el proveedor responda. DTV solicita que el transportista se haga cargo. Gestión con seguro del transportista.",
+    "author": "Ignacio Pugliese"
+  },
+  {
+    "id": "gmail_19c9a7007a7c21b3",
+    "date": "2026-02-26",
+    "datetime": "2026-02-26T11:53:05-03:00",
+    "source": "gmail",
+    "channel": "Bot Customer 2.2.1 – Integración Voice MeLi",
+    "client": "MeLi",
+    "type": "accion",
+    "title": "Voice MeLi funciona tras ajuste en Bot Customer 2.2.1",
+    "summary": "Gisela Falcon confirma que el caso Voice de MeLi ya funciona correctamente tras el ajuste de Fabián Anderle (Interaxa). Corrección verificada con caso de prueba. Se da seguimiento a las correcciones pendientes.",
+    "author": "Gisela Falcon"
+  },
+  {
+    "id": "gmail_19c95f644dceec97",
+    "date": "2026-02-25",
+    "datetime": "2026-02-25T15:01:45-03:00",
+    "source": "gmail",
+    "channel": "Alta Clientes SLA",
+    "client": "Mercedes Benz",
+    "type": "accion",
+    "title": "Alta clientes Mercedes Benz y Carta Documento en indicadores SLA",
+    "summary": "Claudio Maleichuk solicita incluir en los indicadores SLA a los clientes Mercedes Benz y Carta Documento Digital. Solicitud dirigida a Anders Graffe con copia a Ines Picasso.",
+    "author": "Claudio Maleichuk"
+  },
+  {
+    "id": "slack_C04D742TJNQ_1767730738",
+    "date": "2026-01-07",
+    "datetime": "2026-01-07T17:18:58-03:00",
+    "source": "slack",
+    "channel": "#soporte_customer_bi",
+    "client": "N24",
+    "type": "accion",
+    "title": "Pausa actualización automática tablero N24 – se mantiene N24-Interno",
+    "summary": "Lucas Sagasta solicita pausar la actualización automática del tablero N24 por cuestiones operativas. Se mantiene activa la actualización del tablero N24-Interno. Carlos Bateca confirma el cambio.",
+    "author": "Lucas Sagasta"
+  },
+  {
+    "id": "slack_C048HH2BA48_1734440867",
+    "date": "2025-12-17",
+    "datetime": "2025-12-17T10:41:07-03:00",
+    "source": "slack",
+    "channel": "#customer",
+    "client": "DirecTV",
+    "type": "problema",
+    "title": "Pedido DirecTV: cliente solicita retiro desde Salta con destinatario en Tortuguitas",
+    "summary": "Ricardo Palavecino reporta dos pedidos con destinatario Tortuguitas donde el cliente solicita retiro desde Salta. Caso atendido por Lautaro Arredondo y Eugenia Acosta del equipo operativo. Escalamiento por casilla cxpaqueteriabo@ocasa.com.",
+    "author": "Ricardo Palavecino"
+  }
+];
 
-const LS_KEY         = 'bitacora_manual_entries';
-const LS_CLIENTS_KEY = 'bitacora_extra_clients';
-const LS_HIDDEN_KEY  = 'bitacora_hidden_entries';
-
-// ─────────────────────────────────────────────
-//  CONSTANTS
-// ─────────────────────────────────────────────
-const TYPE_LABEL = { problema:'Problema', impacto:'Impacto', insight:'Insight', accion:'Acción' };
-const TYPE_ICON  = { problema:'🔴', impacto:'🟠', insight:'🟢', accion:'🔵' };
-const SRC_ICON   = { slack:'💬', gmail:'📧', manual:'✏️' };
-const SRC_LABEL  = { slack:'Slack', gmail:'Gmail', manual:'Manual' };
-const BG = { problema:'#fef2f2', impacto:'#fff7ed', insight:'#f0fdf4', accion:'#eff6ff' };
-const FG = { problema:'#dc2626', impacto:'#ea580c', insight:'#16a34a', accion:'#2563eb' };
-
-// Diccionario de sinónimos para búsqueda IA
-const SYNONYMS = {
-  // Problemas / incidentes
-  'problema':      ['error','bug','falla','incidente','reclamo','queja','faltante','inconveniente','caída','caida','issue'],
-  'faltante':      ['faltantes','perdido','perdidos','extraviado','no entregado','sin entrega','missing'],
-  'reclamo':       ['queja','reclamación','escalamiento','escalado','complaint'],
-  'entrega':       ['despacho','envío','envio','retiro','logística','logistica','paquete','pedido','bulto'],
-  'error':         ['falla','bug','incidente','problema','inconsistencia'],
-  // Impactos / métricas
-  'nps':           ['satisfacción','satisfaccion','encuesta','recomendación','score','net promoter'],
-  'sla':           ['nivel de servicio','acuerdo','tiempo','plazo','efectividad','cumplimiento'],
-  'impacto':       ['efecto','consecuencia','resultado','daño','daño','pérdida','perdida','kpi','métrica','metrica'],
-  'notificación':  ['notificacion','notificaciones','aviso','alerta','comunicación','comunicacion'],
-  // Clientes
-  'calypso':       ['calipso'],
-  'meli':          ['mercado libre','mercadolibre','ml','mercado'],
-  'modo':          ['grupo modo','grupomodo','group modo'],
-  'molinos':       ['molinos río de la plata','molinos rio'],
-  'xbt':           ['xborder','cross border','transfronterizo','internacional'],
-  'directv':       ['dtv','direct tv','tv por cable'],
-  'postmaster':    ['post master','correo'],
-  // Tipos de evento
-  'insight':       ['aprendizaje','feedback','percepción','percepcion','hallazgo','observación','observacion','resultado','dato'],
-  'accion':        ['acción','accion','tarea','pendiente','próximo paso','proximo paso','compromiso','seguimiento','next step'],
-  'impacto':       ['efecto','consecuencia','resultado','afectación','afectacion'],
-  // Personas / roles
-  'cliente':       ['cuenta','account','empresa','partner'],
-  // Términos de CS
-  'comité':        ['comite','reunión','reunion','meeting','junta','revisión','revision'],
-  'reporte':       ['informe','report','resumen','summary','tablero','dashboard'],
-  'escalamiento':  ['escalado','escalación','escalacion','urgente','crítico','critico'],
-};
-
-// ─────────────────────────────────────────────
-//  HELPERS
-// ─────────────────────────────────────────────
-function esc(s) {
-  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-function normalize(s) {
-  return String(s||'').toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g,'');  // strip accents
-}
-function fmtDate(ds) {
-  try {
-    const d = new Date(ds + 'T12:00:00');
-    return d.toLocaleDateString('es-AR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
-  } catch(e) { return ds; }
-}
-function fmtDateTime(ds) {
-  try {
-    return new Date(ds).toLocaleString('es-AR', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
-  } catch(e) { return ds; }
-}
-function initials(name) {
-  return String(name||'?').split(/\s+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase() || '?';
-}
-function genId() {
-  return 'manual_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
-}
-
-// ─────────────────────────────────────────────
-//  LOCAL STORAGE (manual entries)
-// ─────────────────────────────────────────────
-function loadManualEntries() {
-  try { return JSON.parse(localStorage.getItem(LS_KEY) || '[]'); } catch(e) { return []; }
-}
-function saveManualEntries(entries) {
-  try { localStorage.setItem(LS_KEY, JSON.stringify(entries)); } catch(e) {}
-}
-function addManualEntry(entry) {
-  const entries = loadManualEntries();
-  entries.unshift(entry);
-  saveManualEntries(entries);
-}
-function deleteManualEntry(id) {
-  const entries = loadManualEntries().filter(e => e.id !== id);
-  saveManualEntries(entries);
-  renderAll();
-}
-
-// ─────────────────────────────────────────────
-//  LOCAL STORAGE (entradas ocultas)
-// ─────────────────────────────────────────────
-function loadHidden() {
-  try { return new Set(JSON.parse(localStorage.getItem(LS_HIDDEN_KEY) || '[]')); } catch(e) { return new Set(); }
-}
-function hideEntry(id) {
-  const h = loadHidden();
-  h.add(id);
-  localStorage.setItem(LS_HIDDEN_KEY, JSON.stringify([...h]));
-  renderAll();
-}
-function restoreHidden() {
-  localStorage.removeItem(LS_HIDDEN_KEY);
-  renderAll();
-}
-
-// ─────────────────────────────────────────────
-//  LOCAL STORAGE (extra clients)
-// ─────────────────────────────────────────────
-function loadExtraClients() {
-  try { return JSON.parse(localStorage.getItem(LS_CLIENTS_KEY) || '[]'); } catch(e) { return []; }
-}
-function saveExtraClients(list) {
-  try { localStorage.setItem(LS_CLIENTS_KEY, JSON.stringify(list)); } catch(e) {}
-}
-function addNewClient() {
-  const input = document.getElementById('cpInput');
-  const name = input.value.trim();
-  if (!name) return;
-  const existing = loadExtraClients();
-  // avoid duplicates (case-insensitive)
-  const allNames = getAllClientNames().map(c => c.toLowerCase());
-  if (allNames.includes(name.toLowerCase())) {
-    input.value = '';
+function renderTable(filteredData) {
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+  
+  if (filteredData.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-light);">No hay datos que coincidan con los filtros seleccionados</td></tr>';
     return;
   }
-  existing.push(name);
-  saveExtraClients(existing);
-  input.value = '';
-  populateClients();
-  renderClientPanel();
-  renderAll();
-}
-function removeExtraClient(name) {
-  const list = loadExtraClients().filter(c => c !== name);
-  saveExtraClients(list);
-  populateClients();
-  renderClientPanel();
-  renderAll();
-}
-function toggleClientPanel() {
-  const panel = document.getElementById('clientPanel');
-  const btn   = document.getElementById('manageBtnEl');
-  const open  = panel.classList.toggle('open');
-  btn.classList.toggle('open', open);
-  if (open) renderClientPanel();
-}
-function renderClientPanel() {
-  const tagsEl = document.getElementById('cpTags');
-  // Clients from data (auto)
-  const autoClients = [...new Set(getAllEntries().map(e => e.client||'—'))].sort();
-  // Extra clients (manual)
-  const extra = loadExtraClients();
-  const allForPanel = [...new Set([...autoClients, ...extra])].sort();
-  tagsEl.innerHTML = allForPanel.map(c => {
-    // Show delete button only for extra clients that are NOT in auto-detected data
-    const isOnlyExtra = extra.includes(c) && !autoClients.includes(c);
-    const del = isOnlyExtra
-      ? `<button class="cp-tag-del" onclick="removeExtraClient('${c.replace(/'/g,"\\'")}')">✕</button>`
-      : '';
-    return `<span class="cp-tag">${c}${del}</span>`;
-  }).join('');
-}
-function getAllClientNames() {
-  const fromData  = getAllEntries().map(e => e.client || '—');
-  const fromExtra = loadExtraClients();
-  return [...new Set([...fromData, ...fromExtra])].sort();
-}
-
-// ─────────────────────────────────────────────
-//  ALL ENTRIES (auto + manual, sin ocultas)
-// ─────────────────────────────────────────────
-function getAllEntries() {
-  const hidden = loadHidden();
-  const manual = loadManualEntries().map(e => ({...e, source: 'manual'}));
-  return [...manual, ...BITACORA_DATA.entries].filter(e => !hidden.has(e.id));
-}
-
-// ─────────────────────────────────────────────
-//  CLIENT DROPDOWN
-// ─────────────────────────────────────────────
-function populateClients() {
-  const clients = getAllClientNames();
-  const sel = document.getElementById('clientFilter');
-  const prev = sel.value;
-  while (sel.options.length > 1) sel.remove(1);
-  clients.forEach(c => {
-    const o = document.createElement('option');
-    o.value = c; o.textContent = c;
-    sel.appendChild(o);
-  });
-  // Restore previous selection if still valid
-  if (clients.includes(prev)) sel.value = prev;
-  // Update datalist in modal
-  const dl = document.getElementById('clientList');
-  dl.innerHTML = '';
-  clients.forEach(c => {
-    const o = document.createElement('option');
-    o.value = c;
-    dl.appendChild(o);
+  
+  filteredData.forEach(entry => {
+    const row = document.createElement('tr');
+    const typeColor = {
+      'problema': 'badge-problema',
+      'impacto': 'badge-impacto',
+      'insight': 'badge-insight',
+      'accion': 'badge-accion'
+    }[entry.type] || '';
+    
+    row.innerHTML = `
+      <td>${entry.date}</td>
+      <td>${entry.client}</td>
+      <td><span class="badge ${typeColor}">${entry.type}</span></td>
+      <td><strong>${entry.title}</strong></td>
+      <td>${entry.summary.substring(0, 60)}...</td>
+      <td>${entry.author}</td>
+    `;
+    tbody.appendChild(row);
   });
 }
 
-// ─────────────────────────────────────────────
-//  AI SEARCH ENGINE
-// ─────────────────────────────────────────────
-function expandQuery(q) {
-  // Returns array of all terms to match (original + synonyms)
-  const norm = normalize(q);
-  const tokens = norm.split(/\s+/).filter(Boolean);
-  const expanded = new Set(tokens);
-  tokens.forEach(tok => {
-    // Direct synonym lookup
-    Object.entries(SYNONYMS).forEach(([key, vals]) => {
-      if (tok === normalize(key) || vals.some(v => tok === normalize(v))) {
-        expanded.add(normalize(key));
-        vals.forEach(v => expanded.add(normalize(v)));
-      }
-    });
-  });
-  return [...expanded];
+function updateStats(filteredData) {
+  const total = filteredData.length;
+  const clients = new Set(filteredData.map(e => e.client)).size;
+  const problemas = filteredData.filter(e => e.type === 'problema').length;
+  const impactos = filteredData.filter(e => e.type === 'impacto').length;
+  const insights = filteredData.filter(e => e.type === 'insight').length;
+  const acciones = filteredData.filter(e => e.type === 'accion').length;
+  
+  document.getElementById('totalRegistros').textContent = total;
+  document.getElementById('totalClientes').textContent = clients;
+  document.getElementById('totalProblemas').textContent = problemas;
+  document.getElementById('totalImpactos').textContent = impactos;
+  document.getElementById('totalInsights').textContent = insights;
+  document.getElementById('totalAcciones').textContent = acciones;
 }
 
-function scoreEntry(entry, terms) {
-  const fields = [
-    entry.title || '',
-    entry.summary || '',
-    entry.client || '',
-    entry.author || '',
-    entry.channel || '',
-    TYPE_LABEL[entry.type] || '',
-  ].map(normalize).join(' ');
-
-  let score = 0;
-  let matchedTerms = [];
-  terms.forEach(term => {
-    if (fields.includes(term)) {
-      score += term.length > 4 ? 2 : 1; // longer matches score higher
-      matchedTerms.push(term);
-    }
-  });
-  return { score, matchedTerms };
-}
-
-function hiAI(text, matchedTerms) {
-  if (!matchedTerms || !matchedTerms.length) return esc(text);
-  let result = esc(text);
-  // Sort by length desc to match longer phrases first
-  [...matchedTerms].sort((a,b) => b.length - a.length).forEach(term => {
-    const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    result = result.replace(new RegExp(escaped, 'gi'), m => `<mark class="ai-match">${m}</mark>`);
-  });
-  return result;
-}
-
-function hiExact(text, q) {
-  if (!q) return esc(text);
-  const safe = esc(text);
-  const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return safe.replace(new RegExp(escaped, 'gi'), m => `<mark>${m}</mark>`);
-}
-
-// ─────────────────────────────────────────────
-//  FILTER + SEARCH
-// ─────────────────────────────────────────────
-function getFiltered() {
-  const q = document.getElementById('searchInput').value.trim();
-  const cl = document.getElementById('clientFilter').value;
-  let entries = getAllEntries();
-
-  // Hard filters
-  entries = entries.filter(e => {
-    if (activeType !== 'all' && e.type !== activeType) return false;
-    if (activeSrc !== 'all') {
-      const src = e.source || 'slack';
-      if (src !== activeSrc) return false;
-    }
-    if (cl !== 'all' && e.client !== cl) return false;
-    return true;
-  });
-
-  if (!q) return { entries, terms: [], aiActive: false };
-
-  if (aiMode) {
-    // AI search: expand query, score, filter > 0, sort by score
-    const terms = expandQuery(q);
-    const scored = entries
-      .map(e => {
-        const { score, matchedTerms } = scoreEntry(e, terms);
-        return { ...e, _score: score, _matched: matchedTerms };
-      })
-      .filter(e => e._score > 0)
-      .sort((a,b) => b._score - a._score);
-    return { entries: scored, terms: expandQuery(q), aiActive: true };
-  } else {
-    // Exact search
-    const qn = normalize(q);
-    const filtered = entries.filter(e => {
-      const blob = normalize([e.title,e.summary,e.client,e.author||'',e.channel].join(' '));
-      return blob.includes(qn);
-    });
-    return { entries: filtered, terms: [qn], aiActive: false };
+function applyFilters() {
+  const monthFilter = document.getElementById('filterMonth').value;
+  const clientFilter = document.getElementById('filterClient').value;
+  const typeFilter = document.getElementById('filterType').value;
+  
+  let filtered = allData;
+  
+  if (monthFilter) {
+    filtered = filtered.filter(e => e.date.startsWith(monthFilter));
   }
-}
-
-// ─────────────────────────────────────────────
-//  SOURCE URL
-// ─────────────────────────────────────────────
-function getSourceUrl(entry) {
-  const id = entry.id || '';
-  if (entry.source === 'slack' && id.startsWith('slack_')) {
-    const rest = id.slice(6);
-    const sep = rest.indexOf('_');
-    if (sep > 0) {
-      const channelId = rest.slice(0, sep);
-      const ts = rest.slice(sep + 1);
-      return { url: `https://ocasa-hablar.slack.com/archives/${channelId}/p${ts}000000`, type: 'slack' };
-    }
-  } else if (entry.source === 'gmail' && id.startsWith('gmail_')) {
-    const msgId = id.slice(6);
-    return { url: `https://mail.google.com/mail/u/0/#inbox/${msgId}`, type: 'gmail' };
+  if (clientFilter) {
+    filtered = filtered.filter(e => e.client === clientFilter);
   }
-  return null;
-}
-
-function toggleDetail(detId) {
-  const el = document.getElementById(detId);
-  if (!el) return;
-  el.classList.toggle('open');
-  const btn = el.previousElementSibling.querySelector('.expand-btn');
-  if (btn) btn.textContent = el.classList.contains('open') ? 'Ocultar ▴' : 'Ver detalle ▾';
-}
-
-// ─────────────────────────────────────────────
-//  RENDER CARD (feed de novedades compacto)
-// ─────────────────────────────────────────────
-function card(e, terms, aiActive) {
-  const isManual = (e.source === 'manual');
-  const hi = aiActive
-    ? (t) => hiAI(t, e._matched)
-    : (t) => hiExact(t, terms[0] || '');
-
-  const src = getSourceUrl(e);
-  const srcBtn = src
-    ? `<a href="${src.url}" target="_blank" class="source-link ${src.type}-link">${src.type === 'slack' ? '💬 Ver en Slack' : '📧 Ver en Gmail'} ↗</a>`
-    : '';
-
-  const detId = 'det_' + e.id.replace(/\W/g,'_');
-
-  // Botón ocultar solo para entradas automáticas (las manuales se eliminan)
-  const hideBtn = !isManual
-    ? `<button class="hide-btn" onclick="hideEntry('${e.id}')">✕ No corresponde</button>`
-    : '';
-
-  return `
-  <div class="nov-card ${e.type}${isManual?' manual-entry':''}">
-    <div class="nov-main">
-      <div class="nov-row1">
-        <span class="badge ${e.type}">${TYPE_ICON[e.type]} ${TYPE_LABEL[e.type]}</span>
-        <span class="client-pill">👤 ${hi(e.client||'—')}</span>
-        <span class="nov-date">🗓 ${fmtDate(e.date)}</span>
-      </div>
-      <div class="nov-title">${hi(e.title||'Sin título')}</div>
-      <div class="nov-impact">${hi(e.summary||'—')}</div>
-      <div class="nov-footer">
-        <span class="src-badge">${SRC_ICON[e.source]||'📌'} ${esc(e.channel||'—')}</span>
-        ${e.author ? `<span class="meta-item">✍️ ${hi(e.author)}</span>` : ''}
-        ${srcBtn}
-        ${hideBtn}
-        <button class="expand-btn" onclick="toggleDetail('${detId}')">Ver detalle ▾</button>
-      </div>
-    </div>
-    <div class="nov-detail" id="${detId}">
-      <div class="detail-grid">
-        <span class="detail-item"><strong>Canal / Origen:</strong> ${esc(e.channel||'—')}</span>
-        <span class="detail-item"><strong>Autor:</strong> ${esc(e.author||'—')}</span>
-        <span class="detail-item"><strong>Fuente:</strong> ${SRC_LABEL[e.source]||e.source}</span>
-        <span class="detail-item"><strong>ID:</strong> ${esc(e.id)}</span>
-      </div>
-      ${src ? `<a href="${src.url}" target="_blank" class="source-link ${src.type}-link">${src.type === 'slack' ? '💬 Abrir mensaje en Slack' : '📧 Abrir email en Gmail'} ↗</a>` : ''}
-      ${isManual ? `<button class="manual-del" onclick="deleteManualEntry('${e.id}')" style="margin-left:8px">🗑 Eliminar entrada</button>` : ''}
-    </div>
-  </div>`;
-}
-
-// ─────────────────────────────────────────────
-//  RENDER STATS
-// ─────────────────────────────────────────────
-function renderStats(entries, aiActive) {
-  const counts = { problema:0, impacto:0, insight:0, accion:0 };
-  entries.forEach(e => counts[e.type] = (counts[e.type]||0) + 1);
-  const badges = Object.entries(counts)
-    .map(([t,c]) => `<span class="stat-item"><span class="stat-dot" style="background:${FG[t]}"></span><span class="stat-num">${c}</span><span class="stat-lbl">${TYPE_LABEL[t]}</span></span>`)
-    .join('');
-  const aiBadge = aiActive ? `<span class="ai-mode-badge">🤖 Búsqueda IA</span>` : '';
-  document.getElementById('statsBar').innerHTML =
-    `<span class="results-count">${entries.length} resultado${entries.length!==1?'s':''}</span>${badges}${aiBadge}`;
-}
-
-// ─────────────────────────────────────────────
-//  RENDER BITÁCORA → CALENDARIO MENSUAL
-// ─────────────────────────────────────────────
-function renderBitacora(entries, terms, aiActive) {
-  // En modo IA mostramos lista de relevancia (el calendario no aplica bien al ranking)
-  if (aiActive && terms.length) {
-    const header = `<div style="padding:8px 0 14px;color:var(--text-light);font-size:13px;">🤖 Resultados por relevancia — <button onclick="toggleAI()" style="background:none;border:none;cursor:pointer;color:var(--primary);font-weight:600;font-size:13px;padding:0;">ver en calendario ▸</button></div>`;
-    return header + entries.map(e => card(e, terms, true)).join('');
+  if (typeFilter) {
+    filtered = filtered.filter(e => e.type === typeFilter);
   }
-  return renderCalendar(entries);
+  
+  // Ordenar por fecha descendente
+  filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+  
+  renderTable(filtered);
+  updateStats(filtered);
 }
 
-function renderCalendar(entries) {
-  const today     = new Date().toISOString().slice(0, 10);
-  const firstDay  = new Date(calYear, calMonth, 1);
-  const lastDay   = new Date(calYear, calMonth + 1, 0);
-  const monthName = firstDay.toLocaleDateString('es-AR', { month: 'long', year: 'numeric' });
-
-  // Agrupar entradas por fecha
-  const byDate = {};
-  entries.forEach(e => { (byDate[e.date] = byDate[e.date] || []).push(e); });
-
-  // Offset inicial: lunes = 0 … domingo = 6
-  let startDow = firstDay.getDay(); // 0=Dom
-  startDow = startDow === 0 ? 6 : startDow - 1;
-
-  // Construir celdas
-  const cells = [];
-  for (let i = 0; i < startDow; i++) cells.push(null); // vacías previas
-  for (let d = 1; d <= lastDay.getDate(); d++) {
-    const ds = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    cells.push({ ds, d, items: byDate[ds] || [] });
-  }
-  while (cells.length % 7 !== 0) cells.push(null); // vacías posteriores
-
-  const DAYS = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
-  const hdrs = DAYS.map(d => `<div class="cal-day-hdr">${d}</div>`).join('');
-
-  const cellsHtml = cells.map(c => {
-    if (!c) return `<div class="cal-cell empty"></div>`;
-    const isToday = c.ds === today;
-    const dateNum = isToday
-      ? `<div class="cal-date-num"><span class="cal-day-dot">${c.d}</span></div>`
-      : `<div class="cal-date-num">${c.d}</div>`;
-
-    const chips = c.items.slice(0, 3).map(e => {
-      const short = e.title.length > 32 ? e.title.slice(0,30)+'…' : e.title;
-      const src = e.source === 'manual' ? 'manual' : e.type;
-      return `<span class="cal-chip ${src}" onclick="openDayPanel('${esc(c.ds)}', '${e.id}')">${TYPE_ICON[e.type]} ${esc(short)}</span>`;
-    }).join('');
-
-    const more = c.items.length > 3
-      ? `<span class="cal-more" onclick="openDayPanel('${esc(c.ds)}', null)">+${c.items.length-3} más</span>`
-      : '';
-
-    return `<div class="cal-cell${isToday?' today':''}">${dateNum}${chips}${more}</div>`;
-  }).join('');
-
-  const totalEntries = entries.length;
-
-  return `
-  <div class="cal-wrap">
-    <div class="cal-header">
-      <button class="cal-nav" onclick="changeMonth(-1)">◀</button>
-      <span class="cal-month-lbl">${monthName}</span>
-      <button class="cal-nav" onclick="changeMonth(1)">▶</button>
-      <span class="cal-sub">${totalEntries} entrada${totalEntries!==1?'s':''} este mes</span>
-    </div>
-    <div class="cal-grid">
-      ${hdrs}
-      ${cellsHtml}
-    </div>
-    <div id="dayPanel"></div>
-  </div>`;
-}
-
-function changeMonth(dir) {
-  calMonth += dir;
-  if (calMonth < 0)  { calMonth = 11; calYear--; }
-  if (calMonth > 11) { calMonth = 0;  calYear++; }
-  renderAll();
-}
-
-function openDayPanel(dateStr, entryId) {
-  // Obtener todas las entradas de ese día
-  const { entries } = getFiltered();
-  const dayEntries = entries.filter(e => e.date === dateStr);
-  if (!dayEntries.length) return;
-
-  const d = new Date(dateStr + 'T12:00:00');
-  const label = d.toLocaleDateString('es-AR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
-
-  // Si se hizo click en un chip específico, ese va primero
-  let ordered = dayEntries;
-  if (entryId) {
-    const idx = ordered.findIndex(e => e.id === entryId);
-    if (idx > 0) { ordered = [ordered[idx], ...ordered.slice(0,idx), ...ordered.slice(idx+1)]; }
-  }
-
-  const panel = document.getElementById('dayPanel');
-  panel.innerHTML = `
-    <div class="day-panel">
-      <div class="day-panel-hdr">
-        <span class="day-panel-title">📅 ${label} · ${ordered.length} entrada${ordered.length!==1?'s':''}</span>
-        <button class="day-panel-close" onclick="document.getElementById('dayPanel').innerHTML=''">✕</button>
-      </div>
-      <div class="day-panel-body">
-        ${ordered.map(e => card(e, [], false)).join('')}
-      </div>
-    </div>`;
-  panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
-}
-
-// ─────────────────────────────────────────────
-//  RENDER POR CLIENTE  (timeline + novedad list)
-// ─────────────────────────────────────────────
-function renderPorCliente(entries, terms, aiActive) {
-  const byClient = {};
-  entries.forEach(e => { (byClient[e.client||'—']=byClient[e.client||'—']||[]).push(e); });
-  const q = document.getElementById('searchInput').value.trim();
-  if (!q && activeType === 'all' && activeSrc === 'all' && document.getElementById('clientFilter').value === 'all') {
-    loadExtraClients().forEach(c => { if (!byClient[c]) byClient[c] = []; });
-  }
-  if (!Object.keys(byClient).length) return emptyState();
-  return Object.entries(byClient)
-    .sort(([a],[b]) => a.localeCompare(b))
-    .map(([client, es], i) => {
-      const sorted = es.slice().sort((a,b) => b.date.localeCompare(a.date));
-      const counts = { problema:0, impacto:0, insight:0, accion:0 };
-      sorted.forEach(e => counts[e.type] = (counts[e.type]||0) + 1);
-      const minibadges = Object.entries(counts)
-        .filter(([,c])=>c>0)
-        .map(([t,c])=>`<span class="mini-badge" style="background:${BG[t]};color:${FG[t]}">${TYPE_ICON[t]} ${c}</span>`)
-        .join('');
-      const id = `cb${i}`;
-      const hiF = aiActive ? (t) => hiAI(t, []) : (t) => hiExact(t, terms[0]||'');
-      const timelineHtml = sorted.length ? buildClientTimeline(sorted) : '';
-      const noveladListHtml = sorted.length
-        ? `<div class="nov-list">${sorted.map((e,j) => noveladItem(e, `${id}_${j}`, terms, aiActive)).join('')}</div>`
-        : `<div class="nov-list-empty">Sin entradas aún · Usá <strong>＋ Nueva entrada</strong> para registrar un evento</div>`;
-      return `
-      <div class="client-block">
-        <div class="client-hdr" id="hdr-${id}" onclick="toggleBlock('${id}')">
-          <div class="client-hdr-left">
-            <div class="client-avatar">${initials(client)}</div>
-            <div class="client-hdr-name">${hiF(client)}</div>
-          </div>
-          <div class="client-hdr-right">
-            ${minibadges}
-            <span class="mini-badge" style="background:#f1f5f9;color:#64748b">${sorted.length} entrada${sorted.length!==1?'s':''}</span>
-            <span class="toggle-icon" id="icon-${id}">▼</span>
-          </div>
-        </div>
-        <div class="client-body open" id="${id}">
-          ${timelineHtml}
-          ${noveladListHtml}
-        </div>
-      </div>`;
-    }).join('');
-}
-
-// Build a mini horizontal timeline for the last 60 days
-function buildClientTimeline(entries) {
-  const today = new Date();
-  today.setHours(0,0,0,0);
-  const DAYS = 45;
-  // Build date → entries map
-  const byDate = {};
-  entries.forEach(e => { (byDate[e.date] = byDate[e.date] || []).push(e); });
-  // Build bars
-  const bars = [];
-  for (let i = DAYS - 1; i >= 0; i--) {
-    const d = new Date(today);
-    d.setDate(d.getDate() - i);
-    const ds = d.toISOString().slice(0,10);
-    const dayEntries = byDate[ds] || [];
-    const count = dayEntries.length;
-    const isToday = i === 0;
-    const dayNum = d.getDate();
-    const showLabel = (dayNum === 1 || dayNum % 7 === 0 || isToday);
-    // Determine dominant type color
-    let barColor = '#e2e8f0';
-    if (count > 0) {
-      const typeOrder = ['problema','impacto','accion','insight'];
-      for (const t of typeOrder) {
-        if (dayEntries.some(e => e.type === t)) { barColor = FG[t]; break; }
-      }
-    }
-    const barH = count === 0 ? 4 : Math.min(4 + count * 10, 38);
-    const hasEv = count > 0;
-    const lblClass = isToday ? 'tl-date-lbl today' : 'tl-date-lbl';
-    const dayLabel = isToday ? 'Hoy' : (showLabel ? `${dayNum}/${d.getMonth()+1}` : '');
-    const onClick = hasEv ? `onclick="tlDayClick('${ds}', this)"` : '';
-    bars.push(`
-      <div class="tl-day${hasEv?' has-events':''}" ${onClick} title="${ds}${count>0?' · '+count+' entrada'+(count>1?'s':''):''}">
-        <div class="tl-bar${count===0?' empty':''}" style="height:${barH}px;background:${count>0?barColor:'#e2e8f0'}"></div>
-        <div class="${lblClass}">${dayLabel}</div>
-      </div>`);
-  }
-  return `
-  <div class="client-timeline">
-    <div class="tl-label">Actividad — últimos 45 días</div>
-    <div class="tl-track">${bars.join('')}</div>
-  </div>`;
-}
-
-// Opens a small inline popup in the novedad list for that day's entries
-function tlDayClick(dateStr, el) {
-  // find the nov-list inside the same client-body
-  const body = el.closest('.client-body');
-  if (!body) return;
-  const allItems = body.querySelectorAll('.nl-item');
-  // find all items for this date and flash them
-  let found = false;
-  allItems.forEach(item => {
-    if (item.dataset.date === dateStr) {
-      found = true;
-      item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      const detail = item.querySelector('.nl-detail');
-      const chevron = item.querySelector('.nl-chevron');
-      if (detail && !detail.classList.contains('open')) {
-        detail.classList.add('open');
-        if (chevron) chevron.classList.add('open');
-      }
-      item.style.boxShadow = '0 0 0 2px var(--primary)';
-      setTimeout(() => item.style.boxShadow = '', 1500);
-    }
-  });
-}
-
-// Build a single novedad line item (collapsible)
-function noveladItem(e, uid, terms, aiActive) {
-  const isManual = e.source === 'manual';
-  const hi = aiActive ? (t) => hiAI(t, e._matched||[]) : (t) => hiExact(t, terms[0]||'');
-  const src = getSourceUrl(e);
-  const srcBtn = src
-    ? `<a href="${src.url}" target="_blank" class="source-link ${src.type}-link">${src.type === 'slack' ? '💬 Ver en Slack' : '📧 Ver en Gmail'} ↗</a>`
-    : '';
-  const hideBtn = !isManual
-    ? `<button class="nl-hide-btn" onclick="event.stopPropagation();hideEntry('${e.id}')">✕ Ocultar</button>`
-    : `<button class="nl-del-btn" onclick="event.stopPropagation();deleteManualEntry('${e.id}')">🗑 Eliminar</button>`;
-  const detId = `nld_${uid}`;
-  const d = new Date(e.date + 'T12:00:00');
-  const dateLabel = d.toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'2-digit' });
-  return `
-  <div class="nl-item ${e.type}" data-date="${e.date}" id="nlitem_${uid}">
-    <div class="nl-row" onclick="toggleNlItem('${detId}')">
-      <span class="nl-type-dot" style="background:${FG[e.type]||'#64748b'}"></span>
-      <span class="nl-title">${hi(e.title||'Sin título')}</span>
-      <span class="nl-meta">
-        <span class="nl-src-icon" title="${e.source}">${SRC_ICON[e.source]||'📌'}</span>
-        <span class="nl-date">${dateLabel}</span>
-        <span class="nl-chevron" id="chev_${uid}">▼</span>
-      </span>
-    </div>
-    <div class="nl-detail" id="${detId}">
-      <div class="nl-summary">${hi(e.summary||'—')}</div>
-      <div class="nl-detail-meta">
-        ${e.author ? `<span><strong>Autor:</strong> ${esc(e.author)}</span>` : ''}
-        <span><strong>Canal:</strong> ${esc(e.channel||'—')}</span>
-        <span><strong>Fuente:</strong> ${SRC_LABEL[e.source]||e.source}</span>
-        <span><strong>Fecha:</strong> ${fmtDate(e.date)}</span>
-      </div>
-      <div class="nl-actions">
-        ${srcBtn}
-        ${hideBtn}
-      </div>
-    </div>
-  </div>`;
-}
-
-function toggleNlItem(detId) {
-  const det = document.getElementById(detId);
-  if (!det) return;
-  det.classList.toggle('open');
-  // chevron id derived: nld_X → chev_X
-  const uid = detId.replace('nld_', '');
-  const chev = document.getElementById('chev_' + uid);
-  if (chev) chev.classList.toggle('open');
-}
-
-function toggleBlock(id) {
-  const body = document.getElementById(id);
-  const icon = document.getElementById('icon-'+id);
-  const hdr  = document.getElementById('hdr-'+id);
-  if (!body) return;
-  body.classList.toggle('open');
-  icon.classList.toggle('open');
-  hdr.classList.toggle('open');
-}
-
-function emptyState() {
-  return `<div class="empty-state">
-    <div class="empty-icon">🔍</div>
-    <div class="empty-msg">No se encontraron resultados</div>
-    <div class="empty-sub">Probá con otros filtros, términos de búsqueda, o activá la búsqueda IA.</div>
-  </div>`;
-}
-
-// ─────────────────────────────────────────────
-//  MASTER RENDER
-// ─────────────────────────────────────────────
-function renderAll() {
-  // Rebuild entry index for click handlers
-  _entryMap = {};
-  getAllEntries().forEach(e => _entryMap[e.id] = e);
-
-  const { entries, terms, aiActive } = getFiltered();
-  renderStats(entries, aiActive);
-
-  // Banner de entradas ocultas
-  const hiddenCount = loadHidden().size;
-  const hiddenBanner = hiddenCount > 0
-    ? `<div class="hidden-banner">🚫 ${hiddenCount} entrada${hiddenCount!==1?'s':''} oculta${hiddenCount!==1?'s':''} en esta vista
-       <button class="restore-btn" onclick="restoreHidden()">↩ Restaurar todas</button></div>`
-    : '';
-
-  const el = document.getElementById('mainContent');
-  const body = activeTab === 'bitacora'
-    ? renderBitacora(entries, terms, aiActive)
-    : renderPorCliente(entries, terms, aiActive);
-  el.innerHTML = hiddenBanner + body;
-}
-
-// ─────────────────────────────────────────────
-//  FILTER SETTERS
-// ─────────────────────────────────────────────
-function setType(type, el) {
-  activeType = type;
-  document.querySelectorAll('[data-type]').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-  renderAll();
-}
-function setSrc(src, el) {
-  activeSrc = src;
-  document.querySelectorAll('[data-src]').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-  renderAll();
-}
-function setTab(tab, el) {
-  activeTab = tab;
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  renderAll();
-}
-function toggleAI() {
-  aiMode = !aiMode;
-  const btn = document.getElementById('aiToggleBtn');
-  const bar = document.getElementById('aiBar');
-  btn.classList.toggle('active', aiMode);
-  bar.classList.toggle('visible', aiMode);
-  document.getElementById('searchInput').placeholder = aiMode
-    ? 'Preguntá en español… ej: "problemas de entrega en calypso"'
-    : 'Buscar… ej: "faltantes calypso" o "problemas de entrega"';
-  renderAll();
-}
-
-// ─────────────────────────────────────────────
-//  MODAL
-// ─────────────────────────────────────────────
-function openModal() {
-  // Set today as default date
-  document.getElementById('fDate').value = new Date().toISOString().slice(0,10);
-  document.getElementById('fClient').value = '';
-  document.getElementById('fTitle').value = '';
-  document.getElementById('fSummary').value = '';
-  document.getElementById('fAuthor').value = '';
-  document.getElementById('fChannel').value = '';
-  document.getElementById('modalOverlay').classList.add('open');
-}
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-}
-function overlayClick(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
-}
-function selectType(el) {
-  document.querySelectorAll('.type-option').forEach(o => o.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedType = el.dataset.val;
-}
-function saveEntry() {
-  const client  = document.getElementById('fClient').value.trim();
-  const title   = document.getElementById('fTitle').value.trim();
-  const date    = document.getElementById('fDate').value;
-  const summary = document.getElementById('fSummary').value.trim();
-  const author  = document.getElementById('fAuthor').value.trim();
-  const channel = document.getElementById('fChannel').value.trim();
-
-  if (!client || !title || !date) {
-    alert('Por favor completá al menos: Cliente, Título y Fecha.');
-    return;
-  }
-
-  const entry = {
-    id: genId(),
-    date,
-    datetime: new Date(date + 'T12:00:00-03:00').toISOString(),
-    source: 'manual',
-    channel: channel || 'Entrada manual',
-    client,
-    type: selectedType,
-    title,
-    summary: summary || '—',
-    author: author || 'Ines Picasso',
-  };
-
-  addManualEntry(entry);
-  populateClients();
-  closeModal();
-  renderAll();
-}
-
-// ─────────────────────────────────────────────
-//  INIT
-// ─────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  try {
-    document.getElementById('lastUpdated').textContent =
-      'Act: ' + fmtDateTime(BITACORA_DATA.lastUpdated);
-  } catch(e) {}
-  populateClients();
-  renderAll();
+// Inicializar
+window.addEventListener('load', () => {
+  applyFilters();
 });
 </script>
 </body>

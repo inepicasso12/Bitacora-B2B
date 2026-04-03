@@ -1,6 +1,22 @@
 {
-  "lastUpdated": "2026-04-03T09:00:00-03:00",
-  "entries": [
+  "generado": "2026-04-03T09:41:58.673430",
+  "periodo": "2026-01-01 a 2026-04-03",
+  "total_registros": 44,
+  "fuentes": [
+    "gmail",
+    "slack"
+  ],
+  "estadisticas": {
+    "total_clientes": 12,
+    "total_canales": 36,
+    "tipos_evento": {
+      "impacto": 8,
+      "problema": 6,
+      "accion": 9,
+      "insight": 21
+    }
+  },
+  "datos": [
     {
       "id": "gmail_19d50681b5673147",
       "date": "2026-04-02",
