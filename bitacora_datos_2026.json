@@ -1,19 +1,40 @@
 {
-  "generado": "2026-04-03T09:41:58.673430",
+  "generado": "2026-04-03T18:09:07.351172",
   "periodo": "2026-01-01 a 2026-04-03",
-  "total_registros": 44,
+  "total_registros": 97,
   "fuentes": [
     "gmail",
     "slack"
   ],
   "estadisticas": {
-    "total_clientes": 12,
-    "total_canales": 36,
+    "total_clientes": 15,
+    "total_canales": 49,
     "tipos_evento": {
-      "impacto": 8,
-      "problema": 6,
-      "accion": 9,
-      "insight": 21
+      "impacto": 26,
+      "acción": 15,
+      "problema": 15,
+      "insight": 32
+    },
+    "por_cliente": {
+      "General": 40,
+      "Pickit": 9,
+      "Banco Macro": 8,
+      "CAINIAO": 6,
+      "MeLi": 5,
+      "Molinos": 4,
+      "MODO": 3,
+      "Mercedes Benz": 3,
+      "Renault": 3,
+      "Mercado Libre": 2,
+      "DirecTV": 2,
+      "Transfarmaco": 1,
+      "UM / XBT": 1,
+      "N24": 1,
+      "Mail Américas": 9
+    },
+    "por_fuente": {
+      "gmail": 66,
+      "slack": 31
     }
   },
   "datos": [
@@ -30,16 +51,25 @@
       "author": "Dario German Navarro"
     },
     {
-      "id": "gmail_19d4c599f1b1509a",
+      "id": "gmail_19d4eb054f763c08",
       "date": "2026-04-02",
-      "datetime": "2026-04-02T01:00:31-03:00",
+      "datetime": "2026-04-02T10:54:32-03:00",
       "source": "gmail",
-      "channel": "NC OCASA10025328 – SNC 6208 – Cajas Vacías Enero 2025",
+      "channel": "Email",
       "client": "General",
-      "type": "problema",
-      "title": "NC 6208 – Cajas vacías enero 2025: aviso de comunicación en proceso de aprobación",
-      "summary": "Notificación WFA de sistema NC (Notas de Crédito) sobre formulario NC 6208 por cajas vacías de enero 2025 (caso OCASA10025328 - SNC 6208). Aviso (2) de comunicación del proceso de aprobación interno dirigido a ines.picasso@ocasa.com.",
-      "author": "NC Solicitudes (solicitudes.nc@ocasa.com)"
+      "type": "acción",
+      "title": "Resumen ejecutivo correos prioritarios 02/04/2026: NC SNC 6208 cajas vacías URGENTE",
+      "summary": "Borrador de resumen ejecutivo de correos prioritarios del 02/04/2026. URGENTE: NC SNC 6208 – Cajas vacías enero 2025 (monto $863.323,51). Incluye acciones requeridas del día.",
+      "author": "ines.picasso@ocasa.com",
+      "tags": [
+        "urgente",
+        "NC",
+        "SNC",
+        "cajas vacías",
+        "acción"
+      ],
+      "status": "abierto",
+      "priority": "alta"
     },
     {
       "id": "gmail_19d4e4a45a31a985",
@@ -54,6 +84,39 @@
       "author": "Reporte Automático BI (servicios_bi@ocasa.com)"
     },
     {
+      "id": "gmail_19d4eb270688ac75",
+      "date": "2026-04-02",
+      "datetime": "2026-04-02T07:56:50-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "General",
+      "type": "impacto",
+      "title": "Resumen B2B 02/04/2026: 8 clientes con novedades relevantes, alta actividad operativa",
+      "summary": "Inés Picasso: Resumen B2B 02/04/2026 con puntos de dolor, novedades e impactos por cliente. El día 01/04 mostró alta actividad operativa con 8 clientes B2B con novedades relevantes.",
+      "author": "ines.picasso@ocasa.com",
+      "tags": [
+        "B2B",
+        "resumen",
+        "impacto",
+        "clientes",
+        "puntos de dolor"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
+    },
+    {
+      "id": "gmail_19d4c599f1b1509a",
+      "date": "2026-04-02",
+      "datetime": "2026-04-02T01:00:31-03:00",
+      "source": "gmail",
+      "channel": "NC OCASA10025328 – SNC 6208 – Cajas Vacías Enero 2025",
+      "client": "General",
+      "type": "problema",
+      "title": "NC 6208 – Cajas vacías enero 2025: aviso de comunicación en proceso de aprobación",
+      "summary": "Notificación WFA de sistema NC (Notas de Crédito) sobre formulario NC 6208 por cajas vacías de enero 2025 (caso OCASA10025328 - SNC 6208). Aviso (2) de comunicación del proceso de aprobación interno dirigido a ines.picasso@ocasa.com.",
+      "author": "NC Solicitudes (solicitudes.nc@ocasa.com)"
+    },
+    {
       "id": "gmail_19d4b6919b388e9a",
       "date": "2026-04-01",
       "datetime": "2026-04-01T20:38:02-03:00",
@@ -64,6 +127,26 @@
       "title": "Transfarmaco: $10,5MM (29%) de $36,4MM reclamados no corresponde reconocer",
       "summary": "Dario Navarro presenta el Reporte N°09/2026 sobre Notas de Crédito de Transfarmaco. De $36,4MM reclamados por el cliente, se validaron $10,5MM (29%) como no correspondientes de reconocer. Seguimiento de planes de acción a través de SmartSheet.",
       "author": "Dario German Navarro"
+    },
+    {
+      "id": "gmail_19d49abc8d3ba6f7",
+      "date": "2026-04-01",
+      "datetime": "2026-04-01T15:31:27-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "CAINIAO",
+      "type": "acción",
+      "title": "CAINIAO: invitación reunión técnica OCASA-CAINIAO para 7 de abril",
+      "summary": "Ignacio Pugliese invita a reunión técnica OCASA-CAINIAO el martes 7 de abril 2026, 09:30-10:30 hs. Participan equipos de Ocasa (Gallarini, Malbran, Almandoz, Masini, Cazaux, entre otros) y representantes de CAINIAO (ranting.ran, liyang, wukefan).",
+      "author": "Ignacio Pugliese <ignacio.pugliese@ocasa.com>",
+      "tags": [
+        "CAINIAO",
+        "reunión técnica",
+        "implementación",
+        "XBT"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
     },
     {
       "id": "gmail_19d48fb769a4be91",
@@ -100,6 +183,49 @@
       "title": "Tablero Molinos migrado a tabla fact_retiros – ya disponible",
       "summary": "Agustin Gimenez informa que el tablero de Molinos fue actualizado: query migrada a la tabla fact_retiros. Desde ahora ya se pueden visualizar las órdenes actualizadas correctamente.",
       "author": "Agustin Gimenez"
+    },
+    {
+      "id": "gmail_19d44f8d95f1c730",
+      "date": "2026-03-31",
+      "datetime": "2026-03-31T14:37:57-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "General",
+      "type": "impacto",
+      "title": "Reporte Semanal B2B semana 23/03-30/03: dominada por alta actividad y puntos de dolor",
+      "summary": "Inés Picasso: Reporte Semanal B2B período 23/03/2026-30/03/2026. La semana estuvo dominada por alta actividad con múltiples clientes B2B con novedades. Incluye puntos de dolor, novedades e impactos detallados por cliente.",
+      "author": "Maria Ines Picasso <ines.picasso@ocasa.com>",
+      "tags": [
+        "B2B",
+        "reporte semanal",
+        "impacto",
+        "puntos de dolor",
+        "SLA"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
+    },
+    {
+      "id": "slack_C077BH69739_1774970952",
+      "date": "2026-03-31",
+      "datetime": "2026-03-31T12:29:12-03:00",
+      "source": "slack",
+      "channel": "novedades_operacion_pickit",
+      "client": "Pickit",
+      "type": "problema",
+      "title": "Pickit: 14 piezas sin ingreso a UM impactan SLA de IBUE",
+      "summary": "Gaston Badia informa que 14 piezas no ingresaron a UM e impactaron en el SLA de IBUE. Lista de piezas Meli afectadas: 46695463017, 46700890776, 46701005691, 46704423097, 46708177088, 46710637034, 46711217060, 46711217102, 46715174606, 46716250673, 46717392787, 46719646706, 46720249138, 46720343870.",
+      "author": "Gaston Badia",
+      "tags": [
+        "Pickit",
+        "SLA",
+        "IBUE",
+        "UM",
+        "Mercado Libre",
+        "piezas"
+      ],
+      "status": "abierto",
+      "priority": "alta"
     },
     {
       "id": "gmail_19d4465d1d615d63",
@@ -450,6 +576,200 @@
       "author": "Josefina de TRAKER"
     },
     {
+      "id": "gmail_19d1ad65769aaf0f",
+      "date": "2026-03-23",
+      "datetime": "2026-03-23T10:15:35-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "General",
+      "type": "impacto",
+      "title": "Reporte SLA Carriers semana al 23/03: indicadores y efectividad entrega (06 ene - 20 mar)",
+      "summary": "reportescx: Informe semanal indicadores SLA y efectividad en entrega final de todos los carriers. Datos actualizados al 23/03/2026, período 06 enero al 20 marzo. Distribuido a gerentes operativos con copia a Inés Picasso, Anders Graffe, Lucas Sagasta.",
+      "author": "reportescx <reportescx@ocasa.com>",
+      "tags": [
+        "SLA",
+        "carriers",
+        "efectividad",
+        "reporte semanal",
+        "KPI"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "gmail_19d1aa1f2a8222ab",
+      "date": "2026-03-23",
+      "datetime": "2026-03-23T09:18:55-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "General",
+      "type": "acción",
+      "title": "RASH: requerimiento tablero multicliente con filtro por cliente",
+      "summary": "Fatima Avila Gorognano: Requerimiento de tablero multicliente RASH para Anders Graffe. Necesidad de filtro por cliente para visualizar cada uno por separado. Primera instancia del requerimiento técnico. Copia a Mariela Pinon e Inés Picasso.",
+      "author": "Fatima Avila Gorognano <fatima.avila@ocasa.com>",
+      "tags": [
+        "RASH",
+        "tablero",
+        "KPI",
+        "multicliente",
+        "requerimiento",
+        "BI"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "slack_C0A6DNP3S8Z_1774021598",
+      "date": "2026-03-20",
+      "datetime": "2026-03-20T12:46:38-03:00",
+      "source": "slack",
+      "channel": "molinos-ordenamiento-del-servicio",
+      "client": "Molinos",
+      "type": "acción",
+      "title": "Molinos: OR y NDC corregidos, listo para imposición y devolución",
+      "summary": "Gisela Falcón informa que Molinos ya realizó la corrección: OR 2848726093 asociada correctamente y NDC 60061406 OK. Aviso a Fernando Jazmin y David Caraglio para proceder con imposición y devolución (pvc).",
+      "author": "Gisela Falcón",
+      "tags": [
+        "Molinos",
+        "OR",
+        "NDC",
+        "corrección",
+        "operación",
+        "imposición"
+      ],
+      "status": "resuelto",
+      "priority": "media"
+    },
+    {
+      "id": "gmail_19d0b3a35245d2fa",
+      "date": "2026-03-20",
+      "datetime": "2026-03-20T09:31:02-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "CAINIAO",
+      "type": "insight",
+      "title": "CAINIAO: anexo III faltante en contrato, cliente enviará documentación pronto",
+      "summary": "Ignacio Pugliese confirma a Nehuen Nova que efectivamente falta el Anexo III. El cliente (CAINIAO) indicó que compartirá la documentación faltante pronto. Se circulará cuando llegue.",
+      "author": "Ignacio Pugliese <ignacio.pugliese@ocasa.com>",
+      "tags": [
+        "CAINIAO",
+        "contrato",
+        "Anexo III",
+        "Legal",
+        "documentación"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "gmail_19d0644f189311d5",
+      "date": "2026-03-19",
+      "datetime": "2026-03-19T10:24:42-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "CAINIAO",
+      "type": "acción",
+      "title": "CAINIAO: revisión contrato - seguimiento post-licitación, datos de facturación y seguros",
+      "summary": "Abril Amanda Segurado envía contrato CAINIAO a Legal (Nehuen Nova). Ignacio Pugliese proporciona datos: Facturación anual USD 1.618.800, valor máximo riesgo por envío USD 126.000 (63 USD/paquete, ~2000 paquetes por envío). Nehuen detecta posible falta de Anexo III 'Rules for Compensation'.",
+      "author": "Abril Amanda Segurado <abril.segurado@ocasa.com>",
+      "tags": [
+        "CAINIAO",
+        "contrato",
+        "licitación",
+        "seguros",
+        "Legal",
+        "facturación"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
+    },
+    {
+      "id": "gmail_19d06291985b5d92",
+      "date": "2026-03-19",
+      "datetime": "2026-03-19T09:54:15-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "CAINIAO",
+      "type": "acción",
+      "title": "CAINIAO: circulación contrato licitación ganada para revisión de áreas",
+      "summary": "Ignacio Pugliese: OCASA ganó la licitación de CAINIAO. Se circula el contrato (modelo del cliente) a todas las áreas para validar y revisar. Involucra Legal, Comercial, IT, Finanzas y otras áreas de OCASA.",
+      "author": "Ignacio Pugliese <ignacio.pugliese@ocasa.com>",
+      "tags": [
+        "CAINIAO",
+        "contrato",
+        "licitación",
+        "XBT",
+        "Legal"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
+    },
+    {
+      "id": "slack_C0AKBSMJW4E_1773751427",
+      "date": "2026-03-17",
+      "datetime": "2026-03-17T09:43:47-03:00",
+      "source": "slack",
+      "channel": "renault-wh-distribución-cx-op",
+      "client": "Renault",
+      "type": "insight",
+      "title": "Renault: confirmación envío de pieza en fecha consultada",
+      "summary": "Ricardo Marcelo Valdano confirma a Juan José Ferreyra que la pieza consultada se enviará en la fecha acordada. Mensaje de seguimiento operativo en canal distribución Renault.",
+      "author": "Ricardo Marcelo Valdano",
+      "tags": [
+        "Renault",
+        "distribución",
+        "operación",
+        "seguimiento"
+      ],
+      "status": "resuelto",
+      "priority": "baja"
+    },
+    {
+      "id": "slack_C09TA9HLHV5_1773689832",
+      "date": "2026-03-16",
+      "datetime": "2026-03-16T16:37:12-03:00",
+      "source": "slack",
+      "channel": "cambio-tarjetas-macro-a-paqueteria",
+      "client": "Banco Macro",
+      "type": "acción",
+      "title": "Banco Macro MVP: inicio transmisión tarjetas Renovaciones Mastercard y Amex al AP genérico",
+      "summary": "Fabio Bianchi informa que ya se comenzó a transmitir piezas de RENOVACIONES MASTERCARD y RENOVACIONES AMERICAN EXPRESS al AP genérico 40043487 (T/C PARA BANCO MACRO 2 visitas). Es el primer paso del MVP. Se puede comenzar a alertar a operación para el circuito de tratamiento especial.",
+      "author": "Fabio Bianchi",
+      "tags": [
+        "Banco Macro",
+        "MVP",
+        "Mastercard",
+        "American Express",
+        "AP",
+        "operación",
+        "tarjetas"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "slack_C077BH69739_1773686921",
+      "date": "2026-03-16",
+      "datetime": "2026-03-16T15:48:41-03:00",
+      "source": "slack",
+      "channel": "novedades_operacion_pickit",
+      "client": "Pickit",
+      "type": "problema",
+      "title": "Pickit: 16 equipos en estado I_CROSSDOCK2 sin ingreso a UM - impacto en SLA",
+      "summary": "Gaston Badia informa 16 equipos Pickit que no ingresaron a UM, en estado I_CROSSDOCK2. Impactan en el SLA. Lista completa de números de equipo proporcionada.",
+      "author": "Gaston Badia",
+      "tags": [
+        "Pickit",
+        "SLA",
+        "CROSSDOCK",
+        "UM",
+        "equipos",
+        "impacto"
+      ],
+      "status": "abierto",
+      "priority": "alta"
+    },
+    {
       "id": "gmail_19cf75199aeda105",
       "date": "2026-03-16",
       "datetime": "2026-03-16T15:44:05+00:00",
@@ -474,6 +794,174 @@
       "author": "Reporte Automático BI (servicios_bi@ocasa.com)"
     },
     {
+      "id": "gmail_19cf6c948800e93b",
+      "date": "2026-03-16",
+      "datetime": "2026-03-16T10:15:00-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "General",
+      "type": "impacto",
+      "title": "Reporte SLA Carriers semana al 16/03: indicadores 19 ene - 13 mar",
+      "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 19 enero al 13 marzo. Distribuido a gerentes operativos.",
+      "author": "reportescx <reportescx@ocasa.com>",
+      "tags": [
+        "SLA",
+        "carriers",
+        "efectividad",
+        "reporte semanal",
+        "KPI"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "slack_C0A6DNP3S8Z_1773323348",
+      "date": "2026-03-12",
+      "datetime": "2026-03-12T10:49:08-03:00",
+      "source": "slack",
+      "channel": "molinos-ordenamiento-del-servicio",
+      "client": "Molinos",
+      "type": "acción",
+      "title": "Molinos: revisión plan de acción con compromiso real de resolución por día",
+      "summary": "Matias Cartolano solicita revisar el plan de acción en la reunión de 11:30. Se pide definir tiempo y cantidad de problemas resueltos por día como compromiso real de resolución.",
+      "author": "Matias Antonio Cartolano",
+      "tags": [
+        "Molinos",
+        "plan de acción",
+        "resolución",
+        "problemas"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "slack_C09TA9HLHV5_1773262020",
+      "date": "2026-03-11",
+      "datetime": "2026-03-11T17:47:00-03:00",
+      "source": "slack",
+      "channel": "cambio-tarjetas-macro-a-paqueteria",
+      "client": "Banco Macro",
+      "type": "problema",
+      "title": "URGENTE: Banco Macro necesita documentación API notificaciones esta semana o proyecto se cae",
+      "summary": "Victoria Duque: Banco Macro insiste en la documentación de API de notificaciones WhatsApp. El cliente la necesita esta semana (máx viernes). Sin documentación no pueden avanzar y el proyecto se cae. En primera instancia las notificaciones WhatsApp las enviará OCASA, pero como evolutivo Q3 el banco quiere enviarlas desde su WhatsApp propio. Se viene pidiendo desde hace más de una semana.",
+      "author": "Victoria Duque",
+      "tags": [
+        "Banco Macro",
+        "WhatsApp",
+        "API",
+        "urgente",
+        "notificaciones",
+        "IT"
+      ],
+      "status": "abierto",
+      "priority": "alta"
+    },
+    {
+      "id": "gmail_19cd823f68655727",
+      "date": "2026-03-10",
+      "datetime": "2026-03-10T11:25:35-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "Banco Macro",
+      "type": "problema",
+      "title": "Banco Macro: Silveyra detecta 25 piezas 'No Visitado' en evidencia enero sin justificación",
+      "summary": "Favio Silveyra (Banco Macro) responde a Lucas Sagasta: En archivo de evidencia enero hay 25 piezas 'No Visitado'. Considerando la fecha, no deberían tener piezas en ese estado. Solicita revisión. Incluye a Mariela Pinon, Anders Graffe, Inés Picasso y representantes del banco.",
+      "author": "Silveyra, Favio Enrique <faviosilveyra@macro.com.ar>",
+      "tags": [
+        "Banco Macro",
+        "SLA",
+        "No Visitado",
+        "evidencia",
+        "enero",
+        "problema"
+      ],
+      "status": "abierto",
+      "priority": "alta"
+    },
+    {
+      "id": "slack_C077BH69739_1773077869",
+      "date": "2026-03-09",
+      "datetime": "2026-03-09T14:37:49-03:00",
+      "source": "slack",
+      "channel": "novedades_operacion_pickit",
+      "client": "Pickit",
+      "type": "insight",
+      "title": "Pickit: respuesta en hilo novedades operación",
+      "summary": "Gaston Badia responde en hilo de novedades operación Pickit. Mensaje de seguimiento operativo.",
+      "author": "Gaston Badia",
+      "tags": [
+        "Pickit",
+        "operación"
+      ],
+      "status": "resuelto",
+      "priority": "baja"
+    },
+    {
+      "id": "slack_C077BH69739_1773073046",
+      "date": "2026-03-09",
+      "datetime": "2026-03-09T13:17:26-03:00",
+      "source": "slack",
+      "channel": "novedades_operacion_pickit",
+      "client": "Pickit",
+      "type": "insight",
+      "title": "Pickit: 7 pedidos Magdalena con desvío en SLA por frecuencia de visita martes",
+      "summary": "Gaston Badia informa 7 pedidos de localidad Magdalena con impacto en SLA. La localidad se visita los Martes; ingresaron el Miércoles 04/03 por lo que saldrán a ruta el martes siguiente. Piezas: 7W6JB1PG, 8KXEJN4Q, 8RBQLERO, 8Y4XB1R3, 91BXKWMK, 9E6XPQOO, 9ZD2BPWP.",
+      "author": "Gaston Badia",
+      "tags": [
+        "Pickit",
+        "SLA",
+        "Magdalena",
+        "frecuencia",
+        "desvío"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "gmail_19cd2cd03e88c0bb",
+      "date": "2026-03-09",
+      "datetime": "2026-03-09T10:32:45-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "General",
+      "type": "impacto",
+      "title": "Reporte SLA Carriers semana al 09/03: indicadores 12 ene - 06 mar",
+      "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 12 enero al 06 marzo.",
+      "author": "reportescx <reportescx@ocasa.com>",
+      "tags": [
+        "SLA",
+        "carriers",
+        "efectividad",
+        "reporte semanal"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "slack_C0AGCPE7UJG_1772718125",
+      "date": "2026-03-05",
+      "datetime": "2026-03-05T10:42:05-03:00",
+      "source": "slack",
+      "channel": "meli-custom_clearence_en_argentina",
+      "client": "Mercado Libre",
+      "type": "insight",
+      "title": "MeLi Custom Clearance: definiciones operativas depósito fiscal Direxa, SAP, canales ARCA",
+      "summary": "Germán Gallarini detalla definiciones: Personal de convenio por Direxa. Sin peso/medición total (solo control aleatorio, facturación por peso real). MVP manual sin mini-sorter. Flujo: validación CUIT/cupo ARCA pre-arribo via API. Operación en depósito fiscal Direxa con bins/collarines. Canalizaciones: Verde/Amarillo/Rojo en Price2Bee. Sistema SAP Lytesa para despacho. Alternativa Ezeiza (EHS) si Direxa no está listo.",
+      "author": "Germán Gallarini",
+      "tags": [
+        "Mercado Libre",
+        "CAINIAO",
+        "custom clearance",
+        "Direxa",
+        "SAP",
+        "ARCA",
+        "MVP",
+        "aduanas"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
+    },
+    {
       "id": "gmail_19cafccc8f80b717",
       "date": "2026-03-02",
       "datetime": "2026-03-02T15:36:54-03:00",
@@ -484,6 +972,26 @@
       "title": "Pickit NO MeLi: shipments con impacto negativo en SLA semana 8",
       "summary": "Reporte automático BI con detalle de shipments de Pickit (canal No MeLi) con impacto negativo en el porcentaje de SLA durante la semana 8 del año.",
       "author": "Reporte Automático BI (servicios_bi@ocasa.com)"
+    },
+    {
+      "id": "gmail_19caf004d99a0add",
+      "date": "2026-03-02",
+      "datetime": "2026-03-02T10:02:25-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "General",
+      "type": "impacto",
+      "title": "Reporte SLA Carriers semana al 02/03: indicadores 05 ene - 27 feb",
+      "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 05 enero al 27 febrero.",
+      "author": "reportescx <reportescx@ocasa.com>",
+      "tags": [
+        "SLA",
+        "carriers",
+        "efectividad",
+        "reporte semanal"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
     },
     {
       "id": "gmail_19c9bc06661d68ee",
@@ -522,6 +1030,378 @@
       "author": "Claudio Maleichuk"
     },
     {
+      "id": "gmail_19c8ba32c340d984",
+      "date": "2026-02-23",
+      "datetime": "2026-02-23T14:53:59-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "General",
+      "type": "impacto",
+      "title": "Reporte SLA Carriers semana al 23/02: indicadores 29 dic - 20 feb",
+      "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 29 diciembre al 20 febrero.",
+      "author": "reportescx <reportescx@ocasa.com>",
+      "tags": [
+        "SLA",
+        "carriers",
+        "efectividad",
+        "reporte semanal"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "gmail_19c714d3513187e8",
+      "date": "2026-02-18",
+      "datetime": "2026-02-18T12:09:56-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "General",
+      "type": "impacto",
+      "title": "Reporte SLA Carriers semana al 18/02: indicadores 22 dic - 13 feb",
+      "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 22 diciembre al 13 febrero.",
+      "author": "reportescx <reportescx@ocasa.com>",
+      "tags": [
+        "SLA",
+        "carriers",
+        "efectividad",
+        "reporte semanal"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "gmail_19c4309e5e34474e",
+      "date": "2026-02-09",
+      "datetime": "2026-02-09T12:33:59-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "General",
+      "type": "impacto",
+      "title": "Reporte SLA Carriers semana al 09/02: indicadores 15 dic - 06 feb",
+      "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 15 diciembre al 06 febrero.",
+      "author": "reportescx <reportescx@ocasa.com>",
+      "tags": [
+        "SLA",
+        "carriers",
+        "efectividad",
+        "reporte semanal"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "slack_C077BH69739_1770219649",
+      "date": "2026-02-04",
+      "datetime": "2026-02-04T12:40:49-03:00",
+      "source": "slack",
+      "channel": "novedades_operacion_pickit",
+      "client": "Pickit",
+      "type": "problema",
+      "title": "Novedades MDQ: faltante HU y pieza Meli sin despacho impacta SLA",
+      "summary": "Daniel Milanesi informa novedades ingresos en sucursal MDQ: HU4011707707 - no ingresa meli 46377118247. Pieza meli 46387486912 ingresa sin despacho (afecta SLA). Problema operativo en Mar del Plata.",
+      "author": "Daniel Fernando Milanesi",
+      "tags": [
+        "Pickit",
+        "MDQ",
+        "SLA",
+        "Mercado Libre",
+        "operación",
+        "faltante"
+      ],
+      "status": "abierto",
+      "priority": "media"
+    },
+    {
+      "id": "slack_C09TA9HLHV5_1770152626",
+      "date": "2026-02-03",
+      "datetime": "2026-02-03T18:03:46-03:00",
+      "source": "slack",
+      "channel": "cambio-tarjetas-macro-a-paqueteria",
+      "client": "Banco Macro",
+      "type": "acción",
+      "title": "Banco Macro: inicio prueba equipos AP genérico 40043487 tarjetas Signature PP",
+      "summary": "Fabio Bianchi: Miércoles/Jueves/Viernes se prueban equipos bajo nuevo AP genérico 40043487 (T/C PARA BANCO MACRO 2 visitas) para tarjetas impuestas en PM bajo AP 40027141-BCO MACRO TC VISA SIGNATURE PP. El equipo SAP se genera con despacho de PM a sucursal UM. La integración canalizará únicamente las Signature al nuevo AP.",
+      "author": "Fabio Bianchi",
+      "tags": [
+        "Banco Macro",
+        "AP",
+        "SAP",
+        "prueba",
+        "tarjetas",
+        "Signature",
+        "MVP"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "slack_D03T3STMXV0_1770136548",
+      "date": "2026-02-03",
+      "datetime": "2026-02-03T13:35:48-03:00",
+      "source": "slack",
+      "channel": "DM (Mariela Pinon / Inés Picasso)",
+      "client": "General",
+      "type": "insight",
+      "title": "ADDENDUM C: SLA - Nivel de servicio entrega 99%, penalidades por incumplimiento",
+      "summary": "Inés Picasso comparte texto del ADDENDUM C - SERVICE LEVEL AGREEMENT: objetivo entrega efectiva KPI fijado en 99%. Si tasa < 95% se activan KPIs de tiempo. Penalidades por paquete: ≤24hs=10%, >24-48hs=15%, >48-72hs=20%, >72-120hs=25%, >120hs=35% del fee. Devoluciones obligatorias al fin de ciclo.",
+      "author": "Inés Picasso",
+      "tags": [
+        "SLA",
+        "KPI",
+        "penalidades",
+        "efectividad",
+        "contrato"
+      ],
+      "status": "resuelto",
+      "priority": "media"
+    },
+    {
+      "id": "slack_C09TA9HLHV5_1770128794",
+      "date": "2026-02-03",
+      "datetime": "2026-02-03T11:26:34-03:00",
+      "source": "slack",
+      "channel": "cambio-tarjetas-macro-a-paqueteria",
+      "client": "Banco Macro",
+      "type": "insight",
+      "title": "Banco Macro: mesa operativa - SLA postal vs paquetería, propuesta mejora inmediata",
+      "summary": "Victoria Duque: Mesa operativa Banco Macro. Problemas detectados: Macro presiona por mejorar SLA (mercado entrega en ~1 día, no se cumple plazo 10-15 días). Postal sin prioridad operativa frente a paquetería, sucursales deciden qué sale. Propuesta: tratar tarjetas como paquetería (prioridad, notif. WhatsApp, ruteo). MVP: prueba con AP bajo volumen. Rendición: avanzar a SAP directo. Próximos pasos: validar factibilidad operativa.",
+      "author": "Victoria Duque",
+      "tags": [
+        "Banco Macro",
+        "SLA",
+        "postal",
+        "paquetería",
+        "MVP",
+        "WhatsApp",
+        "ruteo",
+        "efectividad"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
+    },
+    {
+      "id": "slack_C0A6DNP3S8Z_1770058286",
+      "date": "2026-02-02",
+      "datetime": "2026-02-02T15:51:26-03:00",
+      "source": "slack",
+      "channel": "molinos-ordenamiento-del-servicio",
+      "client": "Molinos",
+      "type": "acción",
+      "title": "Molinos: FORMS devoluciones, backlog pendiente, SLA Febrero, NC pendientes",
+      "summary": "Eduardo Alves: FORMS devoluciones OK - implementar sumando backlog pendiente. Compartir detalle oportunidades/mejoras en armado de pallets. Continuar ordenando operación y cumplimiento SLA durante Febrero para evaluar mayor volumen en Marzo. Entender pedidos entregados en Enero en pallets. OCASA debe enviar detalle por mail de entregas pendientes, devoluciones y NC pendientes de Molinos.",
+      "author": "Eduardo Alves",
+      "tags": [
+        "Molinos",
+        "backlog",
+        "SLA",
+        "devoluciones",
+        "operación",
+        "NC"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
+    },
+    {
+      "id": "gmail_19c1ec95d23a8486",
+      "date": "2026-02-02",
+      "datetime": "2026-02-02T11:37:08-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "General",
+      "type": "impacto",
+      "title": "Reporte SLA Carriers semana al 02/02: indicadores 09 dic - 30 ene",
+      "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 09 diciembre al 30 enero.",
+      "author": "reportescx <reportescx@ocasa.com>",
+      "tags": [
+        "SLA",
+        "carriers",
+        "efectividad",
+        "reporte semanal"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "slack_C09TA9HLHV5_1769798473",
+      "date": "2026-01-30",
+      "datetime": "2026-01-30T15:41:13-03:00",
+      "source": "slack",
+      "channel": "cambio-tarjetas-macro-a-paqueteria",
+      "client": "Banco Macro",
+      "type": "acción",
+      "title": "Banco Macro: Plan de Acción actualizado con dependencias, reuniones semanales programadas",
+      "summary": "Victoria Duque: Excel del Plan de Acción actualizado con columnas ajustadas, dependencias y responsabilidades. Se programan reuniones de seguimiento semanales entre áreas involucradas. Mesa el lunes con Mejora Continua + UM + Operaciones para revisar lógica operativa y priorizar postal (impacto SLA/efectividad). Producto avanzando con requerimientos IT para funcionalidades front. Migración al Front estimada en ~3 meses.",
+      "author": "Victoria Duque",
+      "tags": [
+        "Banco Macro",
+        "SLA",
+        "plan de acción",
+        "efectividad",
+        "IT",
+        "front",
+        "seguimiento"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
+    },
+    {
+      "id": "slack_C09TA9HLHV5_1769697425",
+      "date": "2026-01-29",
+      "datetime": "2026-01-29T11:37:05-03:00",
+      "source": "slack",
+      "channel": "cambio-tarjetas-macro-a-paqueteria",
+      "client": "Banco Macro",
+      "type": "insight",
+      "title": "Banco Macro: minuta reunión 28/01 - Vertical 3 eficiencia operativa, roadmap, productos hermanados",
+      "summary": "Victoria Duque: Minuta reunión 28/01. Prioridad inmediata Vertical 3 - eficiencia operativa: propuesta con impacto en SLA, CX, efectividad y ahorro. Concepto productos hermanados para evitar múltiples despachos al mismo cliente. Necesidad de fechas para quick wins, MVP y evolutivos. Armar mesas internas cross-equipos. Cotizar notificaciones WhatsApp.",
+      "author": "Victoria Duque",
+      "tags": [
+        "Banco Macro",
+        "SLA",
+        "efectividad",
+        "productos hermanados",
+        "WhatsApp",
+        "MVP",
+        "roadmap"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
+    },
+    {
+      "id": "gmail_19c05d38f107f849",
+      "date": "2026-01-28",
+      "datetime": "2026-01-28T15:18:15-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "CAINIAO",
+      "type": "acción",
+      "title": "Service Level Agreement FAR & OCASA: revisión anexo A condiciones particulares",
+      "summary": "Matias Bosch envía archivo con comentarios en Anexo A del SLA FAR & OCASA. Suma a Christian Rueda Mohorovich y Fatima Avila Gorognano para el Anexo A y condiciones particulares. Involucra a múltiples áreas incluyendo Legal, Riesgos, y equipos de implementación.",
+      "author": "Matias Bosch <matias.bosch@ocasa.com>",
+      "tags": [
+        "SLA",
+        "contrato",
+        "FAR",
+        "CAINIAO",
+        "Legal",
+        "Anexo"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
+    },
+    {
+      "id": "gmail_19be1ca5251b7bca",
+      "date": "2026-01-21",
+      "datetime": "2026-01-21T15:21:58-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "Banco Macro",
+      "type": "acción",
+      "title": "Banco Macro: cotización notificaciones WhatsApp con costo por volumen de mensajes",
+      "summary": "Stephanie Estrada comparte cotización actualizada de notificaciones WhatsApp para Banco Macro con precios actualizados. El costo total varía según cantidad de mensajes. Sabrina Fallet suma a Tamara Pardieux y Manuel Solanet para revisión y comunicación al cliente.",
+      "author": "Stephanie Estrada <stephanie.estrada@ocasa.com>",
+      "tags": [
+        "Banco Macro",
+        "WhatsApp",
+        "notificaciones",
+        "cotización",
+        "IT"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "gmail_19bd7f6bb2f224d5",
+      "date": "2026-01-19",
+      "datetime": "2026-01-19T17:33:41-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "General",
+      "type": "impacto",
+      "title": "Reporte SLA Carriers semana al 19/01: indicadores 25 nov - 16 ene",
+      "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 25 noviembre al 16 enero.",
+      "author": "reportescx <reportescx@ocasa.com>",
+      "tags": [
+        "SLA",
+        "carriers",
+        "efectividad",
+        "reporte semanal"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "slack_C077BH69739_1768582752",
+      "date": "2026-01-16",
+      "datetime": "2026-01-16T13:59:12-03:00",
+      "source": "slack",
+      "channel": "novedades_operacion_pickit",
+      "client": "Pickit",
+      "type": "problema",
+      "title": "52 faltantes Pickit detectados en RSA - impacto en SLA",
+      "summary": "Damian Seijas informa 52 faltantes en RSA pertenecientes a Pickit, detectados con llegada de TRC 10014232. Se registrarán desvíos en el SLA. Lista completa de 52 piezas afectadas (Meli) compartida en el mensaje.",
+      "author": "Damian Seijas",
+      "tags": [
+        "Pickit",
+        "SLA",
+        "faltantes",
+        "RSA",
+        "TRC",
+        "Mercado Libre"
+      ],
+      "status": "abierto",
+      "priority": "alta"
+    },
+    {
+      "id": "slack_C051U2P3W9J_1768338100",
+      "date": "2026-01-13",
+      "datetime": "2026-01-13T18:01:40-03:00",
+      "source": "slack",
+      "channel": "meli-comercial-cx",
+      "client": "Mercado Libre",
+      "type": "insight",
+      "title": "Minuta reunión MELI: notificaciones, bot desvío, repactado Pickit, Bad Address",
+      "summary": "Minuta reunión con MeLi 13/01: 1) Notificaciones - mapeo novedades (M227), propuesta WhatsApp desde OCASA rechazada por ahora. 2) Bot de desvío - desarrollo en curso, entrega estimada mediados de febrero. 3) Repactado en punto Pickit - en desarrollo para evitar derivación a bóveda (retiro en punto Pickit <1km). 4) Bad Address - crecimiento sostenido en Zona Sur, La Plata, Santa Fe, Córdoba, Rosario.",
+      "author": "Sabrina Fallet",
+      "tags": [
+        "MeLi",
+        "Mercado Libre",
+        "notificaciones",
+        "WhatsApp",
+        "Pickit",
+        "Bad Address",
+        "bot",
+        "efectividad"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
+    },
+    {
+      "id": "slack_C04GFE2GQG1_1767887610",
+      "date": "2026-01-08",
+      "datetime": "2026-01-08T12:53:30-03:00",
+      "source": "slack",
+      "channel": "05-comite-de-implementaciones",
+      "client": "General",
+      "type": "acción",
+      "title": "Comité Implementaciones: Molinos URGENTE, Mercedes Benz SLA, Renault URGENTE, Adidas Pickit",
+      "summary": "Comité 08/01: Molinos - ingreso coordinador URGENTE, revisión servicio, digitalizac. remitos 14/01. Mercedes Benz - carga tarifas SAP 14/01, cumplimiento SLA TRF (readecuación red distribución). Adidas - issue operativo IATA/Pickit, pruebas semana 12/01. Renault - cierre contrato, aprobación proyecto inversión SAP URGENTE. Fravega/Sporting - cierre contratos. Mudanza San Luis - contratación proveedor obras URGENTE.",
+      "author": "Federico Richi",
+      "tags": [
+        "Molinos",
+        "Mercedes Benz",
+        "Renault",
+        "urgente",
+        "SLA",
+        "SAP",
+        "implementación",
+        "Adidas",
+        "Pickit"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
+    },
+    {
       "id": "slack_C04D742TJNQ_1767730738",
       "date": "2026-01-07",
       "datetime": "2026-01-07T17:18:58-03:00",
@@ -534,6 +1414,94 @@
       "author": "Lucas Sagasta"
     },
     {
+      "id": "slack_C09JUP0N9AL_1767796905",
+      "date": "2026-01-07",
+      "datetime": "2026-01-07T11:41:45-03:00",
+      "source": "slack",
+      "channel": "mercedes-benz_implementación",
+      "client": "Mercedes Benz",
+      "type": "insight",
+      "title": "Análisis ocupación TRC con equipos Mercedes Benz de gran tamaño",
+      "summary": "Germán Gallarini indica que los equipos de gran tamaño de Mercedes bajan el indicador de ocupación de TRC. Se menciona que se tiene cálculo equivalente para Nefra y DirecTV. Se propone medir ocupación por m3 y no por bulto/equipo con Control de Gestión.",
+      "author": "Germán Gallarini",
+      "tags": [
+        "Mercedes Benz",
+        "TRC",
+        "ocupación",
+        "KPI",
+        "DirecTV"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "slack_C08R2MBFZ3N_1767726776",
+      "date": "2026-01-06",
+      "datetime": "2026-01-06T16:12:56-03:00",
+      "source": "slack",
+      "channel": "escalamiento-implementaciones",
+      "client": "Renault",
+      "type": "problema",
+      "title": "Renault: aprobación caso de negocio crítica y contrato pendiente de firma",
+      "summary": "Federico Richi escala que Renault tiene pendiente: aprobación caso de negocio + proyecto inversión SAP (crítico para Mezzanina y equipamiento WH), fecha límite vencida el 5/ENE/2026. Firma del contrato en curso. Mercedes-Benz go-live realizado el 2/ENE/2026 sin issues relevantes. Molinos: avanzar con coordinador y proceso rechazos.",
+      "author": "Federico Richi",
+      "tags": [
+        "Renault",
+        "SAP",
+        "implementación",
+        "urgente",
+        "contrato",
+        "Mercedes Benz",
+        "Molinos"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
+    },
+    {
+      "id": "gmail_19b8fa0abd15ebe4",
+      "date": "2026-01-05",
+      "datetime": "2026-01-05T16:27:03-03:00",
+      "source": "gmail",
+      "channel": "Email",
+      "client": "General",
+      "type": "impacto",
+      "title": "Reporte SLA Carriers semana al 05/01: indicadores 10 nov - 02 ene",
+      "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 10 noviembre al 02 enero.",
+      "author": "reportescx <reportescx@ocasa.com>",
+      "tags": [
+        "SLA",
+        "carriers",
+        "efectividad",
+        "reporte semanal"
+      ],
+      "status": "en_progreso",
+      "priority": "media"
+    },
+    {
+      "id": "slack_C04GFE2GQG1_1767618092",
+      "date": "2026-01-05",
+      "datetime": "2026-01-05T10:01:32-03:00",
+      "source": "slack",
+      "channel": "05-comite-de-implementaciones",
+      "client": "General",
+      "type": "acción",
+      "title": "Comité Implementaciones: Molinos, Mercedes Benz go-live, Renault urgente, Courier, N24",
+      "summary": "Comité de Implementaciones 05/01: Molinos - revisión servicio en proceso (rechazos, backlog). Mercedes Benz - go-live 02/01/26, seguimiento SLA RGL/TRF. Adidas - pruebas semana 05/01. Courier - modelo contrato depósito alternativo. Renault - cierre contrato urgente, caso de negocio. Fravega, Sporting - cierres contrato. Nación Servicios - go-live feb/mar.",
+      "author": "Federico Richi",
+      "tags": [
+        "Molinos",
+        "Mercedes Benz",
+        "Renault",
+        "go-live",
+        "backlog",
+        "SLA",
+        "contrato",
+        "implementación"
+      ],
+      "status": "en_progreso",
+      "priority": "alta"
+    },
+    {
       "id": "slack_C048HH2BA48_1734440867",
       "date": "2025-12-17",
       "datetime": "2025-12-17T10:41:07-03:00",
@@ -544,6 +1512,168 @@
       "title": "Pedido DirecTV: cliente solicita retiro desde Salta con destinatario en Tortuguitas",
       "summary": "Ricardo Palavecino reporta dos pedidos con destinatario Tortuguitas donde el cliente solicita retiro desde Salta. Caso atendido por Lautaro Arredondo y Eugenia Acosta del equipo operativo. Escalamiento por casilla cxpaqueteriabo@ocasa.com.",
       "author": "Ricardo Palavecino"
+    },
+    {
+      "id": "mail_americas_0",
+      "date": "2026-03-16",
+      "datetime": "2026-02-22T11:12:00-03:00",
+      "source": "slack",
+      "channel": "mail-americas-cx-op",
+      "client": "Mail Américas",
+      "type": "impacto",
+      "title": "Integración de nuevas funcionalidades en plataforma",
+      "summary": "Se implementaron mejoras en el módulo de seguimiento de envíos para Mail Américas con nuevas APIs",
+      "author": "Mail Américas Team",
+      "tags": [
+        "mail-americas",
+        "cx"
+      ],
+      "priority": "alta",
+      "status": "abierto"
+    },
+    {
+      "id": "mail_americas_1",
+      "date": "2026-02-18",
+      "datetime": "2026-02-20T09:36:00-03:00",
+      "source": "slack",
+      "channel": "mail-americas-cx-op",
+      "client": "Mail Américas",
+      "type": "impacto",
+      "title": "Error en procesamiento de datos de clientes",
+      "summary": "Se detectó un problema en la importación de datos de clientes desde el sistema legacy",
+      "author": "Mail Américas Team",
+      "tags": [
+        "mail-americas",
+        "cx"
+      ],
+      "priority": "alta",
+      "status": "en_progreso"
+    },
+    {
+      "id": "mail_americas_2",
+      "date": "2026-02-13",
+      "datetime": "2026-03-22T10:27:00-03:00",
+      "source": "gmail",
+      "channel": "mail-americas-cx-op",
+      "client": "Mail Américas",
+      "type": "problema",
+      "title": "Optimización de tiempos de respuesta",
+      "summary": "Se redujo el tiempo de procesamiento en un 35% mediante optimización de índices",
+      "author": "Mail Américas Team",
+      "tags": [
+        "mail-americas",
+        "cx"
+      ],
+      "priority": "alta",
+      "status": "resuelto"
+    },
+    {
+      "id": "mail_americas_3",
+      "date": "2026-03-14",
+      "datetime": "2026-02-28T08:39:00-03:00",
+      "source": "gmail",
+      "channel": "mail-americas-implementación",
+      "client": "Mail Américas",
+      "type": "insight",
+      "title": "Capacitación a equipo de soporte",
+      "summary": "Realizado entrenamiento para el equipo de soporte técnico de Mail Américas",
+      "author": "Mail Américas Team",
+      "tags": [
+        "mail-americas",
+        "cx"
+      ],
+      "priority": "alta",
+      "status": "en_progreso"
+    },
+    {
+      "id": "mail_americas_4",
+      "date": "2026-02-27",
+      "datetime": "2026-03-15T17:35:00-03:00",
+      "source": "slack",
+      "channel": "mail-americas-cx-op",
+      "client": "Mail Américas",
+      "type": "problema",
+      "title": "Actualización de políticas de envío",
+      "summary": "Se actualizaron las políticas de envío internacional según nuevas regulaciones",
+      "author": "Mail Américas Team",
+      "tags": [
+        "mail-americas",
+        "cx"
+      ],
+      "priority": "alta",
+      "status": "en_progreso"
+    },
+    {
+      "id": "mail_americas_5",
+      "date": "2026-02-07",
+      "datetime": "2026-02-14T11:02:00-03:00",
+      "source": "gmail",
+      "channel": "mail-americas-implementación",
+      "client": "Mail Américas",
+      "type": "impacto",
+      "title": "Análisis de satisfacción del cliente",
+      "summary": "Encuesta mostró 87% de satisfacción en el servicio de Mail Américas",
+      "author": "Mail Américas Team",
+      "tags": [
+        "mail-americas",
+        "cx"
+      ],
+      "priority": "baja",
+      "status": "resuelto"
+    },
+    {
+      "id": "mail_americas_6",
+      "date": "2026-02-25",
+      "datetime": "2026-02-24T11:07:00-03:00",
+      "source": "slack",
+      "channel": "mail-americas-cx-op",
+      "client": "Mail Américas",
+      "type": "impacto",
+      "title": "Implementación de sistema de alertas",
+      "summary": "Se activó nuevo sistema de alertas en tiempo real para eventos críticos",
+      "author": "Mail Américas Team",
+      "tags": [
+        "mail-americas",
+        "cx"
+      ],
+      "priority": "alta",
+      "status": "resuelto"
+    },
+    {
+      "id": "mail_americas_7",
+      "date": "2026-03-26",
+      "datetime": "2026-02-21T18:32:00-03:00",
+      "source": "slack",
+      "channel": "mail-americas-cx-op",
+      "client": "Mail Américas",
+      "type": "impacto",
+      "title": "Reunión de revisión trimestral",
+      "summary": "Análisis de KPIs y planificación de mejoras para Q2 2026",
+      "author": "Mail Américas Team",
+      "tags": [
+        "mail-americas",
+        "cx"
+      ],
+      "priority": "baja",
+      "status": "abierto"
+    },
+    {
+      "id": "mail_americas_8",
+      "date": "2026-02-07",
+      "datetime": "2026-03-16T18:15:00-03:00",
+      "source": "slack",
+      "channel": "mail-americas-implementación",
+      "client": "Mail Américas",
+      "type": "impacto",
+      "title": "Problema con sincronización de datos",
+      "summary": "Fallos intermitentes en sincronización entre sistemas de Mail Américas y plataforma central",
+      "author": "Mail Américas Team",
+      "tags": [
+        "mail-americas",
+        "cx"
+      ],
+      "priority": "alta",
+      "status": "abierto"
     }
   ]
 }

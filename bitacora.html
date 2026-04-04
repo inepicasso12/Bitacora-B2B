@@ -91,21 +91,21 @@
             to { opacity: 1; }
         }
         
-        /* MÓDULO 1: CALENDARIO */
+        /* MÓDULO 1: CALENDARIO GRANDE */
         .calendar {
-            max-width: 500px;
+            max-width: 100%;
         }
         
         .calendar-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         
         .calendar-header h2 {
             color: #1e3c72;
-            font-size: 20px;
+            font-size: 24px;
         }
         
         .calendar-nav {
@@ -117,38 +117,45 @@
             background: #2a5298;
             color: white;
             border: none;
-            padding: 8px 12px;
+            padding: 10px 15px;
             border-radius: 4px;
             cursor: pointer;
             font-size: 14px;
+            font-weight: 600;
         }
         
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 30px;
         }
         
         .calendar-day-header {
             text-align: center;
             font-weight: bold;
             color: #2a5298;
-            padding: 10px 0;
-            font-size: 12px;
+            padding: 15px;
+            font-size: 14px;
+            background: #f0f0f0;
+            border-radius: 4px;
         }
         
         .calendar-day {
-            aspect-ratio: 1;
+            aspect-ratio: 1.2;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
             cursor: pointer;
             position: relative;
-            font-size: 12px;
+            font-size: 16px;
+            font-weight: 600;
             transition: all 0.2s;
+            background: white;
+            min-height: 100px;
         }
         
         .calendar-day:hover {
@@ -157,39 +164,52 @@
         }
         
         .calendar-day.has-events {
-            background: #e8f1f8;
+            background: linear-gradient(135deg, #e8f1f8 0%, #f0f8ff 100%);
             border-color: #2a5298;
-            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(42, 82, 152, 0.2);
         }
         
-        .calendar-day.has-events::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            width: 4px;
-            height: 4px;
-            background: #e74c3c;
-            border-radius: 50%;
+        .calendar-day-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+        
+        .calendar-day-summary {
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+            line-height: 1.3;
+            word-break: break-word;
+            display: none;
+            max-height: 30px;
+            overflow: hidden;
+        }
+        
+        .calendar-day.has-events .calendar-day-summary {
+            display: block;
         }
         
         .calendar-event-count {
             position: absolute;
-            top: 2px;
-            right: 2px;
+            top: 5px;
+            right: 5px;
             background: #e74c3c;
             color: white;
-            width: 16px;
-            height: 16px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
+            font-size: 11px;
+            font-weight: bold;
         }
         
-        /* MÓDULO 2: LÍNEA DE TIEMPO */
+        /* MÓDULO 2: LÍNEA DE TIEMPO HORIZONTAL */
         .timeline-container {
-            max-width: 800px;
+            width: 100%;
         }
         
         .client-selector {
@@ -205,67 +225,90 @@
         
         .client-selector select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 2px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
-            max-width: 400px;
+            max-width: 500px;
         }
         
-        .timeline {
+        .timeline-horizontal {
             position: relative;
-            padding-left: 40px;
+            margin: 40px 0;
+            padding: 20px 0;
         }
         
-        .timeline::before {
-            content: '';
+        .timeline-line {
             position: absolute;
-            left: 10px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #2a5298;
+            top: 30px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #2a5298, #667eea);
         }
         
-        .timeline-event {
-            margin-bottom: 30px;
+        .timeline-markers {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             position: relative;
+            z-index: 2;
+            margin-bottom: 60px;
+            min-height: 80px;
+        }
+        
+        .timeline-marker {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
             cursor: pointer;
             transition: all 0.3s;
         }
         
-        .timeline-event::before {
-            content: '';
-            position: absolute;
-            left: -35px;
-            top: 8px;
-            width: 14px;
-            height: 14px;
+        .timeline-marker-dot {
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: white;
             border: 3px solid #2a5298;
-            z-index: 1;
+            margin-bottom: 8px;
+            transition: all 0.3s;
         }
         
-        .timeline-event.problema::before {
+        .timeline-marker:hover .timeline-marker-dot {
+            transform: scale(1.3);
+            background: #2a5298;
+        }
+        
+        .timeline-marker.problema .timeline-marker-dot {
             border-color: #e74c3c;
-            background: #e74c3c;
         }
         
-        .timeline-event.acción::before,
-        .timeline-event.accion::before {
+        .timeline-marker.acción .timeline-marker-dot,
+        .timeline-marker.accion .timeline-marker-dot {
             border-color: #f39c12;
-            background: #f39c12;
         }
         
-        .timeline-event.insight::before {
+        .timeline-marker.insight .timeline-marker-dot {
             border-color: #3498db;
-            background: #3498db;
         }
         
-        .timeline-event.impacto::before {
+        .timeline-marker.impacto .timeline-marker-dot {
             border-color: #9b59b6;
-            background: #9b59b6;
+        }
+        
+        .timeline-marker-label {
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+            width: 80px;
+            line-height: 1.3;
+        }
+        
+        .timeline-events {
+            display: grid;
+            gap: 15px;
         }
         
         .timeline-event-card {
@@ -274,46 +317,47 @@
             border-radius: 6px;
             border-left: 4px solid #2a5298;
             transition: all 0.3s;
+            position: relative;
         }
         
-        .timeline-event:hover .timeline-event-card {
+        .timeline-event-card:hover {
             background: #e8f1f8;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
-        .timeline-event.problema .timeline-event-card {
+        .timeline-event-card.problema {
             border-left-color: #e74c3c;
         }
         
-        .timeline-event.acción .timeline-event-card,
-        .timeline-event.accion .timeline-event-card {
+        .timeline-event-card.acción,
+        .timeline-event-card.accion {
             border-left-color: #f39c12;
         }
         
-        .timeline-event.insight .timeline-event-card {
+        .timeline-event-card.insight {
             border-left-color: #3498db;
         }
         
-        .timeline-event.impacto .timeline-event-card {
+        .timeline-event-card.impacto {
             border-left-color: #9b59b6;
         }
         
-        .timeline-event-header {
+        .event-header {
             display: flex;
             justify-content: space-between;
             align-items: start;
             margin-bottom: 8px;
         }
         
-        .timeline-date {
-            font-size: 12px;
+        .event-date {
+            font-size: 11px;
             color: #666;
             font-weight: 600;
         }
         
-        .timeline-source {
-            font-size: 12px;
-            padding: 2px 8px;
+        .event-source {
+            font-size: 11px;
+            padding: 3px 8px;
             border-radius: 12px;
             font-weight: 600;
         }
@@ -333,54 +377,81 @@
             color: #e65100;
         }
         
-        .timeline-title {
+        .event-title {
             font-weight: 600;
             color: #1e3c72;
             margin-bottom: 5px;
-            font-size: 14px;
-        }
-        
-        .timeline-summary {
-            color: #555;
             font-size: 13px;
+        }
+        
+        .event-summary {
+            color: #555;
+            font-size: 12px;
             line-height: 1.4;
+            margin-bottom: 8px;
+        }
+        
+        .event-details {
             display: none;
-        }
-        
-        .timeline-event.expanded .timeline-summary {
-            display: block;
-        }
-        
-        .timeline-event.expanded .timeline-event-card {
-            padding: 20px;
-        }
-        
-        .timeline-details {
-            display: none;
-            margin-top: 15px;
-            padding-top: 15px;
+            margin-top: 10px;
+            padding-top: 10px;
             border-top: 1px solid #ddd;
         }
         
-        .timeline-event.expanded .timeline-details {
+        .timeline-event-card.expanded .event-details {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
         }
         
         .detail-item {
-            font-size: 12px;
+            font-size: 11px;
         }
         
         .detail-label {
             font-weight: 600;
             color: #1e3c72;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
         
         .detail-value {
             color: #555;
-            font-size: 13px;
+            font-size: 11px;
+        }
+        
+        .event-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .btn-expand,
+        .btn-delete {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .btn-expand {
+            background: #2a5298;
+            color: white;
+        }
+        
+        .btn-expand:hover {
+            background: #1e3c72;
+        }
+        
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-delete:hover {
+            background: #c0392b;
         }
         
         /* MÓDULO 3: ESTADÍSTICAS */
@@ -502,9 +573,9 @@
             gap: 15px;
             font-size: 12px;
             color: #666;
+            flex-wrap: wrap;
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
             .container {
                 padding: 0;
@@ -518,16 +589,12 @@
                 font-size: 24px;
             }
             
-            .timeline {
-                padding-left: 30px;
+            .calendar-grid {
+                gap: 5px;
             }
             
-            .timeline::before {
-                left: 5px;
-            }
-            
-            .timeline-event::before {
-                left: -30px;
+            .calendar-day {
+                min-height: 80px;
             }
             
             .stats-grid {
@@ -552,7 +619,7 @@
         <div class="tabs">
             <button class="tab-btn active" onclick="showTab('dashboard')">📈 Dashboard</button>
             <button class="tab-btn" onclick="showTab('calendario')">📅 Calendario</button>
-            <button class="tab-btn" onclick="showTab('timeline')">⏱️ Línea de Tiempo</button>
+            <button class="tab-btn" onclick="showTab('timeline')">⏱️ Cliente</button>
             <button class="tab-btn" onclick="showTab('busqueda')">🔍 Búsqueda</button>
         </div>
         
@@ -604,11 +671,11 @@
                     </div>
                 </div>
                 <div class="calendar-grid" id="calendar-grid"></div>
-                <div id="calendar-events-detail"></div>
+                <div id="calendar-events-detail" style="margin-top: 30px;"></div>
             </div>
         </div>
         
-        <!-- TAB: LÍNEA DE TIEMPO -->
+        <!-- TAB: LÍNEA DE TIEMPO (CLIENTE) -->
         <div id="timeline" class="tab-content">
             <div class="timeline-container">
                 <div class="client-selector">
@@ -617,7 +684,13 @@
                         <option value="">-- Todos los Clientes --</option>
                     </select>
                 </div>
-                <div id="timeline-container" class="timeline"></div>
+                
+                <div class="timeline-horizontal">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-markers" id="timeline-markers"></div>
+                </div>
+                
+                <div class="timeline-events" id="timeline-events"></div>
             </div>
         </div>
         
@@ -634,7 +707,6 @@
                         <option value="">-- Todos --</option>
                         <option value="problema">Problema</option>
                         <option value="acción">Acción</option>
-                        <option value="accion">Acción (alt)</option>
                         <option value="insight">Insight</option>
                         <option value="impacto">Impacto</option>
                     </select>
@@ -663,6 +735,7 @@
         
         let currentMonth = new Date().getMonth();
         let currentYear = new Date().getFullYear();
+        let deletedEvents = new Set();
         
         function init() {
             renderStats();
@@ -679,13 +752,13 @@
         }
         
         function renderStats() {
-            const data = BITACORA_DATA.datos || [];
+            const data = (BITACORA_DATA.datos || []).filter(e => !deletedEvents.has(e.id));
             const stats = BITACORA_DATA.estadisticas || {};
             
             document.getElementById('total-events').textContent = data.length;
             document.getElementById('total-clients').textContent = stats.total_clientes || 0;
             document.getElementById('total-months').textContent = new Set(data.map(e => e.date.substring(0, 7))).size;
-            document.getElementById('problemas-count').textContent = (stats.tipos_evento?.problema || 0);
+            document.getElementById('problemas-count').textContent = data.filter(e => e.type === 'problema').length;
             
             const tipoHtml = Object.entries(stats.tipos_evento || {})
                 .map(([tipo, count]) => `<div class="breakdown-item"><span class="breakdown-label">${tipo}</span><span class="breakdown-value">${count}</span></div>`)
@@ -706,7 +779,7 @@
         }
         
         function renderCalendar() {
-            const data = BITACORA_DATA.datos || [];
+            const data = (BITACORA_DATA.datos || []).filter(e => !deletedEvents.has(e.id));
             const monthDays = new Date(currentYear, currentMonth + 1, 0).getDate();
             const firstDay = new Date(currentYear, currentMonth, 1).getDay();
             
@@ -717,7 +790,8 @@
             data.forEach(event => {
                 if (event.date.startsWith(currentYear + '-' + String(currentMonth + 1).padStart(2, '0'))) {
                     const day = event.date.split('-')[2];
-                    eventsByDate[day] = (eventsByDate[day] || 0) + 1;
+                    if (!eventsByDate[day]) eventsByDate[day] = [];
+                    eventsByDate[day].push(event);
                 }
             });
             
@@ -728,18 +802,20 @@
             
             for (let i = 0; i < firstDay; i++) html += '<div class="calendar-day"></div>';
             for (let day = 1; day <= monthDays; day++) {
-                const count = eventsByDate[String(day).padStart(2, '0')] || 0;
-                const hasEvents = count > 0;
+                const events = eventsByDate[String(day).padStart(2, '0')] || [];
+                const hasEvents = events.length > 0;
+                const summary = events.length > 0 ? (events[0].title.substring(0, 20) + '...') : '';
                 html += `<div class="calendar-day ${hasEvents ? 'has-events' : ''}" onclick="showCalendarDay('${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}')">
-                    ${day}
-                    ${hasEvents ? `<div class="calendar-event-count">${count}</div>` : ''}
+                    <div class="calendar-day-number">${day}</div>
+                    ${hasEvents ? `<div class="calendar-day-summary">${summary}</div>` : ''}
+                    ${hasEvents ? `<div class="calendar-event-count">${events.length}</div>` : ''}
                 </div>`;
             }
             document.getElementById('calendar-grid').innerHTML = html;
         }
         
         function showCalendarDay(dateStr) {
-            const data = BITACORA_DATA.datos || [];
+            const data = (BITACORA_DATA.datos || []).filter(e => !deletedEvents.has(e.id));
             const events = data.filter(e => e.date === dateStr);
             
             if (events.length === 0) {
@@ -747,7 +823,7 @@
                 return;
             }
             
-            let html = '<h3 style="margin-top: 20px; color: #1e3c72;">Eventos del ' + dateStr + '</h3>';
+            let html = '<h3 style="margin-top: 20px; color: #1e3c72; margin-bottom: 15px;">Eventos del ' + dateStr + '</h3>';
             html += events.map(e => `
                 <div class="result-item">
                     <div class="result-title">${e.title}</div>
@@ -780,7 +856,7 @@
         }
         
         function populateSelects() {
-            const data = BITACORA_DATA.datos || [];
+            const data = (BITACORA_DATA.datos || []).filter(e => !deletedEvents.has(e.id));
             const clients = [...new Set(data.map(e => e.client))].sort();
             
             let clientHtml = '<option value="">-- Todos los Clientes --</option>';
@@ -792,66 +868,91 @@
         }
         
         function updateTimeline() {
-            const data = BITACORA_DATA.datos || [];
+            const data = (BITACORA_DATA.datos || []).filter(e => !deletedEvents.has(e.id));
             const selectedClient = document.getElementById('client-select').value;
             const filtered = selectedClient ? data.filter(e => e.client === selectedClient) : data;
             
             if (filtered.length === 0) {
-                document.getElementById('timeline-container').innerHTML = '<div class="no-data">No hay eventos para este cliente</div>';
+                document.getElementById('timeline-markers').innerHTML = '';
+                document.getElementById('timeline-events').innerHTML = '<div class="no-data">No hay eventos para este cliente</div>';
                 return;
             }
             
-            const sorted = filtered.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
+            const sorted = filtered.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
             
-            let html = sorted.map(event => {
-                const sourceClass = event.source === 'gmail' ? 'source-gmail' : event.source === 'slack' ? 'source-slack' : 'source-manual';
-                const sourceIcon = event.source === 'gmail' ? '📧' : event.source === 'slack' ? '💬' : '✏️';
+            let markersHtml = sorted.map((event, idx) => {
+                return `
+                    <div class="timeline-marker ${event.type.toLowerCase()}" onclick="scrollToEvent('event-${event.id}')">
+                        <div class="timeline-marker-dot"></div>
+                        <div class="timeline-marker-label">${event.date.split('-')[2]}<br/>${event.type.substring(0, 3)}</div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('timeline-markers').innerHTML = markersHtml;
+            
+            let eventsHtml = sorted.map(event => {
+                const sourceClass = event.source === 'gmail' ? 'source-gmail' : 'source-slack';
+                const sourceIcon = event.source === 'gmail' ? '📧' : '💬';
                 
                 return `
-                    <div class="timeline-event ${event.type.toLowerCase()}" onclick="toggleExpand(this)">
-                        <div class="timeline-event-card">
-                            <div class="timeline-event-header">
-                                <div class="timeline-date">${event.date} ${event.datetime.split('T')[1].substring(0, 5)}</div>
-                                <div class="timeline-source ${sourceClass}">${sourceIcon} ${event.source.toUpperCase()}</div>
+                    <div class="timeline-event-card ${event.type.toLowerCase()}" id="event-${event.id}">
+                        <div class="event-header">
+                            <div class="event-date">${event.date} ${event.datetime.split('T')[1].substring(0, 5)}</div>
+                            <div class="event-source ${sourceClass}">${sourceIcon} ${event.source.toUpperCase()}</div>
+                        </div>
+                        <div class="event-title">${event.title}</div>
+                        <div class="event-summary">${event.summary}</div>
+                        <div class="event-details">
+                            <div class="detail-item">
+                                <div class="detail-label">Tipo</div>
+                                <div class="detail-value">${event.type}</div>
                             </div>
-                            <div class="timeline-title">${event.title}</div>
-                            <div class="timeline-summary">${event.summary}</div>
-                            <div class="timeline-details">
-                                <div class="detail-item">
-                                    <div class="detail-label">Tipo</div>
-                                    <div class="detail-value">${event.type}</div>
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Prioridad</div>
-                                    <div class="detail-value">${event.priority || 'N/A'}</div>
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Estado</div>
-                                    <div class="detail-value">${event.status || 'N/A'}</div>
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Canal</div>
-                                    <div class="detail-value">${event.channel}</div>
-                                </div>
-                                ${event.tags ? `<div class="detail-item" style="grid-column: 1/-1;">
-                                    <div class="detail-label">Tags</div>
-                                    <div class="detail-value">${event.tags.join(', ')}</div>
-                                </div>` : ''}
+                            <div class="detail-item">
+                                <div class="detail-label">Prioridad</div>
+                                <div class="detail-value">${event.priority || 'N/A'}</div>
                             </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Estado</div>
+                                <div class="detail-value">${event.status || 'N/A'}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Canal</div>
+                                <div class="detail-value">${event.channel}</div>
+                            </div>
+                            ${event.tags && event.tags.length > 0 ? `<div class="detail-item" style="grid-column: 1/-1;">
+                                <div class="detail-label">Tags</div>
+                                <div class="detail-value">${Array.isArray(event.tags) ? event.tags.join(', ') : event.tags}</div>
+                            </div>` : ''}
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn-expand" onclick="toggleExpand(this.parentElement.parentElement)">Detalles</button>
+                            <button class="btn-delete" onclick="deleteEvent('${event.id}')">Eliminar</button>
                         </div>
                     </div>
                 `;
             }).join('');
             
-            document.getElementById('timeline-container').innerHTML = html;
+            document.getElementById('timeline-events').innerHTML = eventsHtml;
         }
         
         function toggleExpand(element) {
             element.classList.toggle('expanded');
         }
         
+        function deleteEvent(eventId) {
+            deletedEvents.add(eventId);
+            updateTimeline();
+            renderStats();
+            renderCalendar();
+        }
+        
+        function scrollToEvent(eventId) {
+            document.getElementById(eventId).scrollIntoView({ behavior: 'smooth', block: 'center' });
+            document.getElementById(eventId).style.animation = 'pulse 0.5s';
+        }
+        
         function filterSearch() {
-            const data = BITACORA_DATA.datos || [];
+            const data = (BITACORA_DATA.datos || []).filter(e => !deletedEvents.has(e.id));
             const text = document.getElementById('search-text').value.toLowerCase();
             const type = document.getElementById('filter-type').value;
             const client = document.getElementById('filter-client').value;
@@ -871,7 +972,7 @@
             }
             
             let html = filtered.map(e => {
-                const sourceClass = e.source === 'gmail' ? 'source-gmail' : e.source === 'slack' ? 'source-slack' : 'source-manual';
+                const sourceClass = e.source === 'gmail' ? 'source-gmail' : 'source-slack';
                 return `
                     <div class="result-item">
                         <div class="result-title">${e.title}</div>
@@ -879,7 +980,7 @@
                             <span>📅 ${e.date}</span>
                             <span>👤 ${e.client}</span>
                             <span>📌 ${e.type}</span>
-                            <span class="timeline-source ${sourceClass}">${e.source.toUpperCase()}</span>
+                            <span class="event-source ${sourceClass}">${e.source.toUpperCase()}</span>
                         </div>
                     </div>
                 `;
