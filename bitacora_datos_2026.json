@@ -1,7 +1,7 @@
 {
-  "generado": "2026-04-03T18:09:07.351172",
-  "periodo": "2026-01-01 a 2026-04-03",
-  "total_registros": 97,
+  "generado": "2026-04-04T09:08:41.467018",
+  "periodo": "2026-01-01 a 2026-04-04",
+  "total_registros": 115,
   "fuentes": [
     "gmail",
     "slack"
@@ -10,31 +10,32 @@
     "total_clientes": 15,
     "total_canales": 49,
     "tipos_evento": {
-      "impacto": 26,
-      "acción": 15,
-      "problema": 15,
-      "insight": 32
+      "impacto": 28,
+      "acción": 26,
+      "problema": 21,
+      "accion": 9,
+      "insight": 31
     },
     "por_cliente": {
       "General": 40,
-      "Pickit": 9,
-      "Banco Macro": 8,
-      "CAINIAO": 6,
-      "MeLi": 5,
-      "Molinos": 4,
+      "Mail Américas": 16,
+      "Pickit": 10,
+      "Banco Macro": 10,
+      "CAINIAO": 9,
+      "MeLi": 6,
+      "Molinos": 5,
+      "Renault": 4,
       "MODO": 3,
       "Mercedes Benz": 3,
-      "Renault": 3,
+      "DirecTV": 3,
+      "Transfarmaco": 2,
       "Mercado Libre": 2,
-      "DirecTV": 2,
-      "Transfarmaco": 1,
       "UM / XBT": 1,
-      "N24": 1,
-      "Mail Américas": 9
+      "N24": 1
     },
     "por_fuente": {
-      "gmail": 66,
-      "slack": 31
+      "gmail": 68,
+      "slack": 47
     }
   },
   "datos": [
@@ -1514,166 +1515,575 @@
       "author": "Ricardo Palavecino"
     },
     {
-      "id": "mail_americas_0",
-      "date": "2026-03-16",
-      "datetime": "2026-02-22T11:12:00-03:00",
+      "id": "slack_C09426Y7QLR_1775074255",
+      "date": "2026-04-01",
+      "datetime": "2026-04-01T17:10:55-03:00",
       "source": "slack",
-      "channel": "mail-americas-cx-op",
-      "client": "Mail Américas",
-      "type": "impacto",
-      "title": "Integración de nuevas funcionalidades en plataforma",
-      "summary": "Se implementaron mejoras en el módulo de seguimiento de envíos para Mail Américas con nuevas APIs",
-      "author": "Mail Américas Team",
-      "tags": [
-        "mail-americas",
-        "cx"
-      ],
-      "priority": "alta",
-      "status": "abierto"
-    },
-    {
-      "id": "mail_americas_1",
-      "date": "2026-02-18",
-      "datetime": "2026-02-20T09:36:00-03:00",
-      "source": "slack",
-      "channel": "mail-americas-cx-op",
-      "client": "Mail Américas",
-      "type": "impacto",
-      "title": "Error en procesamiento de datos de clientes",
-      "summary": "Se detectó un problema en la importación de datos de clientes desde el sistema legacy",
-      "author": "Mail Américas Team",
-      "tags": [
-        "mail-americas",
-        "cx"
-      ],
-      "priority": "alta",
-      "status": "en_progreso"
-    },
-    {
-      "id": "mail_americas_2",
-      "date": "2026-02-13",
-      "datetime": "2026-03-22T10:27:00-03:00",
-      "source": "gmail",
-      "channel": "mail-americas-cx-op",
+      "channel": "#mail-americas-cx-op",
       "client": "Mail Américas",
       "type": "problema",
-      "title": "Optimización de tiempos de respuesta",
-      "summary": "Se redujo el tiempo de procesamiento en un 35% mediante optimización de índices",
-      "author": "Mail Américas Team",
+      "title": "Pieza MLAR074463751EX-1236822034 no ingresa al sistema",
+      "summary": "Javier Uran reporta que la pieza MLAR074463751EX-1236822034 no ingresa al sistema. Sin trazabilidad en SAP.",
+      "author": "Javier Uran",
       "tags": [
-        "mail-americas",
-        "cx"
+        "faltante ingreso",
+        "trazabilidad",
+        "SAP"
       ],
-      "priority": "alta",
-      "status": "resuelto"
+      "status": "abierto",
+      "priority": "media",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C09426Y7QLR/p1775074255960799"
     },
     {
-      "id": "mail_americas_3",
-      "date": "2026-03-14",
-      "datetime": "2026-02-28T08:39:00-03:00",
-      "source": "gmail",
-      "channel": "mail-americas-implementación",
-      "client": "Mail Américas",
-      "type": "insight",
-      "title": "Capacitación a equipo de soporte",
-      "summary": "Realizado entrenamiento para el equipo de soporte técnico de Mail Américas",
-      "author": "Mail Américas Team",
-      "tags": [
-        "mail-americas",
-        "cx"
-      ],
-      "priority": "alta",
-      "status": "en_progreso"
-    },
-    {
-      "id": "mail_americas_4",
-      "date": "2026-02-27",
-      "datetime": "2026-03-15T17:35:00-03:00",
+      "id": "slack_C09426Y7QLR_1774881651",
+      "date": "2026-03-30",
+      "datetime": "2026-03-30T11:40:51-03:00",
       "source": "slack",
-      "channel": "mail-americas-cx-op",
+      "channel": "#mail-americas-cx-op",
       "client": "Mail Américas",
-      "type": "problema",
-      "title": "Actualización de políticas de envío",
-      "summary": "Se actualizaron las políticas de envío internacional según nuevas regulaciones",
-      "author": "Mail Américas Team",
+      "type": "acción",
+      "title": "Novedad desestimada – pieza ya detectada internamente",
+      "summary": "Javier Uran desestima novedad anterior de pieza MLAR072806122EX: ya fue detectada internamente.",
+      "author": "Javier Uran",
       "tags": [
-        "mail-americas",
-        "cx"
+        "novedad resuelta"
       ],
-      "priority": "alta",
-      "status": "en_progreso"
-    },
-    {
-      "id": "mail_americas_5",
-      "date": "2026-02-07",
-      "datetime": "2026-02-14T11:02:00-03:00",
-      "source": "gmail",
-      "channel": "mail-americas-implementación",
-      "client": "Mail Américas",
-      "type": "impacto",
-      "title": "Análisis de satisfacción del cliente",
-      "summary": "Encuesta mostró 87% de satisfacción en el servicio de Mail Américas",
-      "author": "Mail Américas Team",
-      "tags": [
-        "mail-americas",
-        "cx"
-      ],
+      "status": "cerrado",
       "priority": "baja",
-      "status": "resuelto"
+      "permalink": "https://ocasa-hablar.slack.com/archives/C09426Y7QLR/p1774881651717009"
     },
     {
-      "id": "mail_americas_6",
-      "date": "2026-02-25",
-      "datetime": "2026-02-24T11:07:00-03:00",
+      "id": "slack_C09426Y7QLR_1774879957",
+      "date": "2026-03-30",
+      "datetime": "2026-03-30T11:12:37-03:00",
       "source": "slack",
-      "channel": "mail-americas-cx-op",
+      "channel": "#mail-americas-cx-op",
+      "client": "Mail Américas",
+      "type": "problema",
+      "title": "HU 4012082085 – pieza MLAR072806122EX no ingresa",
+      "summary": "Se recibe HU 4012082085 y la pieza MLAR072806122EX no ingresa al sistema. Faltante de ingreso en operación de Mail Américas.",
+      "author": "Javier Uran",
+      "tags": [
+        "faltante ingreso",
+        "HU",
+        "recepción"
+      ],
+      "status": "cerrado",
+      "priority": "media",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C09426Y7QLR/p1774879957936139"
+    },
+    {
+      "id": "slack_C09426Y7QLR_1774612757",
+      "date": "2026-03-27",
+      "datetime": "2026-03-27T08:58:19-03:00",
+      "source": "slack",
+      "channel": "#mail-americas-cx-op",
+      "client": "Mail Américas",
+      "type": "problema",
+      "title": "Consulta por rango de peso acordado con cliente Mail Américas",
+      "summary": "Rodrigo Santa Cruz detecta bultos de 14-12 kg en arribo de ayer y consulta cuál es el rango de peso acordado con el cliente, ya que no lo encontró en el instructivo. Federico Di Dio responde: es paquetería estándar, puede variar entre 0,5 y 30 kg.",
+      "author": "Rodrigo Santa Cruz / Federico Di Dio",
+      "tags": [
+        "peso",
+        "instructivo",
+        "paquetería"
+      ],
+      "status": "cerrado",
+      "priority": "baja",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C09426Y7QLR/p1774612757370739"
+    },
+    {
+      "id": "slack_C09426Y7QLR_1774609787",
+      "date": "2026-03-27",
+      "datetime": "2026-03-27T08:09:47-03:00",
+      "source": "slack",
+      "channel": "#mail-americas-cx-op",
       "client": "Mail Américas",
       "type": "impacto",
-      "title": "Implementación de sistema de alertas",
-      "summary": "Se activó nuevo sistema de alertas en tiempo real para eventos críticos",
-      "author": "Mail Américas Team",
+      "title": "Carga Mail Américas con destino VDM retenida en sucursal por demora en TRC",
+      "summary": "Mauro Frank informa demoras en arribo de TRC adicional hacia BHI. La carga de Mail Américas con destino a VDM queda retenida en sucursal hasta próximo despacho del lunes. Se adjunta archivo con piezas afectadas.",
+      "author": "Mauro Frank",
       "tags": [
-        "mail-americas",
-        "cx"
+        "demora",
+        "TRC",
+        "VDM",
+        "retención"
       ],
-      "priority": "alta",
-      "status": "resuelto"
+      "status": "resuelto",
+      "priority": "media",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C09426Y7QLR/p1774609787820929"
     },
     {
-      "id": "mail_americas_7",
+      "id": "slack_C09426Y7QLR_1774440998",
+      "date": "2026-03-25",
+      "datetime": "2026-03-25T09:16:38-03:00",
+      "source": "slack",
+      "channel": "#mail-americas-cx-op",
+      "client": "Mail Américas",
+      "type": "problema",
+      "title": "3 equipos en SFN con ruta 511 por falta de datos – estado incorrecto en sistema",
+      "summary": "Federico Taboga informa 3 piezas de Mail Américas recibidas en SFN con ruta 511 por falta de datos de dirección. Están 'pendientes de distribución' en lugar de 'en buffer' como indica el instructivo. IDs: MLAR072803293EX, MLAR071281468EX, MLAR071871249EX.",
+      "author": "Federico Taboga",
+      "tags": [
+        "ruta 511",
+        "buffer",
+        "mala geo",
+        "SFN"
+      ],
+      "status": "abierto",
+      "priority": "media",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C09426Y7QLR/p1774440998435139"
+    },
+    {
+      "id": "slack_C08UUT70WBZ_1775069518",
+      "date": "2026-04-01",
+      "datetime": "2026-04-01T15:51:58-03:00",
+      "source": "slack",
+      "channel": "#mail-americas-implementación",
+      "client": "Mail Américas",
+      "type": "acción",
+      "title": "Cliente solicita retiro adicional – se define para el martes",
+      "summary": "Rodrigo Santa Cruz comparte mensaje del cliente en grupo de WhatsApp interno solicitando un retiro adicional. Carlos Naccarato define: retiro el martes.",
+      "author": "Carlos Naccarato",
+      "tags": [
+        "retiro adicional",
+        "colecta",
+        "coordinación"
+      ],
+      "status": "resuelto",
+      "priority": "media",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C08UUT70WBZ/p1775069518890709"
+    },
+    {
+      "id": "slack_C08UUT70WBZ_1775058544",
+      "date": "2026-04-01",
+      "datetime": "2026-04-01T12:49:04-03:00",
+      "source": "slack",
+      "channel": "#mail-americas-implementación",
+      "client": "Mail Américas",
+      "type": "impacto",
+      "title": "936 piezas procesadas el 01/04 en CBN – operación ramp-up Mail Américas",
+      "summary": "Maximiliano Tello informa que se procesaron 936 piezas totales en el día 01/04 en CBN. Operación en ramp-up con Mail Américas.",
+      "author": "Maximiliano Tello",
+      "tags": [
+        "volumen",
+        "imposición",
+        "CBN",
+        "ramp-up"
+      ],
+      "status": "informativo",
+      "priority": "baja",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C08UUT70WBZ/p1775058544411469"
+    },
+    {
+      "id": "slack_C08UUT70WBZ_1774985795",
+      "date": "2026-03-31",
+      "datetime": "2026-03-31T16:36:35-03:00",
+      "source": "slack",
+      "channel": "#mail-americas-implementación",
+      "client": "Mail Américas",
+      "type": "problema",
+      "title": "3 cruces de etiquetas detectados – pieza MLAR072921255EX sin ingreso físico",
+      "summary": "Jorge Insfran detecta 3 cruces de etiquetas: MLAR071422863EX/MLAR071868338EX, MLAR073797055EX/MLAR073965765EX, MLAR072921255EX/MLAR073739821EX. Además, MLAR072921255EX en estado 'aguardando proceso'. Maximiliano Tello responde: red tuvo inconvenientes con zebras, error en reetiquetado identificado.",
+      "author": "Jorge Insfran / Maximiliano Tello",
+      "tags": [
+        "cruce etiquetas",
+        "zebras",
+        "error",
+        "reetiquetado"
+      ],
+      "status": "en gestión",
+      "priority": "alta",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C08UUT70WBZ/p1774985795241189"
+    },
+    {
+      "id": "slack_C08UUT70WBZ_1774984304",
+      "date": "2026-03-31",
+      "datetime": "2026-03-31T16:11:44-03:00",
+      "source": "slack",
+      "channel": "#mail-americas-implementación",
+      "client": "Mail Américas",
+      "type": "acción",
+      "title": "Minuta reunión 31/MAR Mail Américas – puntos pendientes ramp-up",
+      "summary": "Federico Richi comparte minuta de reunión 31/MAR con puntos críticos: firma de contrato/adenda pendiente; piezas con mala geo se cobrarán al cliente; se reetiquetar el 100% de piezas (extracosto a dimensionar); BOT activo desde 30/MAR; corte horario colecta adicional: 10am; colecta adicional entre 12-15hs para imposición en día; forecast semanal pendiente del cliente; piezas físicas sin lógico reportadas al cliente.",
+      "author": "Federico Richi",
+      "tags": [
+        "minuta",
+        "pendientes",
+        "contrato",
+        "reetiquetado",
+        "BOT",
+        "forecast",
+        "colecta"
+      ],
+      "status": "en seguimiento",
+      "priority": "alta",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C08UUT70WBZ/p1774984304952559"
+    },
+    {
+      "id": "slack_C08UUT70WBZ_1774970994",
+      "date": "2026-03-31",
+      "datetime": "2026-03-31T12:29:54-03:00",
+      "source": "slack",
+      "channel": "#mail-americas-implementación",
+      "client": "Mail Américas",
+      "type": "impacto",
+      "title": "614 piezas ingresadas el 31/03 en CBN – Mail Américas",
+      "summary": "Maximiliano Tello informa 614 piezas ingresadas en la fecha 31/03. Reporte de volumen diario de operación Mail Américas.",
+      "author": "Maximiliano Tello",
+      "tags": [
+        "volumen",
+        "imposición",
+        "CBN"
+      ],
+      "status": "informativo",
+      "priority": "baja",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C08UUT70WBZ/p1774970994194749"
+    },
+    {
+      "id": "slack_C08UUT70WBZ_1774895131",
+      "date": "2026-03-30",
+      "datetime": "2026-03-30T15:25:15-03:00",
+      "source": "slack",
+      "channel": "#mail-americas-implementación",
+      "client": "Mail Américas",
+      "type": "impacto",
+      "title": "824 piezas impuestas el 30/03 – Mail Américas CBN",
+      "summary": "Rodrigo Santa Cruz informa que se impusieron 824 piezas en CBN el 30/03. Continúa el ramp-up del servicio con Mail Américas.",
+      "author": "Rodrigo Santa Cruz",
+      "tags": [
+        "volumen",
+        "imposición",
+        "CBN"
+      ],
+      "status": "informativo",
+      "priority": "baja",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C08UUT70WBZ/p1774895115811169"
+    },
+    {
+      "id": "slack_C08UUT70WBZ_1774879451",
+      "date": "2026-03-30",
+      "datetime": "2026-03-30T11:04:11-03:00",
+      "source": "slack",
+      "channel": "#mail-americas-implementación",
+      "client": "Mail Américas",
+      "type": "acción",
+      "title": "Minuta reunión 27/MAR Mail Américas – BOT activo desde 30/03, múltiples pendientes",
+      "summary": "Federico Richi comparte minuta de reunión 27/MAR: BOT encendido desde 30/MAR; piezas con mala geo se cobrarán al cliente; reetiquetado al 100%; desarrollo de semáforo en CBN para mala calidad de datos; extracosto IATA a dimensionar; gestión de fotos POD con agentes; corte horario 10am para colecta adicional; colecta adicional 12-15hs; piezas físicas sin lógico a reforzar con cliente.",
+      "author": "Federico Richi",
+      "tags": [
+        "minuta",
+        "BOT",
+        "reetiquetado",
+        "semáforo",
+        "POD"
+      ],
+      "status": "en seguimiento",
+      "priority": "alta",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C08UUT70WBZ/p1774879451542079"
+    },
+    {
+      "id": "slack_C08UUT70WBZ_1774667623",
+      "date": "2026-03-28",
+      "datetime": "2026-03-28T00:13:43-03:00",
+      "source": "slack",
+      "channel": "#mail-americas-implementación",
+      "client": "Mail Américas",
+      "type": "impacto",
+      "title": "Piezas impuestas 28/03 – detalle por IATA, totalidad de carga despachada",
+      "summary": "Sebastian Moyano adjunta detalle por IATA de piezas impuestas el 28/03. Se despachó la totalidad de la carga impuesta. Reporte nocturno de imposición.",
+      "author": "Sebastian Moyano",
+      "tags": [
+        "volumen",
+        "IATA",
+        "imposición",
+        "despacho"
+      ],
+      "status": "informativo",
+      "priority": "baja",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C08UUT70WBZ/p1774667623398579"
+    },
+    {
+      "id": "gmail_19d3133b35b4bdef",
+      "date": "2026-03-27",
+      "datetime": "2026-03-27T18:29:42-03:00",
+      "source": "gmail",
+      "channel": "BOT Mail Americas",
+      "client": "Mail Américas",
+      "type": "acción",
+      "title": "Address BOT Mail Américas activado desde 30/03 – confirmación CDG",
+      "summary": "Nicole Teves confirma configuración del Address BOT para Mail Américas desde el lunes 30/03. Se modificaron plantillas para reducir costos. Aprobado por Control de Gestión (CDG). Caso de negocio presentado con premisas: 77 equipos/día, costo mensual ~USD 281.",
+      "author": "NICOLE TEVES",
+      "tags": [
+        "BOT",
+        "address",
+        "CDG",
+        "activación",
+        "notificaciones"
+      ],
+      "status": "resuelto",
+      "priority": "alta"
+    },
+    {
+      "id": "gmail_19d3e9b80baff1d6",
+      "date": "2026-03-30",
+      "datetime": "2026-03-30T11:57:51-03:00",
+      "source": "gmail",
+      "channel": "Mail Americas – Mesa interna ramp up",
+      "client": "Mail Américas",
+      "type": "acción",
+      "title": "Invitación reunión diaria ramp-up Mail Américas – lun a vie 14:30-15:00",
+      "summary": "Federico Richi convoca mesa interna de seguimiento ramp-up Mail Américas, todos los días lun-vie de 14:30 a 15:00 hs. Participan equipos de ops, CS, comercial, producto. Objetivo: monitoreo del lanzamiento del nuevo servicio.",
+      "author": "Federico Carlos Richi",
+      "tags": [
+        "reunión",
+        "ramp-up",
+        "seguimiento",
+        "mesa interna"
+      ],
+      "status": "activo",
+      "priority": "alta"
+    },
+    {
+      "id": "gmail_19d49abc8d3ba6f7",
+      "date": "2026-04-01",
+      "datetime": "2026-04-01T15:31:27-03:00",
+      "source": "gmail",
+      "channel": "CAINIAO – Technical Revision",
+      "client": "CAINIAO",
+      "type": "acción",
+      "title": "Reunión técnica OCASA-CAINIAO agendada para 07/04/2026 – revisión técnica",
+      "summary": "Ignacio Pugliese invita a reunión técnica OCASA-CAINIAO el martes 7 de abril 2026 de 09:30 a 10:30. Participan equipos técnicos de ambas partes: Damian Alvarez, Renata Balestrero, Juan Sappracone, Alejo Santa Cruz, Matias Bosch, Ana Cazaux, Candelaria de Hernandez, entre otros. Contactos Cainiao: ranting.ran, xj332428, wb-liyang.k, wukefan.wkf.",
+      "author": "Ignacio Pugliese",
+      "tags": [
+        "reunión técnica",
+        "CAINIAO",
+        "licitación",
+        "implementación"
+      ],
+      "status": "pendiente",
+      "priority": "alta"
+    },
+    {
+      "id": "gmail_19d25aa8af196fa4",
+      "date": "2026-03-25",
+      "datetime": "2026-03-25T12:43:46-03:00",
+      "source": "gmail",
+      "channel": "CAINIAO – Revisión Contrato",
+      "client": "CAINIAO",
+      "type": "acción",
+      "title": "CAINIAO: envío de anexos faltantes del contrato tras ganar licitación",
+      "summary": "Ignacio Pugliese comparte anexos faltantes del contrato CAINIAO solicitados por el estudio jurídico HC Corporation (Nehuen Nova). Contexto: OCASA ganó la licitación de CAINIAO. El proceso de revisión contractual involucra áreas de legales, comercial y CS.",
+      "author": "Ignacio Pugliese",
+      "tags": [
+        "contrato",
+        "licitación",
+        "CAINIAO",
+        "anexos",
+        "legal"
+      ],
+      "status": "en gestión",
+      "priority": "alta"
+    },
+    {
+      "id": "gmail_19d06291985b5d92",
+      "date": "2026-03-19",
+      "datetime": "2026-03-19T09:54:15-03:00",
+      "source": "gmail",
+      "channel": "CAINIAO – Contrato Licitación",
+      "client": "CAINIAO",
+      "type": "impacto",
+      "title": "OCASA gana licitación CAINIAO – inicio proceso de firma de contrato",
+      "summary": "Ignacio Pugliese informa que OCASA ganó la licitación de CAINIAO. Se circula el contrato (modelo CAINIAO) a áreas de legales, operaciones, CS y comercial para revisión y validación. Facturación anual estimada: USD 1.618.800. Valor máximo de riesgo por envío: USD 126.000 (~63 USD/paquete, ~2.000 paquetes).",
+      "author": "Ignacio Pugliese",
+      "tags": [
+        "licitación ganada",
+        "CAINIAO",
+        "contrato",
+        "USD 1.6M",
+        "nuevo cliente"
+      ],
+      "status": "en gestión",
+      "priority": "crítica",
+      "business_impact": "USD 1.618.800 facturación anual estimada"
+    },
+    {
+      "id": "slack_C09TA9HLHV5_1775068836",
+      "date": "2026-04-01",
+      "datetime": "2026-04-01T15:40:36-03:00",
+      "source": "slack",
+      "channel": "#cambio-tarjetas-macro-a-paqueteria",
+      "client": "Banco Macro",
+      "type": "acción",
+      "title": "MVP Banco Macro paquetería: solicitud de fecha de lanzamiento para la semana siguiente",
+      "summary": "Manuel Solanet solicita a Juan Sappracone y Fabio Bianchi que confirmen fecha de lanzamiento del MVP para comunicar al banco. CDG dio OK la noche anterior. Objetivo: recomponer tarifas pasando al nuevo servicio de paquetería.",
+      "author": "Manuel Solanet",
+      "tags": [
+        "MVP",
+        "Macro",
+        "paquetería",
+        "lanzamiento",
+        "CDG"
+      ],
+      "status": "en gestión",
+      "priority": "alta",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C09TA9HLHV5/p1775068836903009"
+    },
+    {
+      "id": "slack_C09DC4WPH0A_1774032100",
+      "date": "2026-03-20",
+      "datetime": "2026-03-20T15:41:40-03:00",
+      "source": "slack",
+      "channel": "#banco-macro-fraudes-con-tarjetas-de-crédito",
+      "client": "Banco Macro",
+      "type": "problema",
+      "title": "Informe de fraudes reclamados por Banco Macro – urgente",
+      "summary": "Manuel Solanet solicita con urgencia el informe sobre los últimos fraudes reclamados por Banco Macro. Pendiente de respuesta del equipo interno.",
+      "author": "Manuel Solanet",
+      "tags": [
+        "fraude",
+        "tarjetas",
+        "Banco Macro",
+        "urgente",
+        "informe"
+      ],
+      "status": "en gestión",
+      "priority": "alta",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C09DC4WPH0A/p1774032100846039"
+    },
+    {
+      "id": "slack_C0AKBSMJW4E_1774991816",
+      "date": "2026-03-31",
+      "datetime": "2026-03-31T18:16:56-03:00",
+      "source": "slack",
+      "channel": "#renault-wh-distribución-cx-op",
+      "client": "Renault",
+      "type": "impacto",
+      "title": "Renault alcanza SLA del 95,8% – valor más alto desde inicio de operación",
+      "summary": "Carolina Ramos informa que el 30/03 se alcanzó un SLA del 95,8% en la operación de Renault, el valor más alto desde el inicio. Felicitaciones al equipo por el compromiso y resultados.",
+      "author": "Carolina Ramos",
+      "tags": [
+        "SLA",
+        "Renault",
+        "logro",
+        "95.8%",
+        "récord"
+      ],
+      "status": "informativo",
+      "priority": "baja",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C0AKBSMJW4E/p1774991816031279"
+    },
+    {
+      "id": "slack_C07E4QQ3TE0_1774978411",
+      "date": "2026-03-31",
+      "datetime": "2026-03-31T14:33:31-03:00",
+      "source": "slack",
+      "channel": "#transfarmaco-status-op-cx",
+      "client": "Transfarmaco",
+      "type": "problema",
+      "title": "Transfarmaco pide entrega con remitos manuales de muestras biológicas – riesgo legal sin contrato",
+      "summary": "Fernando Clement escala situación crítica: Transfarmaco solicita que OCASA salga con remitos manuales para entregar 14 muestras biológicas en CNQ y RES sin poder imponerlas en sistema. Sin trazabilidad, riesgo de interdicción en ruta, sin contrato/límite de responsabilidad firmado. Diego Torres suma a Legales. Propuesta de Fernando Salguero: el cliente firma nota eximiendo responsabilidad de trazabilidad. Calidad del sistema Transfarmaco se restableció a las 15hs.",
+      "author": "Fernando Clement / Fernando Salguero / Diego Torres",
+      "tags": [
+        "muestras biológicas",
+        "remito manual",
+        "riesgo legal",
+        "trazabilidad",
+        "contrato"
+      ],
+      "status": "resuelto",
+      "priority": "crítica",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C07E4QQ3TE0/p1774978411486089"
+    },
+    {
+      "id": "slack_C0AGCPE7UJG_1775071081",
+      "date": "2026-04-01",
+      "datetime": "2026-04-01T16:18:01-03:00",
+      "source": "slack",
+      "channel": "#meli-custom_clearence_en_argentina",
+      "client": "MeLi",
+      "type": "acción",
+      "title": "Especificación funcional nuevo aplicativo milla media MeLi Custom Clearance",
+      "summary": "Germán Gallarini comparte documento de especificación funcional para el nuevo aplicativo de milla media en Custom Clearance MeLi. Se solicita revisión y validación a stakeholders (Sappracone, Almandoz, Alvarez, Balestrero) para cargar requerimiento formal a IT. Matias Bosch informa que el desarrollo no está en cero.",
+      "author": "Germán Gallarini / Matias Bosch",
+      "tags": [
+        "aplicativo",
+        "milla media",
+        "Custom Clearance",
+        "IT",
+        "especificación funcional"
+      ],
+      "status": "en gestión",
+      "priority": "alta",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C0AGCPE7UJG/p1775071081553949"
+    },
+    {
+      "id": "slack_C06JTTNH5KQ_1771608151",
+      "date": "2026-02-20",
+      "datetime": "2026-02-20T14:22:31-03:00",
+      "source": "slack",
+      "channel": "#direc-tv",
+      "client": "DirecTV",
+      "type": "impacto",
+      "title": "79 pedidos reclamados DTV: 40 pendientes ingreso WH, 32 pendientes distribución, 5 en IT",
+      "summary": "Candelaria de Hernandez presenta update de 79 pedidos reclamados por DirecTV: 40 pendientes ingreso WH (80% son SIM cards, 7 decodificadores de febrero); 32 pendientes distribución (19 en tránsito, 11 recolectados, 2 reprogramados por revendedor); 5 bloqueados por IT (fallo transmisión SAP); 2 finalizados por imposible retiro. WH y Distribución alertados para cierre urgente.",
+      "author": "Candelaria de Hernandez",
+      "tags": [
+        "pendientes",
+        "DTV",
+        "SIM cards",
+        "decodificadores",
+        "SAP",
+        "IT"
+      ],
+      "status": "en gestión",
+      "priority": "alta",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C06JTTNH5KQ/p1771608151765359"
+    },
+    {
+      "id": "slack_C06N2ECUR3N_1774984477",
+      "date": "2026-03-31",
+      "datetime": "2026-03-31T16:14:37-03:00",
+      "source": "slack",
+      "channel": "#directas-inversas-pickit-amba",
+      "client": "Pickit",
+      "type": "problema",
+      "title": "2.502 piezas PCK/PCKS pendientes de finalización en Pickit AMBA – urgente cierre",
+      "summary": "Belen Marchetti reporta 2.502 piezas MELI y no-MELI pendientes de finalización (PCK-PCKS) al 31/03. Se solicita revisión urgente y dar cierre a las que correspondan. Listado de casos sin novedad finalizadora adjunto.",
+      "author": "Belen Eliana Marchetti",
+      "tags": [
+        "pendientes",
+        "PCK",
+        "PCKS",
+        "finalización",
+        "MELI",
+        "Pickit"
+      ],
+      "status": "abierto",
+      "priority": "alta",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C06N2ECUR3N/p1774984477095279"
+    },
+    {
+      "id": "slack_C0A6DNP3S8Z_1774538529",
       "date": "2026-03-26",
-      "datetime": "2026-02-21T18:32:00-03:00",
+      "datetime": "2026-03-26T12:22:09-03:00",
       "source": "slack",
-      "channel": "mail-americas-cx-op",
-      "client": "Mail Américas",
-      "type": "impacto",
-      "title": "Reunión de revisión trimestral",
-      "summary": "Análisis de KPIs y planificación de mejoras para Q2 2026",
-      "author": "Mail Américas Team",
+      "channel": "#molinos-ordenamiento-del-servicio",
+      "client": "Molinos",
+      "type": "acción",
+      "title": "Recordatorio: faltantes y rechazos Molinos deben cargarse en formulario Google",
+      "summary": "Gisela Falcón recuerda que todo faltante, rechazo total o parcial debe ser cargado en formulario Google (link compartido). Además informa contactos clave del cliente para devoluciones (Martín Argentini), demoras en CD Echeverría (Agustín Bucci) y planificación de cargas (Tomás Gallo). Base de datos desactualizada impide a sucursales cargar rechazos.",
+      "author": "Gisela Falcón",
       "tags": [
-        "mail-americas",
-        "cx"
+        "faltante",
+        "rechazo",
+        "formulario",
+        "Molinos",
+        "contactos"
       ],
-      "priority": "baja",
-      "status": "abierto"
-    },
-    {
-      "id": "mail_americas_8",
-      "date": "2026-02-07",
-      "datetime": "2026-03-16T18:15:00-03:00",
-      "source": "slack",
-      "channel": "mail-americas-implementación",
-      "client": "Mail Américas",
-      "type": "impacto",
-      "title": "Problema con sincronización de datos",
-      "summary": "Fallos intermitentes en sincronización entre sistemas de Mail Américas y plataforma central",
-      "author": "Mail Américas Team",
-      "tags": [
-        "mail-americas",
-        "cx"
-      ],
-      "priority": "alta",
-      "status": "abierto"
+      "status": "en gestión",
+      "priority": "media",
+      "permalink": "https://ocasa-hablar.slack.com/archives/C0A6DNP3S8Z/p1774538529861439"
     }
   ]
 }
