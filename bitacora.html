@@ -91,9 +91,134 @@
             to { opacity: 1; }
         }
         
-        /* MÓDULO 1: CALENDARIO GRANDE */
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h2 {
+            color: #1e3c72;
+            font-size: 20px;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #1e3c72;
+            font-size: 14px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #2a5298;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1e3c72;
+        }
+        
+        .btn-secondary {
+            background: #ddd;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #bbb;
+        }
+        
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-delete:hover {
+            background: #c0392b;
+        }
+        
+        .btn-small {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        
+        /* MÓDULO CALENDARIO */
         .calendar {
-            max-width: 100%;
+            width: 100%;
         }
         
         .calendar-header {
@@ -142,72 +267,81 @@
         }
         
         .calendar-day {
-            aspect-ratio: 1.2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            min-height: 120px;
             border: 2px solid #ddd;
             border-radius: 6px;
-            cursor: pointer;
-            position: relative;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.2s;
+            padding: 10px;
             background: white;
-            min-height: 100px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
         }
         
         .calendar-day:hover {
-            background: #f0f0f0;
             border-color: #2a5298;
-        }
-        
-        .calendar-day.has-events {
-            background: linear-gradient(135deg, #e8f1f8 0%, #f0f8ff 100%);
-            border-color: #2a5298;
-            box-shadow: 0 2px 8px rgba(42, 82, 152, 0.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
         .calendar-day-number {
-            font-size: 18px;
             font-weight: bold;
             color: #1e3c72;
-            margin-bottom: 5px;
+            font-size: 16px;
+            margin-bottom: 8px;
         }
         
-        .calendar-day-summary {
-            font-size: 11px;
-            color: #666;
-            text-align: center;
-            line-height: 1.3;
-            word-break: break-word;
-            display: none;
-            max-height: 30px;
-            overflow: hidden;
-        }
-        
-        .calendar-day.has-events .calendar-day-summary {
-            display: block;
-        }
-        
-        .calendar-event-count {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: #e74c3c;
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
+        .calendar-day-events {
+            flex: 1;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            overflow-y: auto;
             font-size: 11px;
-            font-weight: bold;
+            margin-bottom: 8px;
         }
         
-        /* MÓDULO 2: LÍNEA DE TIEMPO HORIZONTAL */
+        .calendar-event-item {
+            background: #f0f0f0;
+            padding: 5px;
+            border-radius: 3px;
+            border-left: 3px solid #2a5298;
+            word-break: break-word;
+            line-height: 1.3;
+        }
+        
+        .event-client-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: white;
+            background: #2a5298;
+            padding: 2px 5px;
+            border-radius: 2px;
+            margin-bottom: 2px;
+            display: inline-block;
+        }
+        
+        .calendar-day-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .btn-add-event {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            flex: 1;
+        }
+        
+        .btn-add-event:hover {
+            background: #229954;
+        }
+        
+        /* MÓDULO CLIENTE LÍNEA DE TIEMPO */
         .timeline-container {
             width: 100%;
         }
@@ -230,6 +364,30 @@
             border-radius: 4px;
             font-size: 14px;
             max-width: 500px;
+        }
+        
+        .timeline-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .timeline-nav button {
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .timeline-period {
+            color: #1e3c72;
+            font-weight: 600;
         }
         
         .timeline-horizontal {
@@ -281,21 +439,11 @@
             background: #2a5298;
         }
         
-        .timeline-marker.problema .timeline-marker-dot {
-            border-color: #e74c3c;
-        }
-        
-        .timeline-marker.acción .timeline-marker-dot,
-        .timeline-marker.accion .timeline-marker-dot {
-            border-color: #f39c12;
-        }
-        
-        .timeline-marker.insight .timeline-marker-dot {
-            border-color: #3498db;
-        }
-        
-        .timeline-marker.impacto .timeline-marker-dot {
-            border-color: #9b59b6;
+        .timeline-marker.principal .timeline-marker-dot {
+            width: 20px;
+            height: 20px;
+            background: #2a5298;
+            border-color: #1e3c72;
         }
         
         .timeline-marker-label {
@@ -317,29 +465,11 @@
             border-radius: 6px;
             border-left: 4px solid #2a5298;
             transition: all 0.3s;
-            position: relative;
         }
         
         .timeline-event-card:hover {
             background: #e8f1f8;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .timeline-event-card.problema {
-            border-left-color: #e74c3c;
-        }
-        
-        .timeline-event-card.acción,
-        .timeline-event-card.accion {
-            border-left-color: #f39c12;
-        }
-        
-        .timeline-event-card.insight {
-            border-left-color: #3498db;
-        }
-        
-        .timeline-event-card.impacto {
-            border-left-color: #9b59b6;
         }
         
         .event-header {
@@ -353,28 +483,6 @@
             font-size: 11px;
             color: #666;
             font-weight: 600;
-        }
-        
-        .event-source {
-            font-size: 11px;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-weight: 600;
-        }
-        
-        .source-gmail {
-            background: #c5e1a5;
-            color: #558b2f;
-        }
-        
-        .source-slack {
-            background: #bbdefb;
-            color: #1565c0;
-        }
-        
-        .source-manual {
-            background: #ffe0b2;
-            color: #e65100;
         }
         
         .event-title {
@@ -391,70 +499,13 @@
             margin-bottom: 8px;
         }
         
-        .event-details {
-            display: none;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid #ddd;
-        }
-        
-        .timeline-event-card.expanded .event-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 10px;
-        }
-        
-        .detail-item {
-            font-size: 11px;
-        }
-        
-        .detail-label {
-            font-weight: 600;
-            color: #1e3c72;
-            margin-bottom: 2px;
-        }
-        
-        .detail-value {
-            color: #555;
-            font-size: 11px;
-        }
-        
         .event-actions {
             display: flex;
             gap: 10px;
             margin-top: 10px;
         }
         
-        .btn-expand,
-        .btn-delete {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 11px;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-        
-        .btn-expand {
-            background: #2a5298;
-            color: white;
-        }
-        
-        .btn-expand:hover {
-            background: #1e3c72;
-        }
-        
-        .btn-delete {
-            background: #e74c3c;
-            color: white;
-        }
-        
-        .btn-delete:hover {
-            background: #c0392b;
-        }
-        
-        /* MÓDULO 3: ESTADÍSTICAS */
+        /* MÓDULO ESTADÍSTICAS */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -505,16 +556,12 @@
             border-bottom: none;
         }
         
-        .breakdown-label {
-            color: #555;
-        }
-        
         .breakdown-value {
             font-weight: 600;
             color: #1e3c72;
         }
         
-        /* MÓDULO 4: BÚSQUEDA Y FILTROS */
+        /* BÚSQUEDA Y FILTROS */
         .search-filters {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -577,24 +624,13 @@
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 0;
-            }
-            
-            header {
-                padding: 20px;
-            }
-            
-            header h1 {
-                font-size: 24px;
-            }
-            
             .calendar-grid {
                 gap: 5px;
             }
             
             .calendar-day {
-                min-height: 80px;
+                min-height: 100px;
+                padding: 8px;
             }
             
             .stats-grid {
@@ -671,7 +707,6 @@
                     </div>
                 </div>
                 <div class="calendar-grid" id="calendar-grid"></div>
-                <div id="calendar-events-detail" style="margin-top: 30px;"></div>
             </div>
         </div>
         
@@ -683,6 +718,12 @@
                     <select id="client-select" onchange="updateTimeline()">
                         <option value="">-- Todos los Clientes --</option>
                     </select>
+                </div>
+                
+                <div class="timeline-nav">
+                    <button onclick="previousTimeline()">← Anterior 15 días</button>
+                    <span class="timeline-period" id="timeline-period"></span>
+                    <button onclick="nextTimeline()">Próximos 15 días →</button>
                 </div>
                 
                 <div class="timeline-horizontal">
@@ -717,30 +758,103 @@
                         <option value="">-- Todos --</option>
                     </select>
                 </div>
-                <div class="filter-group">
-                    <label>Fuente</label>
-                    <select id="filter-source" onchange="filterSearch()">
-                        <option value="">-- Todas --</option>
-                        <option value="gmail">Email</option>
-                        <option value="slack">Slack</option>
-                    </select>
-                </div>
             </div>
             <div class="search-results" id="search-results"></div>
         </div>
     </div>
     
+    <!-- MODAL EVENTO -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Nuevo Evento</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            
+            <form id="eventForm" onsubmit="saveEvent(event)">
+                <div class="form-group">
+                    <label>Fecha:</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Título:</label>
+                    <input type="text" id="eventTitle" placeholder="Título del evento" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Cliente:</label>
+                    <select id="eventClient" required>
+                        <option value="">-- Seleccione cliente --</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Tipo:</label>
+                    <select id="eventType">
+                        <option value="problema">Problema</option>
+                        <option value="acción">Acción</option>
+                        <option value="insight">Insight</option>
+                        <option value="impacto">Impacto</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Resumen:</label>
+                    <textarea id="eventSummary" placeholder="Describa el evento"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Fuente:</label>
+                    <select id="eventSource">
+                        <option value="manual">Manual</option>
+                        <option value="slack">Slack</option>
+                        <option value="gmail">Email</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button type="button" class="btn btn-delete" id="deleteBtn" onclick="deleteCurrentEvent()" style="display:none;">Eliminar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
     <script>
-        const BITACORA_DATA = {"generado": "2026-04-03T17:38:45.449893-03:00", "periodo": "2026-01-01 a 2026-04-03", "total_registros": 88, "fuentes": ["gmail", "slack"], "estadisticas": {"total_clientes": 14, "total_canales": 47, "tipos_evento": {"impacto": 20, "acción": 15, "problema": 13, "accion": 9, "insight": 31}, "por_cliente": {"General": 40, "Pickit": 9, "Banco Macro": 8, "CAINIAO": 6, "MeLi": 5, "Molinos": 4, "MODO": 3, "Mercedes Benz": 3, "Renault": 3, "Mercado Libre": 2, "DirecTV": 2, "Transfarmaco": 1, "UM / XBT": 1, "N24": 1}, "por_fuente": {"gmail": 63, "slack": 25}}, "datos": [{"id": "gmail_19d50681b5673147", "date": "2026-04-02", "datetime": "2026-04-02T19:55:04-03:00", "source": "gmail", "channel": "GCBA - Carta Documento Digital", "client": "General", "type": "impacto", "title": "Reporte N°10/2026 GCBA Carta Documento Digital: debilidades en flujos operativos detectadas", "summary": "Dario Navarro presenta el Reporte N°10/2026 sobre GCBA - Carta Documento Digital. Se validaron debilidades en los flujos operativos que pueden afectar el cumplimiento del servicio frente a un crecimiento significativo de volumen. Seguimiento de planes de acción a través de SmartSheet.", "author": "Dario German Navarro"}, {"id": "gmail_19d4eb054f763c08", "date": "2026-04-02", "datetime": "2026-04-02T10:54:32-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "acción", "title": "Resumen ejecutivo correos prioritarios 02/04/2026: NC SNC 6208 cajas vacías URGENTE", "summary": "Borrador de resumen ejecutivo de correos prioritarios del 02/04/2026. URGENTE: NC SNC 6208 – Cajas vacías enero 2025 (monto $863.323,51). Incluye acciones requeridas del día.", "author": "ines.picasso@ocasa.com", "tags": ["urgente", "NC", "SNC", "cajas vacías", "acción"], "status": "abierto", "priority": "alta"}, {"id": "gmail_19d4e4a45a31a985", "date": "2026-04-02", "datetime": "2026-04-02T10:14:31-03:00", "source": "gmail", "channel": "Reporte Notificaciones diarias MeLi", "client": "MeLi", "type": "impacto", "title": "Reporte diario: piezas sin notificación a MeLi desde 01/01/2025 – 02/04", "summary": "Reporte automático con base completa de piezas sin notificación a Mercado Libre desde el 01/01/2025. Generado por el sistema BI según lo acordado en reuniones con el equipo. Enviado a los referentes de Customer Success y operaciones.", "author": "Reporte Automático BI (servicios_bi@ocasa.com)"}, {"id": "gmail_19d4eb270688ac75", "date": "2026-04-02", "datetime": "2026-04-02T07:56:50-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Resumen B2B 02/04/2026: 8 clientes con novedades relevantes, alta actividad operativa", "summary": "Inés Picasso: Resumen B2B 02/04/2026 con puntos de dolor, novedades e impactos por cliente. El día 01/04 mostró alta actividad operativa con 8 clientes B2B con novedades relevantes.", "author": "ines.picasso@ocasa.com", "tags": ["B2B", "resumen", "impacto", "clientes", "puntos de dolor"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19d4c599f1b1509a", "date": "2026-04-02", "datetime": "2026-04-02T01:00:31-03:00", "source": "gmail", "channel": "NC OCASA10025328 – SNC 6208 – Cajas Vacías Enero 2025", "client": "General", "type": "problema", "title": "NC 6208 – Cajas vacías enero 2025: aviso de comunicación en proceso de aprobación", "summary": "Notificación WFA de sistema NC (Notas de Crédito) sobre formulario NC 6208 por cajas vacías de enero 2025 (caso OCASA10025328 - SNC 6208). Aviso (2) de comunicación del proceso de aprobación interno dirigido a ines.picasso@ocasa.com.", "author": "NC Solicitudes (solicitudes.nc@ocasa.com)"}, {"id": "gmail_19d4b6919b388e9a", "date": "2026-04-01", "datetime": "2026-04-01T20:38:02-03:00", "source": "gmail", "channel": "Transfarmaco - Notas de Crédito", "client": "Transfarmaco", "type": "impacto", "title": "Transfarmaco: $10,5MM (29%) de $36,4MM reclamados no corresponde reconocer", "summary": "Dario Navarro presenta el Reporte N°09/2026 sobre Notas de Crédito de Transfarmaco. De $36,4MM reclamados por el cliente, se validaron $10,5MM (29%) como no correspondientes de reconocer. Seguimiento de planes de acción a través de SmartSheet.", "author": "Dario German Navarro"}, {"id": "gmail_19d49abc8d3ba6f7", "date": "2026-04-01", "datetime": "2026-04-01T15:31:27-03:00", "source": "gmail", "channel": "Email", "client": "CAINIAO", "type": "acción", "title": "CAINIAO: invitación reunión técnica OCASA-CAINIAO para 7 de abril", "summary": "Ignacio Pugliese invita a reunión técnica OCASA-CAINIAO el martes 7 de abril 2026, 09:30-10:30 hs. Participan equipos de Ocasa (Gallarini, Malbran, Almandoz, Masini, Cazaux, entre otros) y representantes de CAINIAO (ranting.ran, liyang, wukefan).", "author": "Ignacio Pugliese <ignacio.pugliese@ocasa.com>", "tags": ["CAINIAO", "reunión técnica", "implementación", "XBT"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19d48fb769a4be91", "date": "2026-04-01", "datetime": "2026-04-01T09:18:47-03:00", "source": "gmail", "channel": "Novedades diarias MODO – 01/04", "client": "MODO", "type": "problema", "title": "Faltantes MODO: 10 eventos el 30-03 (2 cambiados, 8 faltantes) – detalle Marzo", "summary": "MODO reporta 10 eventos el 30-03: 2 cambiados y 8 faltantes. Adjunta informe completo con detalle de faltantes acumulados del mes de Marzo.", "author": "MODO (manuel@grupomodo.ar)"}, {"id": "gmail_19d4594cf1273348", "date": "2026-03-31", "datetime": "2026-03-31T17:27:44-03:00", "source": "gmail", "channel": "Confirmación – Nueva Iniciativa IT", "client": "UM / XBT", "type": "accion", "title": "12 requerimientos críticos cargados en IT para mejora experiencia UM + XBT", "summary": "Fiorella Taffarel confirma la carga de 12 requerimientos de prioridad Crítica y Alta en sistema IT para el proyecto de mejora en experiencia UM + XBT. Quedan pendientes los de prioridad media.", "author": "Fiorella Taffarel"}, {"id": "gmail_19d453d4d3eb23f7", "date": "2026-03-31", "datetime": "2026-03-31T15:52:29-03:00", "source": "gmail", "channel": "Actualización Molinos – Tabla Fact Retiros", "client": "Molinos", "type": "accion", "title": "Tablero Molinos migrado a tabla fact_retiros – ya disponible", "summary": "Agustin Gimenez informa que el tablero de Molinos fue actualizado: query migrada a la tabla fact_retiros. Desde ahora ya se pueden visualizar las órdenes actualizadas correctamente.", "author": "Agustin Gimenez"}, {"id": "gmail_19d44f8d95f1c730", "date": "2026-03-31", "datetime": "2026-03-31T14:37:57-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte Semanal B2B semana 23/03-30/03: dominada por alta actividad y puntos de dolor", "summary": "Inés Picasso: Reporte Semanal B2B período 23/03/2026-30/03/2026. La semana estuvo dominada por alta actividad con múltiples clientes B2B con novedades. Incluye puntos de dolor, novedades e impactos detallados por cliente.", "author": "Maria Ines Picasso <ines.picasso@ocasa.com>", "tags": ["B2B", "reporte semanal", "impacto", "puntos de dolor", "SLA"], "status": "en_progreso", "priority": "alta"}, {"id": "slack_C077BH69739_1774970952", "date": "2026-03-31", "datetime": "2026-03-31T12:29:12-03:00", "source": "slack", "channel": "novedades_operacion_pickit", "client": "Pickit", "type": "problema", "title": "Pickit: 14 piezas sin ingreso a UM impactan SLA de IBUE", "summary": "Gaston Badia informa que 14 piezas no ingresaron a UM e impactaron en el SLA de IBUE. Lista de piezas Meli afectadas: 46695463017, 46700890776, 46701005691, 46704423097, 46708177088, 46710637034, 46711217060, 46711217102, 46715174606, 46716250673, 46717392787, 46719646706, 46720249138, 46720343870.", "author": "Gaston Badia", "tags": ["Pickit", "SLA", "IBUE", "UM", "Mercado Libre", "piezas"], "status": "abierto", "priority": "alta"}, {"id": "gmail_19d4465d1d615d63", "date": "2026-03-31", "datetime": "2026-03-31T11:57:06-03:00", "source": "gmail", "channel": "Re: Incorporación de clientes Postmaster a la tabl", "client": "MeLi", "type": "impacto", "title": "Re: Incorporación de clientes Postmaster a la tabla SLA_no_Meli", "summary": "Luis, buenas. Te comparto nuevamente la matriz con el canalizador corregido. Adjunto además el listado de clientes y AP que vamos a estar agregando a la tabla. Muchas gracias. Quedo atento. Saludos", "author": "Lucas Sebastian Sagasta"}, {"id": "gmail_19d4400da46b5b70", "date": "2026-03-31", "datetime": "2026-03-31T10:16:33-03:00", "source": "gmail", "channel": "Reporte Notificaciones diarias MeLi", "client": "MeLi", "type": "impacto", "title": "Piezas sin notificación a MeLi desde 01/01/2025", "summary": "Reporte automático con base completa de piezas sin notificación a Mercado Libre desde el 01/01/2025. Según lo acordado en reuniones con el equipo.", "author": "Reporte Automático BI (servicios_bi@ocasa.com)"}, {"id": "gmail_19d43b7b57c55cef", "date": "2026-03-31", "datetime": "2026-03-31T08:45:00-03:00", "source": "gmail", "channel": "Novedades diarias MODO – 31/03", "client": "MODO", "type": "problema", "title": "Faltantes MODO: 7 eventos el 27-03 (4 cambiados, 3 faltantes)", "summary": "MODO reporta 7 eventos el 27-03: 4 cambiados y 3 faltantes. Informe adjunto con detalle de faltantes del mes de Marzo. Total acumulado en lo que va del mes.", "author": "MODO (manuel@grupomodo.ar)"}, {"id": "gmail_19d40b1dbc7933c3", "date": "2026-03-30", "datetime": "2026-03-30T17:41:30-03:00", "source": "gmail", "channel": "¿Qué tan integrados están tu CX, CRM y soluciones ", "client": "General", "type": "insight", "title": "¿Qué tan integrados están tu CX, CRM y soluciones de IA?", "summary": "Descubre cómo Genesys Cloud y sus socios tecnológicos estratégicos pueden ayudarte a reducir costos y aumentar la lealtad del cliente ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌", "author": "Genesys"}, {"id": "gmail_19d40341ecaa724c", "date": "2026-03-30", "datetime": "2026-03-30T16:24:24-03:00", "source": "gmail", "channel": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 -", "client": "General", "type": "insight", "title": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 - 26-MAR-2026 - R1", "summary": "Hola Agustina, Con relación al archivo enviado por Florencia, entiendo que se trata de un análisis inicial para evaluar cada caso y proceder con el reconforme de los remitos. Por favor, comunicá al", "author": "Sergio Balella"}, {"id": "gmail_19d3fe2836d57ca8", "date": "2026-03-30", "datetime": "2026-03-30T14:55:15-03:00", "source": "gmail", "channel": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 -", "client": "General", "type": "insight", "title": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 - 26-MAR-2026 - R1", "summary": "+ @Mariela Pinon Necesitamos enviarle al cliente un consolidado de lo pendiente a rendición con una fecha de entrega y de qué sucursal depende la gestión. En el archivo que envió Flor, hay detalles", "author": "Fernando Salguero"}, {"id": "gmail_19d3fd19220f3f8d", "date": "2026-03-30", "datetime": "2026-03-30T14:36:39-03:00", "source": "gmail", "channel": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 -", "client": "General", "type": "insight", "title": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 - 26-MAR-2026 - R1", "summary": "Buenas tardes estimados, Por favor @Sergio Balella, me confirmas si es viable mandarle el reporte compartido por @Florencia Almada, al cliente? Ya que desde comercial solicitan a customer, que", "author": "Agustina Micaela Velazquez"}, {"id": "gmail_19d3f4e6e23d3dc8", "date": "2026-03-30", "datetime": "2026-03-30T12:13:05-03:00", "source": "gmail", "channel": "Reporte de indicadores SLA – Carriers (02 de febre", "client": "General", "type": "impacto", "title": "Reporte de indicadores SLA – Carriers (02 de febrero al 27 de marzo)", "summary": "Buenos días, Adjuntamos el informe semanal con los principales indicadores de SLA y la efectividad en la entrega final de todos los carriers. Los datos están actualizados al día de hoy, 30 de marzo, y", "author": "reportescx"}, {"id": "gmail_19d3f16a1730649f", "date": "2026-03-30", "datetime": "2026-03-30T11:11:15-03:00", "source": "gmail", "channel": "Informe Semanal ALOT, Brandlive, Topper, Pickit, D", "client": "Pickit", "type": "insight", "title": "Informe Semanal ALOT, Brandlive, Topper, Pickit, Dabra, MailAmericas, N24, Decathlon & Adidas al 032", "summary": "Buenos días: Adjuntamos informe semanal sobre indicadores de SLA y efectividad de entrega al viernes 27 de marzo de ALOT, Brandlive, Topper, Pickit, Dabra, MailAmericas, N24, Decathlon &amp; Adidas.", "author": "ReportesCX"}, {"id": "gmail_19d3ea855fa204c8", "date": "2026-03-30", "datetime": "2026-03-30T09:11:21-03:00", "source": "gmail", "channel": "MODO Semáforo 30/03", "client": "MODO", "type": "insight", "title": "MODO: Semáforo KPIs + archivo detalle al 30/03", "summary": "MODO envía archivo semáforo con KPIs clave, detalle y gráficas correspondientes al 30 de marzo. Incluye semáforo de indicadores y performance semanal.", "author": "MODO (manuel@grupomodo.ar)"}, {"id": "gmail_19d304fe0f97c45a", "date": "2026-03-27", "datetime": "2026-03-27T17:20:32-03:00", "source": "gmail", "channel": "La acción Crear Tiempo de empleado para AGUSTINA M", "client": "General", "type": "accion", "title": "La acción Crear Tiempo de empleado para AGUSTINA MICAELA VELAZQUEZ ha sido aprobada", "summary": "Hola, AGUSTINA MICAELA VELAZQUEZ: La Crear Tiempo de empleado para AGUSTINA MICAELA VELAZQUEZ ha sido aprobada por SILVIA LAURA MIRANDA el 27/03/2026. Acceda a los detalles aquí https://hcm-br10.hr.", "author": "SILVIA LAURA MIRANDA"}, {"id": "gmail_19d30077d588da92", "date": "2026-03-27", "datetime": "2026-03-27T13:00:00-03:00", "source": "gmail", "channel": "Re: Pedido de información", "client": "General", "type": "insight", "title": "Re: Pedido de información", "summary": "Sabrina, gracias por la información. Actualicé el caso de la DIS 49474 (reclamo del 31.12.25) como monto a reconocer según tu análisis. En cuanto a la DIS 48852, corresponde una definición comercial,", "author": "Antonio Maximiliano Maiale"}, {"id": "gmail_19d2fbe6b660c6dc", "date": "2026-03-27", "datetime": "2026-03-27T11:41:59-03:00", "source": "gmail", "channel": "Re: BOT Mail Americas", "client": "General", "type": "insight", "title": "Re: BOT Mail Americas", "summary": "Buenos días, El dia de ayer realizamos el caso de negocio del AddressBOT para mailAmericas y fue compartido con Control de gestión. Considerando las siguientes premisas desde nuestro lado estamos Ok", "author": "Ana Cazaux"}, {"id": "gmail_19d2f85a1d7900db", "date": "2026-03-27", "datetime": "2026-03-27T10:40:02-03:00", "source": "gmail", "channel": "Mercedes Benz – Tablero directa", "client": "Mercedes Benz", "type": "accion", "title": "Ajustes tablero Mercedes Benz: Celina Villar detalla cambios pendientes para BI", "summary": "Celina Villar envía en limpio los ajustes necesarios para el tablero de Mercedes Benz al equipo de BI (Agus). Cambios a implementar para visualización directa del cliente.", "author": "Celina Villar"}, {"id": "gmail_19d2f7681268fe0e", "date": "2026-03-27", "datetime": "2026-03-27T10:23:27-03:00", "source": "gmail", "channel": "Re: Pedido de información", "client": "General", "type": "insight", "title": "Re: Pedido de información", "summary": "Hola Maxi, buenos días. En línea con lo conversado, comparto respuesta a los puntos: a) Respecto a la documentación solicitada al cliente, ni bien contemos con la factura la estaremos adjuntando. b) En", "author": "Sabrina Fallet"}, {"id": "gmail_19d2bac3264c473c", "date": "2026-03-26", "datetime": "2026-03-26T16:43:38-03:00", "source": "gmail", "channel": "Re: Pedido de información", "client": "General", "type": "insight", "title": "Re: Pedido de información", "summary": "Sabri, buenas tardes, como estas? De acuerdo con lo conversado, resumo a continuación los montos reclamados por el cliente TRF (años 2024, 2025 y 2026) por siniestros (AR$ 37 MM), junto con el", "author": "Antonio Maximiliano Maiale"}, {"id": "gmail_19d2b3d90bcf4cc2", "date": "2026-03-26", "datetime": "2026-03-26T14:42:31-03:00", "source": "gmail", "channel": "Fwd: PP asociado a DIT", "client": "General", "type": "insight", "title": "Fwd: PP asociado a DIT", "summary": "Chicas, mail inicial donde se reporta con metricas y casos puntuales donde en conversacion con la ultima milla se detecta que la demora se ocasiona en las troncales. ---------- Forwarded message ------", "author": "Sabrina Fallet"}, {"id": "gmail_19d2b3b374abcadb", "date": "2026-03-26", "datetime": "2026-03-26T14:40:12-03:00", "source": "gmail", "channel": "SLA COMPROMETIDO – RENAULT A021", "client": "Renault", "type": "problema", "title": "SLA comprometido Renault en A021 (Río Gallegos–TDF): SLA acordado no viable", "summary": "Carlos Esquivel reporta equipos Renault vencidos con destino Tierra del Fuego (RGA). El SLA acordado para operaciones de última milla a TDF no contempla los +7 días adicionales. Sabrina Fallet escala a CX y coordina reunión con cliente el 30/03. Reunión mensual presencial pendiente.", "author": "Sabrina Fallet"}, {"id": "gmail_19d275f886bbe854", "date": "2026-03-25", "datetime": "2026-03-25T23:41:03-03:00", "source": "gmail", "channel": "[Acción requerida] Tu suscripción a Confluence se ", "client": "General", "type": "accion", "title": "[Acción requerida] Tu suscripción a Confluence se desactivará pronto", "summary": "Your Confluence subscription will be deactivated soon Tu suscripción está inactiva en este momento Hola, Ine: Este es un recordatorio de que si no empiezas a utilizar la aplicación Confluence, en cx-", "author": "Atlassian"}, {"id": "gmail_19d270979c34e368", "date": "2026-03-25", "datetime": "2026-03-25T19:07:01-03:00", "source": "gmail", "channel": "Re: BOT Mail Americas", "client": "General", "type": "insight", "title": "Re: BOT Mail Americas", "summary": "+ @Juan Martín Sanz El mié, 25 mar 2026 a la(s) 5:49 pm, Roberto Blanco (roberto.blanco@ocasa.com) escribió: Hola Stephie como te comente sin el caso de negocios no es posible que Control de Gestion", "author": "Federico Carlos Richi"}, {"id": "gmail_19d26c2e0d86b48f", "date": "2026-03-25", "datetime": "2026-03-25T17:50:30-03:00", "source": "gmail", "channel": "RE: BOT Mail Americas", "client": "General", "type": "insight", "title": "RE: BOT Mail Americas", "summary": "Hola Stephie como te comente sin el caso de negocios no es posible que Control de Gestion apruebe el gasto. Entiendo que mañana por la mañana nos vamos a juntar con todos los números para validar el", "author": "Roberto Blanco"}, {"id": "gmail_19d2682373bfb55c", "date": "2026-03-25", "datetime": "2026-03-25T16:39:42-03:00", "source": "gmail", "channel": "Re: BOT Mail Americas", "client": "General", "type": "insight", "title": "Re: BOT Mail Americas", "summary": "Hola Nicky, Hice un cálculo estimado de cómo quedaría un mes si se mantienen los 77 equipos diarios En ese caso el costo mensual es de 281 usd, manteniéndose estas premisas: 77 equipos por dia, 2.387", "author": "Stephanie Estrada"}, {"id": "gmail_19d267f01bebbe11", "date": "2026-03-25", "datetime": "2026-03-25T16:36:11-03:00", "source": "gmail", "channel": "Re: Organigrama Customer Experience y consideracio", "client": "General", "type": "insight", "title": "Re: Organigrama Customer Experience y consideraciones", "summary": "Buenas tardes Sumo pendientes a considerar en color Para alinear conocimiento entre todas las partes, comparto el estado de situación actualizado al día de hoy: Migración de tareas a Life Science", "author": "Gisela Falcon"}, {"id": "gmail_19d2670f82027885", "date": "2026-03-25", "datetime": "2026-03-25T16:21:04-03:00", "source": "gmail", "channel": "Re: Organigrama Customer Experience y consideracio", "client": "General", "type": "insight", "title": "Re: Organigrama Customer Experience y consideraciones", "summary": "Hola, ¿cómo están? Para alinear conocimiento entre todas las partes, comparto el estado de situación actualizado al día de hoy: Migración de tareas a Life Science Pamela Soraire: Desde RRHH se confirma", "author": "Maria Ines Picasso"}, {"id": "gmail_19d26482563d3e66", "date": "2026-03-25", "datetime": "2026-03-25T15:36:15-03:00", "source": "gmail", "channel": "Fwd: BOT Mail Americas", "client": "General", "type": "insight", "title": "Fwd: BOT Mail Americas", "summary": "Carlos, Juanca buenas tardes Les comparto la solicitud para poder realizar la activación del Address BOT del cliente en asunto, comparto el cliente_key 177580 y código 102004945. Se aplicaría con la", "author": "NICOLE TEVES"}, {"id": "gmail_19d262b6a06cd031", "date": "2026-03-25", "datetime": "2026-03-25T15:04:29-03:00", "source": "gmail", "channel": "BOT Mail Americas", "client": "General", "type": "insight", "title": "BOT Mail Americas", "summary": "Buenas tardes, Por favor necesitamos prender el BOT para el cliente mail Americas, para mejorar la calidad de los datos de entrega de los equipos. Desde ya gracias y quedo a la espera de la", "author": "Federico Carlos Richi"}, {"id": "gmail_19d25aa8af196fa4", "date": "2026-03-25", "datetime": "2026-03-25T12:43:46-03:00", "source": "gmail", "channel": "CAINIAO – Revisión Follow up bidding", "client": "CAINIAO", "type": "accion", "title": "CAINIAO: anexos faltantes compartidos y negociación activa post-licitación", "summary": "Ignacio Pugliese comparte anexos faltantes solicitados por CAINIAO para el proceso de licitación. Estimación anual compartida: USD 1.618.800. Revisión del Anexo III (Rules for Compensation) pendiente.", "author": "Ignacio Pugliese"}, {"id": "gmail_19d2584e752f3e8b", "date": "2026-03-25", "datetime": "2026-03-25T11:02:26-03:00", "source": "gmail", "channel": "Webinar: Reinventando la experiencia al cliente", "client": "General", "type": "insight", "title": "Webinar: Reinventando la experiencia al cliente", "summary": "El nuevo estándar del cliente ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌", "author": "Genesys"}, {"id": "gmail_19d2029347db5bd0", "date": "2026-03-24", "datetime": "2026-03-24T14:04:22-03:00", "source": "gmail", "channel": "Evaluación de desempeño: cuándo usar 90°, 180° o 3", "client": "General", "type": "insight", "title": "Evaluación de desempeño: cuándo usar 90°, 180° o 360°", "summary": "Evita errores comunes al elegir tu evaluación‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌", "author": "Josefina de TRAKER"}, {"id": "gmail_19d1ad65769aaf0f", "date": "2026-03-23", "datetime": "2026-03-23T10:15:35-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 23/03: indicadores y efectividad entrega (06 ene - 20 mar)", "summary": "reportescx: Informe semanal indicadores SLA y efectividad en entrega final de todos los carriers. Datos actualizados al 23/03/2026, período 06 enero al 20 marzo. Distribuido a gerentes operativos con copia a Inés Picasso, Anders Graffe, Lucas Sagasta.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal", "KPI"], "status": "en_progreso", "priority": "media"}, {"id": "gmail_19d1aa1f2a8222ab", "date": "2026-03-23", "datetime": "2026-03-23T09:18:55-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "acción", "title": "RASH: requerimiento tablero multicliente con filtro por cliente", "summary": "Fatima Avila Gorognano: Requerimiento de tablero multicliente RASH para Anders Graffe. Necesidad de filtro por cliente para visualizar cada uno por separado. Primera instancia del requerimiento técnico. Copia a Mariela Pinon e Inés Picasso.", "author": "Fatima Avila Gorognano <fatima.avila@ocasa.com>", "tags": ["RASH", "tablero", "KPI", "multicliente", "requerimiento", "BI"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C0A6DNP3S8Z_1774021598", "date": "2026-03-20", "datetime": "2026-03-20T12:46:38-03:00", "source": "slack", "channel": "molinos-ordenamiento-del-servicio", "client": "Molinos", "type": "acción", "title": "Molinos: OR y NDC corregidos, listo para imposición y devolución", "summary": "Gisela Falcón informa que Molinos ya realizó la corrección: OR 2848726093 asociada correctamente y NDC 60061406 OK. Aviso a Fernando Jazmin y David Caraglio para proceder con imposición y devolución (pvc).", "author": "Gisela Falcón", "tags": ["Molinos", "OR", "NDC", "corrección", "operación", "imposición"], "status": "resuelto", "priority": "media"}, {"id": "gmail_19d0b3a35245d2fa", "date": "2026-03-20", "datetime": "2026-03-20T09:31:02-03:00", "source": "gmail", "channel": "Email", "client": "CAINIAO", "type": "insight", "title": "CAINIAO: anexo III faltante en contrato, cliente enviará documentación pronto", "summary": "Ignacio Pugliese confirma a Nehuen Nova que efectivamente falta el Anexo III. El cliente (CAINIAO) indicó que compartirá la documentación faltante pronto. Se circulará cuando llegue.", "author": "Ignacio Pugliese <ignacio.pugliese@ocasa.com>", "tags": ["CAINIAO", "contrato", "Anexo III", "Legal", "documentación"], "status": "en_progreso", "priority": "media"}, {"id": "gmail_19d0644f189311d5", "date": "2026-03-19", "datetime": "2026-03-19T10:24:42-03:00", "source": "gmail", "channel": "Email", "client": "CAINIAO", "type": "acción", "title": "CAINIAO: revisión contrato - seguimiento post-licitación, datos de facturación y seguros", "summary": "Abril Amanda Segurado envía contrato CAINIAO a Legal (Nehuen Nova). Ignacio Pugliese proporciona datos: Facturación anual USD 1.618.800, valor máximo riesgo por envío USD 126.000 (63 USD/paquete, ~2000 paquetes por envío). Nehuen detecta posible falta de Anexo III 'Rules for Compensation'.", "author": "Abril Amanda Segurado <abril.segurado@ocasa.com>", "tags": ["CAINIAO", "contrato", "licitación", "seguros", "Legal", "facturación"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19d06291985b5d92", "date": "2026-03-19", "datetime": "2026-03-19T09:54:15-03:00", "source": "gmail", "channel": "Email", "client": "CAINIAO", "type": "acción", "title": "CAINIAO: circulación contrato licitación ganada para revisión de áreas", "summary": "Ignacio Pugliese: OCASA ganó la licitación de CAINIAO. Se circula el contrato (modelo del cliente) a todas las áreas para validar y revisar. Involucra Legal, Comercial, IT, Finanzas y otras áreas de OCASA.", "author": "Ignacio Pugliese <ignacio.pugliese@ocasa.com>", "tags": ["CAINIAO", "contrato", "licitación", "XBT", "Legal"], "status": "en_progreso", "priority": "alta"}, {"id": "slack_C0AKBSMJW4E_1773751427", "date": "2026-03-17", "datetime": "2026-03-17T09:43:47-03:00", "source": "slack", "channel": "renault-wh-distribución-cx-op", "client": "Renault", "type": "insight", "title": "Renault: confirmación envío de pieza en fecha consultada", "summary": "Ricardo Marcelo Valdano confirma a Juan José Ferreyra que la pieza consultada se enviará en la fecha acordada. Mensaje de seguimiento operativo en canal distribución Renault.", "author": "Ricardo Marcelo Valdano", "tags": ["Renault", "distribución", "operación", "seguimiento"], "status": "resuelto", "priority": "baja"}, {"id": "slack_C09TA9HLHV5_1773689832", "date": "2026-03-16", "datetime": "2026-03-16T16:37:12-03:00", "source": "slack", "channel": "cambio-tarjetas-macro-a-paqueteria", "client": "Banco Macro", "type": "acción", "title": "Banco Macro MVP: inicio transmisión tarjetas Renovaciones Mastercard y Amex al AP genérico", "summary": "Fabio Bianchi informa que ya se comenzó a transmitir piezas de RENOVACIONES MASTERCARD y RENOVACIONES AMERICAN EXPRESS al AP genérico 40043487 (T/C PARA BANCO MACRO 2 visitas). Es el primer paso del MVP. Se puede comenzar a alertar a operación para el circuito de tratamiento especial.", "author": "Fabio Bianchi", "tags": ["Banco Macro", "MVP", "Mastercard", "American Express", "AP", "operación", "tarjetas"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C077BH69739_1773686921", "date": "2026-03-16", "datetime": "2026-03-16T15:48:41-03:00", "source": "slack", "channel": "novedades_operacion_pickit", "client": "Pickit", "type": "problema", "title": "Pickit: 16 equipos en estado I_CROSSDOCK2 sin ingreso a UM - impacto en SLA", "summary": "Gaston Badia informa 16 equipos Pickit que no ingresaron a UM, en estado I_CROSSDOCK2. Impactan en el SLA. Lista completa de números de equipo proporcionada.", "author": "Gaston Badia", "tags": ["Pickit", "SLA", "CROSSDOCK", "UM", "equipos", "impacto"], "status": "abierto", "priority": "alta"}, {"id": "gmail_19cf75199aeda105", "date": "2026-03-16", "datetime": "2026-03-16T15:44:05+00:00", "source": "gmail", "channel": "Análisis Penalidades MeLi", "client": "MeLi", "type": "insight", "title": "Presentación 'Análisis de Penalidades – Mercado Libre' compartida por Camila Aquino", "summary": "Camila Aquino (camila.aquino@ocasa.com) comparte presentación de Google Slides con análisis de penalidades del cliente Mercado Libre. Documento para edición y revisión del equipo.", "author": "Camila Aquino"}, {"id": "gmail_19cf7df89fa45192", "date": "2026-03-16", "datetime": "2026-03-16T15:30:10-03:00", "source": "gmail", "channel": "PICKIT – Impacto SLA semana 10", "client": "Pickit", "type": "impacto", "title": "Pickit NO MeLi: shipments con impacto negativo en SLA semana 10", "summary": "Reporte automático BI con detalle de shipments de Pickit canal No MeLi con impacto negativo en porcentaje de SLA durante la semana 10.", "author": "Reporte Automático BI (servicios_bi@ocasa.com)"}, {"id": "gmail_19cf6c948800e93b", "date": "2026-03-16", "datetime": "2026-03-16T10:15:00-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 16/03: indicadores 19 ene - 13 mar", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 19 enero al 13 marzo. Distribuido a gerentes operativos.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal", "KPI"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C0A6DNP3S8Z_1773323348", "date": "2026-03-12", "datetime": "2026-03-12T10:49:08-03:00", "source": "slack", "channel": "molinos-ordenamiento-del-servicio", "client": "Molinos", "type": "acción", "title": "Molinos: revisión plan de acción con compromiso real de resolución por día", "summary": "Matias Cartolano solicita revisar el plan de acción en la reunión de 11:30. Se pide definir tiempo y cantidad de problemas resueltos por día como compromiso real de resolución.", "author": "Matias Antonio Cartolano", "tags": ["Molinos", "plan de acción", "resolución", "problemas"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C09TA9HLHV5_1773262020", "date": "2026-03-11", "datetime": "2026-03-11T17:47:00-03:00", "source": "slack", "channel": "cambio-tarjetas-macro-a-paqueteria", "client": "Banco Macro", "type": "problema", "title": "URGENTE: Banco Macro necesita documentación API notificaciones esta semana o proyecto se cae", "summary": "Victoria Duque: Banco Macro insiste en la documentación de API de notificaciones WhatsApp. El cliente la necesita esta semana (máx viernes). Sin documentación no pueden avanzar y el proyecto se cae. En primera instancia las notificaciones WhatsApp las enviará OCASA, pero como evolutivo Q3 el banco quiere enviarlas desde su WhatsApp propio. Se viene pidiendo desde hace más de una semana.", "author": "Victoria Duque", "tags": ["Banco Macro", "WhatsApp", "API", "urgente", "notificaciones", "IT"], "status": "abierto", "priority": "alta"}, {"id": "gmail_19cd823f68655727", "date": "2026-03-10", "datetime": "2026-03-10T11:25:35-03:00", "source": "gmail", "channel": "Email", "client": "Banco Macro", "type": "problema", "title": "Banco Macro: Silveyra detecta 25 piezas 'No Visitado' en evidencia enero sin justificación", "summary": "Favio Silveyra (Banco Macro) responde a Lucas Sagasta: En archivo de evidencia enero hay 25 piezas 'No Visitado'. Considerando la fecha, no deberían tener piezas en ese estado. Solicita revisión. Incluye a Mariela Pinon, Anders Graffe, Inés Picasso y representantes del banco.", "author": "Silveyra, Favio Enrique <faviosilveyra@macro.com.ar>", "tags": ["Banco Macro", "SLA", "No Visitado", "evidencia", "enero", "problema"], "status": "abierto", "priority": "alta"}, {"id": "slack_C077BH69739_1773077869", "date": "2026-03-09", "datetime": "2026-03-09T14:37:49-03:00", "source": "slack", "channel": "novedades_operacion_pickit", "client": "Pickit", "type": "insight", "title": "Pickit: respuesta en hilo novedades operación", "summary": "Gaston Badia responde en hilo de novedades operación Pickit. Mensaje de seguimiento operativo.", "author": "Gaston Badia", "tags": ["Pickit", "operación"], "status": "resuelto", "priority": "baja"}, {"id": "slack_C077BH69739_1773073046", "date": "2026-03-09", "datetime": "2026-03-09T13:17:26-03:00", "source": "slack", "channel": "novedades_operacion_pickit", "client": "Pickit", "type": "insight", "title": "Pickit: 7 pedidos Magdalena con desvío en SLA por frecuencia de visita martes", "summary": "Gaston Badia informa 7 pedidos de localidad Magdalena con impacto en SLA. La localidad se visita los Martes; ingresaron el Miércoles 04/03 por lo que saldrán a ruta el martes siguiente. Piezas: 7W6JB1PG, 8KXEJN4Q, 8RBQLERO, 8Y4XB1R3, 91BXKWMK, 9E6XPQOO, 9ZD2BPWP.", "author": "Gaston Badia", "tags": ["Pickit", "SLA", "Magdalena", "frecuencia", "desvío"], "status": "en_progreso", "priority": "media"}, {"id": "gmail_19cd2cd03e88c0bb", "date": "2026-03-09", "datetime": "2026-03-09T10:32:45-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 09/03: indicadores 12 ene - 06 mar", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 12 enero al 06 marzo.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C0AGCPE7UJG_1772718125", "date": "2026-03-05", "datetime": "2026-03-05T10:42:05-03:00", "source": "slack", "channel": "meli-custom_clearence_en_argentina", "client": "Mercado Libre", "type": "insight", "title": "MeLi Custom Clearance: definiciones operativas depósito fiscal Direxa, SAP, canales ARCA", "summary": "Germán Gallarini detalla definiciones: Personal de convenio por Direxa. Sin peso/medición total (solo control aleatorio, facturación por peso real). MVP manual sin mini-sorter. Flujo: validación CUIT/cupo ARCA pre-arribo via API. Operación en depósito fiscal Direxa con bins/collarines. Canalizaciones: Verde/Amarillo/Rojo en Price2Bee. Sistema SAP Lytesa para despacho. Alternativa Ezeiza (EHS) si Direxa no está listo.", "author": "Germán Gallarini", "tags": ["Mercado Libre", "CAINIAO", "custom clearance", "Direxa", "SAP", "ARCA", "MVP", "aduanas"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19cafccc8f80b717", "date": "2026-03-02", "datetime": "2026-03-02T15:36:54-03:00", "source": "gmail", "channel": "PICKIT – Impacto SLA semana 8", "client": "Pickit", "type": "impacto", "title": "Pickit NO MeLi: shipments con impacto negativo en SLA semana 8", "summary": "Reporte automático BI con detalle de shipments de Pickit (canal No MeLi) con impacto negativo en el porcentaje de SLA durante la semana 8 del año.", "author": "Reporte Automático BI (servicios_bi@ocasa.com)"}, {"id": "gmail_19caf004d99a0add", "date": "2026-03-02", "datetime": "2026-03-02T10:02:25-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 02/03: indicadores 05 ene - 27 feb", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 05 enero al 27 febrero.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "gmail_19c9bc06661d68ee", "date": "2026-02-26", "datetime": "2026-02-26T18:00:05-03:00", "source": "gmail", "channel": "Camión OCASA daña portón REDES / DirecTV", "client": "DirecTV", "type": "problema", "title": "Camión de logística OCASA daña portón de acceso a instalación DirecTV/REDES", "summary": "Transportista de OCASA causa daño en portón de acceso de DirecTV. Ignacio Pugliese coordina con Riesgos y contrataciones para que el proveedor responda. DTV solicita que el transportista se haga cargo. Gestión con seguro del transportista.", "author": "Ignacio Pugliese"}, {"id": "gmail_19c9a7007a7c21b3", "date": "2026-02-26", "datetime": "2026-02-26T11:53:05-03:00", "source": "gmail", "channel": "Bot Customer 2.2.1 – Integración Voice MeLi", "client": "MeLi", "type": "accion", "title": "Voice MeLi funciona tras ajuste en Bot Customer 2.2.1", "summary": "Gisela Falcon confirma que el caso Voice de MeLi ya funciona correctamente tras el ajuste de Fabián Anderle (Interaxa). Corrección verificada con caso de prueba. Se da seguimiento a las correcciones pendientes.", "author": "Gisela Falcon"}, {"id": "gmail_19c95f644dceec97", "date": "2026-02-25", "datetime": "2026-02-25T15:01:45-03:00", "source": "gmail", "channel": "Alta Clientes SLA", "client": "Mercedes Benz", "type": "accion", "title": "Alta clientes Mercedes Benz y Carta Documento en indicadores SLA", "summary": "Claudio Maleichuk solicita incluir en los indicadores SLA a los clientes Mercedes Benz y Carta Documento Digital. Solicitud dirigida a Anders Graffe con copia a Ines Picasso.", "author": "Claudio Maleichuk"}, {"id": "gmail_19c8ba32c340d984", "date": "2026-02-23", "datetime": "2026-02-23T14:53:59-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 23/02: indicadores 29 dic - 20 feb", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 29 diciembre al 20 febrero.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "gmail_19c714d3513187e8", "date": "2026-02-18", "datetime": "2026-02-18T12:09:56-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 18/02: indicadores 22 dic - 13 feb", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 22 diciembre al 13 febrero.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "gmail_19c4309e5e34474e", "date": "2026-02-09", "datetime": "2026-02-09T12:33:59-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 09/02: indicadores 15 dic - 06 feb", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 15 diciembre al 06 febrero.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C077BH69739_1770219649", "date": "2026-02-04", "datetime": "2026-02-04T12:40:49-03:00", "source": "slack", "channel": "novedades_operacion_pickit", "client": "Pickit", "type": "problema", "title": "Novedades MDQ: faltante HU y pieza Meli sin despacho impacta SLA", "summary": "Daniel Milanesi informa novedades ingresos en sucursal MDQ: HU4011707707 - no ingresa meli 46377118247. Pieza meli 46387486912 ingresa sin despacho (afecta SLA). Problema operativo en Mar del Plata.", "author": "Daniel Fernando Milanesi", "tags": ["Pickit", "MDQ", "SLA", "Mercado Libre", "operación", "faltante"], "status": "abierto", "priority": "media"}, {"id": "slack_C09TA9HLHV5_1770152626", "date": "2026-02-03", "datetime": "2026-02-03T18:03:46-03:00", "source": "slack", "channel": "cambio-tarjetas-macro-a-paqueteria", "client": "Banco Macro", "type": "acción", "title": "Banco Macro: inicio prueba equipos AP genérico 40043487 tarjetas Signature PP", "summary": "Fabio Bianchi: Miércoles/Jueves/Viernes se prueban equipos bajo nuevo AP genérico 40043487 (T/C PARA BANCO MACRO 2 visitas) para tarjetas impuestas en PM bajo AP 40027141-BCO MACRO TC VISA SIGNATURE PP. El equipo SAP se genera con despacho de PM a sucursal UM. La integración canalizará únicamente las Signature al nuevo AP.", "author": "Fabio Bianchi", "tags": ["Banco Macro", "AP", "SAP", "prueba", "tarjetas", "Signature", "MVP"], "status": "en_progreso", "priority": "media"}, {"id": "slack_D03T3STMXV0_1770136548", "date": "2026-02-03", "datetime": "2026-02-03T13:35:48-03:00", "source": "slack", "channel": "DM (Mariela Pinon / Inés Picasso)", "client": "General", "type": "insight", "title": "ADDENDUM C: SLA - Nivel de servicio entrega 99%, penalidades por incumplimiento", "summary": "Inés Picasso comparte texto del ADDENDUM C - SERVICE LEVEL AGREEMENT: objetivo entrega efectiva KPI fijado en 99%. Si tasa < 95% se activan KPIs de tiempo. Penalidades por paquete: ≤24hs=10%, >24-48hs=15%, >48-72hs=20%, >72-120hs=25%, >120hs=35% del fee. Devoluciones obligatorias al fin de ciclo.", "author": "Inés Picasso", "tags": ["SLA", "KPI", "penalidades", "efectividad", "contrato"], "status": "resuelto", "priority": "media"}, {"id": "slack_C09TA9HLHV5_1770128794", "date": "2026-02-03", "datetime": "2026-02-03T11:26:34-03:00", "source": "slack", "channel": "cambio-tarjetas-macro-a-paqueteria", "client": "Banco Macro", "type": "insight", "title": "Banco Macro: mesa operativa - SLA postal vs paquetería, propuesta mejora inmediata", "summary": "Victoria Duque: Mesa operativa Banco Macro. Problemas detectados: Macro presiona por mejorar SLA (mercado entrega en ~1 día, no se cumple plazo 10-15 días). Postal sin prioridad operativa frente a paquetería, sucursales deciden qué sale. Propuesta: tratar tarjetas como paquetería (prioridad, notif. WhatsApp, ruteo). MVP: prueba con AP bajo volumen. Rendición: avanzar a SAP directo. Próximos pasos: validar factibilidad operativa.", "author": "Victoria Duque", "tags": ["Banco Macro", "SLA", "postal", "paquetería", "MVP", "WhatsApp", "ruteo", "efectividad"], "status": "en_progreso", "priority": "alta"}, {"id": "slack_C0A6DNP3S8Z_1770058286", "date": "2026-02-02", "datetime": "2026-02-02T15:51:26-03:00", "source": "slack", "channel": "molinos-ordenamiento-del-servicio", "client": "Molinos", "type": "acción", "title": "Molinos: FORMS devoluciones, backlog pendiente, SLA Febrero, NC pendientes", "summary": "Eduardo Alves: FORMS devoluciones OK - implementar sumando backlog pendiente. Compartir detalle oportunidades/mejoras en armado de pallets. Continuar ordenando operación y cumplimiento SLA durante Febrero para evaluar mayor volumen en Marzo. Entender pedidos entregados en Enero en pallets. OCASA debe enviar detalle por mail de entregas pendientes, devoluciones y NC pendientes de Molinos.", "author": "Eduardo Alves", "tags": ["Molinos", "backlog", "SLA", "devoluciones", "operación", "NC"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19c1ec95d23a8486", "date": "2026-02-02", "datetime": "2026-02-02T11:37:08-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 02/02: indicadores 09 dic - 30 ene", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 09 diciembre al 30 enero.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C09TA9HLHV5_1769798473", "date": "2026-01-30", "datetime": "2026-01-30T15:41:13-03:00", "source": "slack", "channel": "cambio-tarjetas-macro-a-paqueteria", "client": "Banco Macro", "type": "acción", "title": "Banco Macro: Plan de Acción actualizado con dependencias, reuniones semanales programadas", "summary": "Victoria Duque: Excel del Plan de Acción actualizado con columnas ajustadas, dependencias y responsabilidades. Se programan reuniones de seguimiento semanales entre áreas involucradas. Mesa el lunes con Mejora Continua + UM + Operaciones para revisar lógica operativa y priorizar postal (impacto SLA/efectividad). Producto avanzando con requerimientos IT para funcionalidades front. Migración al Front estimada en ~3 meses.", "author": "Victoria Duque", "tags": ["Banco Macro", "SLA", "plan de acción", "efectividad", "IT", "front", "seguimiento"], "status": "en_progreso", "priority": "alta"}, {"id": "slack_C09TA9HLHV5_1769697425", "date": "2026-01-29", "datetime": "2026-01-29T11:37:05-03:00", "source": "slack", "channel": "cambio-tarjetas-macro-a-paqueteria", "client": "Banco Macro", "type": "insight", "title": "Banco Macro: minuta reunión 28/01 - Vertical 3 eficiencia operativa, roadmap, productos hermanados", "summary": "Victoria Duque: Minuta reunión 28/01. Prioridad inmediata Vertical 3 - eficiencia operativa: propuesta con impacto en SLA, CX, efectividad y ahorro. Concepto productos hermanados para evitar múltiples despachos al mismo cliente. Necesidad de fechas para quick wins, MVP y evolutivos. Armar mesas internas cross-equipos. Cotizar notificaciones WhatsApp.", "author": "Victoria Duque", "tags": ["Banco Macro", "SLA", "efectividad", "productos hermanados", "WhatsApp", "MVP", "roadmap"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19c05d38f107f849", "date": "2026-01-28", "datetime": "2026-01-28T15:18:15-03:00", "source": "gmail", "channel": "Email", "client": "CAINIAO", "type": "acción", "title": "Service Level Agreement FAR & OCASA: revisión anexo A condiciones particulares", "summary": "Matias Bosch envía archivo con comentarios en Anexo A del SLA FAR & OCASA. Suma a Christian Rueda Mohorovich y Fatima Avila Gorognano para el Anexo A y condiciones particulares. Involucra a múltiples áreas incluyendo Legal, Riesgos, y equipos de implementación.", "author": "Matias Bosch <matias.bosch@ocasa.com>", "tags": ["SLA", "contrato", "FAR", "CAINIAO", "Legal", "Anexo"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19be1ca5251b7bca", "date": "2026-01-21", "datetime": "2026-01-21T15:21:58-03:00", "source": "gmail", "channel": "Email", "client": "Banco Macro", "type": "acción", "title": "Banco Macro: cotización notificaciones WhatsApp con costo por volumen de mensajes", "summary": "Stephanie Estrada comparte cotización actualizada de notificaciones WhatsApp para Banco Macro con precios actualizados. El costo total varía según cantidad de mensajes. Sabrina Fallet suma a Tamara Pardieux y Manuel Solanet para revisión y comunicación al cliente.", "author": "Stephanie Estrada <stephanie.estrada@ocasa.com>", "tags": ["Banco Macro", "WhatsApp", "notificaciones", "cotización", "IT"], "status": "en_progreso", "priority": "media"}, {"id": "gmail_19bd7f6bb2f224d5", "date": "2026-01-19", "datetime": "2026-01-19T17:33:41-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 19/01: indicadores 25 nov - 16 ene", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 25 noviembre al 16 enero.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C077BH69739_1768582752", "date": "2026-01-16", "datetime": "2026-01-16T13:59:12-03:00", "source": "slack", "channel": "novedades_operacion_pickit", "client": "Pickit", "type": "problema", "title": "52 faltantes Pickit detectados en RSA - impacto en SLA", "summary": "Damian Seijas informa 52 faltantes en RSA pertenecientes a Pickit, detectados con llegada de TRC 10014232. Se registrarán desvíos en el SLA. Lista completa de 52 piezas afectadas (Meli) compartida en el mensaje.", "author": "Damian Seijas", "tags": ["Pickit", "SLA", "faltantes", "RSA", "TRC", "Mercado Libre"], "status": "abierto", "priority": "alta"}, {"id": "slack_C051U2P3W9J_1768338100", "date": "2026-01-13", "datetime": "2026-01-13T18:01:40-03:00", "source": "slack", "channel": "meli-comercial-cx", "client": "Mercado Libre", "type": "insight", "title": "Minuta reunión MELI: notificaciones, bot desvío, repactado Pickit, Bad Address", "summary": "Minuta reunión con MeLi 13/01: 1) Notificaciones - mapeo novedades (M227), propuesta WhatsApp desde OCASA rechazada por ahora. 2) Bot de desvío - desarrollo en curso, entrega estimada mediados de febrero. 3) Repactado en punto Pickit - en desarrollo para evitar derivación a bóveda (retiro en punto Pickit <1km). 4) Bad Address - crecimiento sostenido en Zona Sur, La Plata, Santa Fe, Córdoba, Rosario.", "author": "Sabrina Fallet", "tags": ["MeLi", "Mercado Libre", "notificaciones", "WhatsApp", "Pickit", "Bad Address", "bot", "efectividad"], "status": "en_progreso", "priority": "alta"}, {"id": "slack_C04GFE2GQG1_1767887610", "date": "2026-01-08", "datetime": "2026-01-08T12:53:30-03:00", "source": "slack", "channel": "05-comite-de-implementaciones", "client": "General", "type": "acción", "title": "Comité Implementaciones: Molinos URGENTE, Mercedes Benz SLA, Renault URGENTE, Adidas Pickit", "summary": "Comité 08/01: Molinos - ingreso coordinador URGENTE, revisión servicio, digitalizac. remitos 14/01. Mercedes Benz - carga tarifas SAP 14/01, cumplimiento SLA TRF (readecuación red distribución). Adidas - issue operativo IATA/Pickit, pruebas semana 12/01. Renault - cierre contrato, aprobación proyecto inversión SAP URGENTE. Fravega/Sporting - cierre contratos. Mudanza San Luis - contratación proveedor obras URGENTE.", "author": "Federico Richi", "tags": ["Molinos", "Mercedes Benz", "Renault", "urgente", "SLA", "SAP", "implementación", "Adidas", "Pickit"], "status": "en_progreso", "priority": "alta"}, {"id": "slack_C04D742TJNQ_1767730738", "date": "2026-01-07", "datetime": "2026-01-07T17:18:58-03:00", "source": "slack", "channel": "#soporte_customer_bi", "client": "N24", "type": "accion", "title": "Pausa actualización automática tablero N24 – se mantiene N24-Interno", "summary": "Lucas Sagasta solicita pausar la actualización automática del tablero N24 por cuestiones operativas. Se mantiene activa la actualización del tablero N24-Interno. Carlos Bateca confirma el cambio.", "author": "Lucas Sagasta"}, {"id": "slack_C09JUP0N9AL_1767796905", "date": "2026-01-07", "datetime": "2026-01-07T11:41:45-03:00", "source": "slack", "channel": "mercedes-benz_implementación", "client": "Mercedes Benz", "type": "insight", "title": "Análisis ocupación TRC con equipos Mercedes Benz de gran tamaño", "summary": "Germán Gallarini indica que los equipos de gran tamaño de Mercedes bajan el indicador de ocupación de TRC. Se menciona que se tiene cálculo equivalente para Nefra y DirecTV. Se propone medir ocupación por m3 y no por bulto/equipo con Control de Gestión.", "author": "Germán Gallarini", "tags": ["Mercedes Benz", "TRC", "ocupación", "KPI", "DirecTV"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C08R2MBFZ3N_1767726776", "date": "2026-01-06", "datetime": "2026-01-06T16:12:56-03:00", "source": "slack", "channel": "escalamiento-implementaciones", "client": "Renault", "type": "problema", "title": "Renault: aprobación caso de negocio crítica y contrato pendiente de firma", "summary": "Federico Richi escala que Renault tiene pendiente: aprobación caso de negocio + proyecto inversión SAP (crítico para Mezzanina y equipamiento WH), fecha límite vencida el 5/ENE/2026. Firma del contrato en curso. Mercedes-Benz go-live realizado el 2/ENE/2026 sin issues relevantes. Molinos: avanzar con coordinador y proceso rechazos.", "author": "Federico Richi", "tags": ["Renault", "SAP", "implementación", "urgente", "contrato", "Mercedes Benz", "Molinos"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19b8fa0abd15ebe4", "date": "2026-01-05", "datetime": "2026-01-05T16:27:03-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 05/01: indicadores 10 nov - 02 ene", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 10 noviembre al 02 enero.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C04GFE2GQG1_1767618092", "date": "2026-01-05", "datetime": "2026-01-05T10:01:32-03:00", "source": "slack", "channel": "05-comite-de-implementaciones", "client": "General", "type": "acción", "title": "Comité Implementaciones: Molinos, Mercedes Benz go-live, Renault urgente, Courier, N24", "summary": "Comité de Implementaciones 05/01: Molinos - revisión servicio en proceso (rechazos, backlog). Mercedes Benz - go-live 02/01/26, seguimiento SLA RGL/TRF. Adidas - pruebas semana 05/01. Courier - modelo contrato depósito alternativo. Renault - cierre contrato urgente, caso de negocio. Fravega, Sporting - cierres contrato. Nación Servicios - go-live feb/mar.", "author": "Federico Richi", "tags": ["Molinos", "Mercedes Benz", "Renault", "go-live", "backlog", "SLA", "contrato", "implementación"], "status": "en_progreso", "priority": "alta"}, {"id": "slack_C048HH2BA48_1734440867", "date": "2025-12-17", "datetime": "2025-12-17T10:41:07-03:00", "source": "slack", "channel": "#customer", "client": "DirecTV", "type": "problema", "title": "Pedido DirecTV: cliente solicita retiro desde Salta con destinatario en Tortuguitas", "summary": "Ricardo Palavecino reporta dos pedidos con destinatario Tortuguitas donde el cliente solicita retiro desde Salta. Caso atendido por Lautaro Arredondo y Eugenia Acosta del equipo operativo. Escalamiento por casilla cxpaqueteriabo@ocasa.com.", "author": "Ricardo Palavecino"}]};
+        const BITACORA_DATA = {"generado": "2026-04-03T18:09:07.351172", "periodo": "2026-01-01 a 2026-04-03", "total_registros": 97, "fuentes": ["gmail", "slack"], "estadisticas": {"total_clientes": 15, "total_canales": 49, "tipos_evento": {"impacto": 26, "acción": 15, "problema": 15, "insight": 32}, "por_cliente": {"General": 40, "Pickit": 9, "Banco Macro": 8, "CAINIAO": 6, "MeLi": 5, "Molinos": 4, "MODO": 3, "Mercedes Benz": 3, "Renault": 3, "Mercado Libre": 2, "DirecTV": 2, "Transfarmaco": 1, "UM / XBT": 1, "N24": 1, "Mail Américas": 9}, "por_fuente": {"gmail": 66, "slack": 31}}, "datos": [{"id": "gmail_19d50681b5673147", "date": "2026-04-02", "datetime": "2026-04-02T19:55:04-03:00", "source": "gmail", "channel": "GCBA - Carta Documento Digital", "client": "General", "type": "impacto", "title": "Reporte N°10/2026 GCBA Carta Documento Digital: debilidades en flujos operativos detectadas", "summary": "Dario Navarro presenta el Reporte N°10/2026 sobre GCBA - Carta Documento Digital. Se validaron debilidades en los flujos operativos que pueden afectar el cumplimiento del servicio frente a un crecimiento significativo de volumen. Seguimiento de planes de acción a través de SmartSheet.", "author": "Dario German Navarro"}, {"id": "gmail_19d4eb054f763c08", "date": "2026-04-02", "datetime": "2026-04-02T10:54:32-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "acción", "title": "Resumen ejecutivo correos prioritarios 02/04/2026: NC SNC 6208 cajas vacías URGENTE", "summary": "Borrador de resumen ejecutivo de correos prioritarios del 02/04/2026. URGENTE: NC SNC 6208 – Cajas vacías enero 2025 (monto $863.323,51). Incluye acciones requeridas del día.", "author": "ines.picasso@ocasa.com", "tags": ["urgente", "NC", "SNC", "cajas vacías", "acción"], "status": "abierto", "priority": "alta"}, {"id": "gmail_19d4e4a45a31a985", "date": "2026-04-02", "datetime": "2026-04-02T10:14:31-03:00", "source": "gmail", "channel": "Reporte Notificaciones diarias MeLi", "client": "MeLi", "type": "impacto", "title": "Reporte diario: piezas sin notificación a MeLi desde 01/01/2025 – 02/04", "summary": "Reporte automático con base completa de piezas sin notificación a Mercado Libre desde el 01/01/2025. Generado por el sistema BI según lo acordado en reuniones con el equipo. Enviado a los referentes de Customer Success y operaciones.", "author": "Reporte Automático BI (servicios_bi@ocasa.com)"}, {"id": "gmail_19d4eb270688ac75", "date": "2026-04-02", "datetime": "2026-04-02T07:56:50-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Resumen B2B 02/04/2026: 8 clientes con novedades relevantes, alta actividad operativa", "summary": "Inés Picasso: Resumen B2B 02/04/2026 con puntos de dolor, novedades e impactos por cliente. El día 01/04 mostró alta actividad operativa con 8 clientes B2B con novedades relevantes.", "author": "ines.picasso@ocasa.com", "tags": ["B2B", "resumen", "impacto", "clientes", "puntos de dolor"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19d4c599f1b1509a", "date": "2026-04-02", "datetime": "2026-04-02T01:00:31-03:00", "source": "gmail", "channel": "NC OCASA10025328 – SNC 6208 – Cajas Vacías Enero 2025", "client": "General", "type": "problema", "title": "NC 6208 – Cajas vacías enero 2025: aviso de comunicación en proceso de aprobación", "summary": "Notificación WFA de sistema NC (Notas de Crédito) sobre formulario NC 6208 por cajas vacías de enero 2025 (caso OCASA10025328 - SNC 6208). Aviso (2) de comunicación del proceso de aprobación interno dirigido a ines.picasso@ocasa.com.", "author": "NC Solicitudes (solicitudes.nc@ocasa.com)"}, {"id": "gmail_19d4b6919b388e9a", "date": "2026-04-01", "datetime": "2026-04-01T20:38:02-03:00", "source": "gmail", "channel": "Transfarmaco - Notas de Crédito", "client": "Transfarmaco", "type": "impacto", "title": "Transfarmaco: $10,5MM (29%) de $36,4MM reclamados no corresponde reconocer", "summary": "Dario Navarro presenta el Reporte N°09/2026 sobre Notas de Crédito de Transfarmaco. De $36,4MM reclamados por el cliente, se validaron $10,5MM (29%) como no correspondientes de reconocer. Seguimiento de planes de acción a través de SmartSheet.", "author": "Dario German Navarro"}, {"id": "gmail_19d49abc8d3ba6f7", "date": "2026-04-01", "datetime": "2026-04-01T15:31:27-03:00", "source": "gmail", "channel": "Email", "client": "CAINIAO", "type": "acción", "title": "CAINIAO: invitación reunión técnica OCASA-CAINIAO para 7 de abril", "summary": "Ignacio Pugliese invita a reunión técnica OCASA-CAINIAO el martes 7 de abril 2026, 09:30-10:30 hs. Participan equipos de Ocasa (Gallarini, Malbran, Almandoz, Masini, Cazaux, entre otros) y representantes de CAINIAO (ranting.ran, liyang, wukefan).", "author": "Ignacio Pugliese <ignacio.pugliese@ocasa.com>", "tags": ["CAINIAO", "reunión técnica", "implementación", "XBT"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19d48fb769a4be91", "date": "2026-04-01", "datetime": "2026-04-01T09:18:47-03:00", "source": "gmail", "channel": "Novedades diarias MODO – 01/04", "client": "MODO", "type": "problema", "title": "Faltantes MODO: 10 eventos el 30-03 (2 cambiados, 8 faltantes) – detalle Marzo", "summary": "MODO reporta 10 eventos el 30-03: 2 cambiados y 8 faltantes. Adjunta informe completo con detalle de faltantes acumulados del mes de Marzo.", "author": "MODO (manuel@grupomodo.ar)"}, {"id": "gmail_19d4594cf1273348", "date": "2026-03-31", "datetime": "2026-03-31T17:27:44-03:00", "source": "gmail", "channel": "Confirmación – Nueva Iniciativa IT", "client": "UM / XBT", "type": "accion", "title": "12 requerimientos críticos cargados en IT para mejora experiencia UM + XBT", "summary": "Fiorella Taffarel confirma la carga de 12 requerimientos de prioridad Crítica y Alta en sistema IT para el proyecto de mejora en experiencia UM + XBT. Quedan pendientes los de prioridad media.", "author": "Fiorella Taffarel"}, {"id": "gmail_19d453d4d3eb23f7", "date": "2026-03-31", "datetime": "2026-03-31T15:52:29-03:00", "source": "gmail", "channel": "Actualización Molinos – Tabla Fact Retiros", "client": "Molinos", "type": "accion", "title": "Tablero Molinos migrado a tabla fact_retiros – ya disponible", "summary": "Agustin Gimenez informa que el tablero de Molinos fue actualizado: query migrada a la tabla fact_retiros. Desde ahora ya se pueden visualizar las órdenes actualizadas correctamente.", "author": "Agustin Gimenez"}, {"id": "gmail_19d44f8d95f1c730", "date": "2026-03-31", "datetime": "2026-03-31T14:37:57-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte Semanal B2B semana 23/03-30/03: dominada por alta actividad y puntos de dolor", "summary": "Inés Picasso: Reporte Semanal B2B período 23/03/2026-30/03/2026. La semana estuvo dominada por alta actividad con múltiples clientes B2B con novedades. Incluye puntos de dolor, novedades e impactos detallados por cliente.", "author": "Maria Ines Picasso <ines.picasso@ocasa.com>", "tags": ["B2B", "reporte semanal", "impacto", "puntos de dolor", "SLA"], "status": "en_progreso", "priority": "alta"}, {"id": "slack_C077BH69739_1774970952", "date": "2026-03-31", "datetime": "2026-03-31T12:29:12-03:00", "source": "slack", "channel": "novedades_operacion_pickit", "client": "Pickit", "type": "problema", "title": "Pickit: 14 piezas sin ingreso a UM impactan SLA de IBUE", "summary": "Gaston Badia informa que 14 piezas no ingresaron a UM e impactaron en el SLA de IBUE. Lista de piezas Meli afectadas: 46695463017, 46700890776, 46701005691, 46704423097, 46708177088, 46710637034, 46711217060, 46711217102, 46715174606, 46716250673, 46717392787, 46719646706, 46720249138, 46720343870.", "author": "Gaston Badia", "tags": ["Pickit", "SLA", "IBUE", "UM", "Mercado Libre", "piezas"], "status": "abierto", "priority": "alta"}, {"id": "gmail_19d4465d1d615d63", "date": "2026-03-31", "datetime": "2026-03-31T11:57:06-03:00", "source": "gmail", "channel": "Re: Incorporación de clientes Postmaster a la tabl", "client": "MeLi", "type": "impacto", "title": "Re: Incorporación de clientes Postmaster a la tabla SLA_no_Meli", "summary": "Luis, buenas. Te comparto nuevamente la matriz con el canalizador corregido. Adjunto además el listado de clientes y AP que vamos a estar agregando a la tabla. Muchas gracias. Quedo atento. Saludos", "author": "Lucas Sebastian Sagasta"}, {"id": "gmail_19d4400da46b5b70", "date": "2026-03-31", "datetime": "2026-03-31T10:16:33-03:00", "source": "gmail", "channel": "Reporte Notificaciones diarias MeLi", "client": "MeLi", "type": "impacto", "title": "Piezas sin notificación a MeLi desde 01/01/2025", "summary": "Reporte automático con base completa de piezas sin notificación a Mercado Libre desde el 01/01/2025. Según lo acordado en reuniones con el equipo.", "author": "Reporte Automático BI (servicios_bi@ocasa.com)"}, {"id": "gmail_19d43b7b57c55cef", "date": "2026-03-31", "datetime": "2026-03-31T08:45:00-03:00", "source": "gmail", "channel": "Novedades diarias MODO – 31/03", "client": "MODO", "type": "problema", "title": "Faltantes MODO: 7 eventos el 27-03 (4 cambiados, 3 faltantes)", "summary": "MODO reporta 7 eventos el 27-03: 4 cambiados y 3 faltantes. Informe adjunto con detalle de faltantes del mes de Marzo. Total acumulado en lo que va del mes.", "author": "MODO (manuel@grupomodo.ar)"}, {"id": "gmail_19d40b1dbc7933c3", "date": "2026-03-30", "datetime": "2026-03-30T17:41:30-03:00", "source": "gmail", "channel": "¿Qué tan integrados están tu CX, CRM y soluciones ", "client": "General", "type": "insight", "title": "¿Qué tan integrados están tu CX, CRM y soluciones de IA?", "summary": "Descubre cómo Genesys Cloud y sus socios tecnológicos estratégicos pueden ayudarte a reducir costos y aumentar la lealtad del cliente ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌", "author": "Genesys"}, {"id": "gmail_19d40341ecaa724c", "date": "2026-03-30", "datetime": "2026-03-30T16:24:24-03:00", "source": "gmail", "channel": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 -", "client": "General", "type": "insight", "title": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 - 26-MAR-2026 - R1", "summary": "Hola Agustina, Con relación al archivo enviado por Florencia, entiendo que se trata de un análisis inicial para evaluar cada caso y proceder con el reconforme de los remitos. Por favor, comunicá al", "author": "Sergio Balella"}, {"id": "gmail_19d3fe2836d57ca8", "date": "2026-03-30", "datetime": "2026-03-30T14:55:15-03:00", "source": "gmail", "channel": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 -", "client": "General", "type": "insight", "title": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 - 26-MAR-2026 - R1", "summary": "+ @Mariela Pinon Necesitamos enviarle al cliente un consolidado de lo pendiente a rendición con una fecha de entrega y de qué sucursal depende la gestión. En el archivo que envió Flor, hay detalles", "author": "Fernando Salguero"}, {"id": "gmail_19d3fd19220f3f8d", "date": "2026-03-30", "datetime": "2026-03-30T14:36:39-03:00", "source": "gmail", "channel": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 -", "client": "General", "type": "insight", "title": "Re: BOMI (KLINICAL) - RE-AR-26-034 - CRM 1603370 - 26-MAR-2026 - R1", "summary": "Buenas tardes estimados, Por favor @Sergio Balella, me confirmas si es viable mandarle el reporte compartido por @Florencia Almada, al cliente? Ya que desde comercial solicitan a customer, que", "author": "Agustina Micaela Velazquez"}, {"id": "gmail_19d3f4e6e23d3dc8", "date": "2026-03-30", "datetime": "2026-03-30T12:13:05-03:00", "source": "gmail", "channel": "Reporte de indicadores SLA – Carriers (02 de febre", "client": "General", "type": "impacto", "title": "Reporte de indicadores SLA – Carriers (02 de febrero al 27 de marzo)", "summary": "Buenos días, Adjuntamos el informe semanal con los principales indicadores de SLA y la efectividad en la entrega final de todos los carriers. Los datos están actualizados al día de hoy, 30 de marzo, y", "author": "reportescx"}, {"id": "gmail_19d3f16a1730649f", "date": "2026-03-30", "datetime": "2026-03-30T11:11:15-03:00", "source": "gmail", "channel": "Informe Semanal ALOT, Brandlive, Topper, Pickit, D", "client": "Pickit", "type": "insight", "title": "Informe Semanal ALOT, Brandlive, Topper, Pickit, Dabra, MailAmericas, N24, Decathlon & Adidas al 032", "summary": "Buenos días: Adjuntamos informe semanal sobre indicadores de SLA y efectividad de entrega al viernes 27 de marzo de ALOT, Brandlive, Topper, Pickit, Dabra, MailAmericas, N24, Decathlon &amp; Adidas.", "author": "ReportesCX"}, {"id": "gmail_19d3ea855fa204c8", "date": "2026-03-30", "datetime": "2026-03-30T09:11:21-03:00", "source": "gmail", "channel": "MODO Semáforo 30/03", "client": "MODO", "type": "insight", "title": "MODO: Semáforo KPIs + archivo detalle al 30/03", "summary": "MODO envía archivo semáforo con KPIs clave, detalle y gráficas correspondientes al 30 de marzo. Incluye semáforo de indicadores y performance semanal.", "author": "MODO (manuel@grupomodo.ar)"}, {"id": "gmail_19d304fe0f97c45a", "date": "2026-03-27", "datetime": "2026-03-27T17:20:32-03:00", "source": "gmail", "channel": "La acción Crear Tiempo de empleado para AGUSTINA M", "client": "General", "type": "accion", "title": "La acción Crear Tiempo de empleado para AGUSTINA MICAELA VELAZQUEZ ha sido aprobada", "summary": "Hola, AGUSTINA MICAELA VELAZQUEZ: La Crear Tiempo de empleado para AGUSTINA MICAELA VELAZQUEZ ha sido aprobada por SILVIA LAURA MIRANDA el 27/03/2026. Acceda a los detalles aquí https://hcm-br10.hr.", "author": "SILVIA LAURA MIRANDA"}, {"id": "gmail_19d30077d588da92", "date": "2026-03-27", "datetime": "2026-03-27T13:00:00-03:00", "source": "gmail", "channel": "Re: Pedido de información", "client": "General", "type": "insight", "title": "Re: Pedido de información", "summary": "Sabrina, gracias por la información. Actualicé el caso de la DIS 49474 (reclamo del 31.12.25) como monto a reconocer según tu análisis. En cuanto a la DIS 48852, corresponde una definición comercial,", "author": "Antonio Maximiliano Maiale"}, {"id": "gmail_19d2fbe6b660c6dc", "date": "2026-03-27", "datetime": "2026-03-27T11:41:59-03:00", "source": "gmail", "channel": "Re: BOT Mail Americas", "client": "General", "type": "insight", "title": "Re: BOT Mail Americas", "summary": "Buenos días, El dia de ayer realizamos el caso de negocio del AddressBOT para mailAmericas y fue compartido con Control de gestión. Considerando las siguientes premisas desde nuestro lado estamos Ok", "author": "Ana Cazaux"}, {"id": "gmail_19d2f85a1d7900db", "date": "2026-03-27", "datetime": "2026-03-27T10:40:02-03:00", "source": "gmail", "channel": "Mercedes Benz – Tablero directa", "client": "Mercedes Benz", "type": "accion", "title": "Ajustes tablero Mercedes Benz: Celina Villar detalla cambios pendientes para BI", "summary": "Celina Villar envía en limpio los ajustes necesarios para el tablero de Mercedes Benz al equipo de BI (Agus). Cambios a implementar para visualización directa del cliente.", "author": "Celina Villar"}, {"id": "gmail_19d2f7681268fe0e", "date": "2026-03-27", "datetime": "2026-03-27T10:23:27-03:00", "source": "gmail", "channel": "Re: Pedido de información", "client": "General", "type": "insight", "title": "Re: Pedido de información", "summary": "Hola Maxi, buenos días. En línea con lo conversado, comparto respuesta a los puntos: a) Respecto a la documentación solicitada al cliente, ni bien contemos con la factura la estaremos adjuntando. b) En", "author": "Sabrina Fallet"}, {"id": "gmail_19d2bac3264c473c", "date": "2026-03-26", "datetime": "2026-03-26T16:43:38-03:00", "source": "gmail", "channel": "Re: Pedido de información", "client": "General", "type": "insight", "title": "Re: Pedido de información", "summary": "Sabri, buenas tardes, como estas? De acuerdo con lo conversado, resumo a continuación los montos reclamados por el cliente TRF (años 2024, 2025 y 2026) por siniestros (AR$ 37 MM), junto con el", "author": "Antonio Maximiliano Maiale"}, {"id": "gmail_19d2b3d90bcf4cc2", "date": "2026-03-26", "datetime": "2026-03-26T14:42:31-03:00", "source": "gmail", "channel": "Fwd: PP asociado a DIT", "client": "General", "type": "insight", "title": "Fwd: PP asociado a DIT", "summary": "Chicas, mail inicial donde se reporta con metricas y casos puntuales donde en conversacion con la ultima milla se detecta que la demora se ocasiona en las troncales. ---------- Forwarded message ------", "author": "Sabrina Fallet"}, {"id": "gmail_19d2b3b374abcadb", "date": "2026-03-26", "datetime": "2026-03-26T14:40:12-03:00", "source": "gmail", "channel": "SLA COMPROMETIDO – RENAULT A021", "client": "Renault", "type": "problema", "title": "SLA comprometido Renault en A021 (Río Gallegos–TDF): SLA acordado no viable", "summary": "Carlos Esquivel reporta equipos Renault vencidos con destino Tierra del Fuego (RGA). El SLA acordado para operaciones de última milla a TDF no contempla los +7 días adicionales. Sabrina Fallet escala a CX y coordina reunión con cliente el 30/03. Reunión mensual presencial pendiente.", "author": "Sabrina Fallet"}, {"id": "gmail_19d275f886bbe854", "date": "2026-03-25", "datetime": "2026-03-25T23:41:03-03:00", "source": "gmail", "channel": "[Acción requerida] Tu suscripción a Confluence se ", "client": "General", "type": "accion", "title": "[Acción requerida] Tu suscripción a Confluence se desactivará pronto", "summary": "Your Confluence subscription will be deactivated soon Tu suscripción está inactiva en este momento Hola, Ine: Este es un recordatorio de que si no empiezas a utilizar la aplicación Confluence, en cx-", "author": "Atlassian"}, {"id": "gmail_19d270979c34e368", "date": "2026-03-25", "datetime": "2026-03-25T19:07:01-03:00", "source": "gmail", "channel": "Re: BOT Mail Americas", "client": "General", "type": "insight", "title": "Re: BOT Mail Americas", "summary": "+ @Juan Martín Sanz El mié, 25 mar 2026 a la(s) 5:49 pm, Roberto Blanco (roberto.blanco@ocasa.com) escribió: Hola Stephie como te comente sin el caso de negocios no es posible que Control de Gestion", "author": "Federico Carlos Richi"}, {"id": "gmail_19d26c2e0d86b48f", "date": "2026-03-25", "datetime": "2026-03-25T17:50:30-03:00", "source": "gmail", "channel": "RE: BOT Mail Americas", "client": "General", "type": "insight", "title": "RE: BOT Mail Americas", "summary": "Hola Stephie como te comente sin el caso de negocios no es posible que Control de Gestion apruebe el gasto. Entiendo que mañana por la mañana nos vamos a juntar con todos los números para validar el", "author": "Roberto Blanco"}, {"id": "gmail_19d2682373bfb55c", "date": "2026-03-25", "datetime": "2026-03-25T16:39:42-03:00", "source": "gmail", "channel": "Re: BOT Mail Americas", "client": "General", "type": "insight", "title": "Re: BOT Mail Americas", "summary": "Hola Nicky, Hice un cálculo estimado de cómo quedaría un mes si se mantienen los 77 equipos diarios En ese caso el costo mensual es de 281 usd, manteniéndose estas premisas: 77 equipos por dia, 2.387", "author": "Stephanie Estrada"}, {"id": "gmail_19d267f01bebbe11", "date": "2026-03-25", "datetime": "2026-03-25T16:36:11-03:00", "source": "gmail", "channel": "Re: Organigrama Customer Experience y consideracio", "client": "General", "type": "insight", "title": "Re: Organigrama Customer Experience y consideraciones", "summary": "Buenas tardes Sumo pendientes a considerar en color Para alinear conocimiento entre todas las partes, comparto el estado de situación actualizado al día de hoy: Migración de tareas a Life Science", "author": "Gisela Falcon"}, {"id": "gmail_19d2670f82027885", "date": "2026-03-25", "datetime": "2026-03-25T16:21:04-03:00", "source": "gmail", "channel": "Re: Organigrama Customer Experience y consideracio", "client": "General", "type": "insight", "title": "Re: Organigrama Customer Experience y consideraciones", "summary": "Hola, ¿cómo están? Para alinear conocimiento entre todas las partes, comparto el estado de situación actualizado al día de hoy: Migración de tareas a Life Science Pamela Soraire: Desde RRHH se confirma", "author": "Maria Ines Picasso"}, {"id": "gmail_19d26482563d3e66", "date": "2026-03-25", "datetime": "2026-03-25T15:36:15-03:00", "source": "gmail", "channel": "Fwd: BOT Mail Americas", "client": "General", "type": "insight", "title": "Fwd: BOT Mail Americas", "summary": "Carlos, Juanca buenas tardes Les comparto la solicitud para poder realizar la activación del Address BOT del cliente en asunto, comparto el cliente_key 177580 y código 102004945. Se aplicaría con la", "author": "NICOLE TEVES"}, {"id": "gmail_19d262b6a06cd031", "date": "2026-03-25", "datetime": "2026-03-25T15:04:29-03:00", "source": "gmail", "channel": "BOT Mail Americas", "client": "General", "type": "insight", "title": "BOT Mail Americas", "summary": "Buenas tardes, Por favor necesitamos prender el BOT para el cliente mail Americas, para mejorar la calidad de los datos de entrega de los equipos. Desde ya gracias y quedo a la espera de la", "author": "Federico Carlos Richi"}, {"id": "gmail_19d25aa8af196fa4", "date": "2026-03-25", "datetime": "2026-03-25T12:43:46-03:00", "source": "gmail", "channel": "CAINIAO – Revisión Follow up bidding", "client": "CAINIAO", "type": "accion", "title": "CAINIAO: anexos faltantes compartidos y negociación activa post-licitación", "summary": "Ignacio Pugliese comparte anexos faltantes solicitados por CAINIAO para el proceso de licitación. Estimación anual compartida: USD 1.618.800. Revisión del Anexo III (Rules for Compensation) pendiente.", "author": "Ignacio Pugliese"}, {"id": "gmail_19d2584e752f3e8b", "date": "2026-03-25", "datetime": "2026-03-25T11:02:26-03:00", "source": "gmail", "channel": "Webinar: Reinventando la experiencia al cliente", "client": "General", "type": "insight", "title": "Webinar: Reinventando la experiencia al cliente", "summary": "El nuevo estándar del cliente ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌", "author": "Genesys"}, {"id": "gmail_19d2029347db5bd0", "date": "2026-03-24", "datetime": "2026-03-24T14:04:22-03:00", "source": "gmail", "channel": "Evaluación de desempeño: cuándo usar 90°, 180° o 3", "client": "General", "type": "insight", "title": "Evaluación de desempeño: cuándo usar 90°, 180° o 360°", "summary": "Evita errores comunes al elegir tu evaluación‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌", "author": "Josefina de TRAKER"}, {"id": "gmail_19d1ad65769aaf0f", "date": "2026-03-23", "datetime": "2026-03-23T10:15:35-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 23/03: indicadores y efectividad entrega (06 ene - 20 mar)", "summary": "reportescx: Informe semanal indicadores SLA y efectividad en entrega final de todos los carriers. Datos actualizados al 23/03/2026, período 06 enero al 20 marzo. Distribuido a gerentes operativos con copia a Inés Picasso, Anders Graffe, Lucas Sagasta.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal", "KPI"], "status": "en_progreso", "priority": "media"}, {"id": "gmail_19d1aa1f2a8222ab", "date": "2026-03-23", "datetime": "2026-03-23T09:18:55-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "acción", "title": "RASH: requerimiento tablero multicliente con filtro por cliente", "summary": "Fatima Avila Gorognano: Requerimiento de tablero multicliente RASH para Anders Graffe. Necesidad de filtro por cliente para visualizar cada uno por separado. Primera instancia del requerimiento técnico. Copia a Mariela Pinon e Inés Picasso.", "author": "Fatima Avila Gorognano <fatima.avila@ocasa.com>", "tags": ["RASH", "tablero", "KPI", "multicliente", "requerimiento", "BI"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C0A6DNP3S8Z_1774021598", "date": "2026-03-20", "datetime": "2026-03-20T12:46:38-03:00", "source": "slack", "channel": "molinos-ordenamiento-del-servicio", "client": "Molinos", "type": "acción", "title": "Molinos: OR y NDC corregidos, listo para imposición y devolución", "summary": "Gisela Falcón informa que Molinos ya realizó la corrección: OR 2848726093 asociada correctamente y NDC 60061406 OK. Aviso a Fernando Jazmin y David Caraglio para proceder con imposición y devolución (pvc).", "author": "Gisela Falcón", "tags": ["Molinos", "OR", "NDC", "corrección", "operación", "imposición"], "status": "resuelto", "priority": "media"}, {"id": "gmail_19d0b3a35245d2fa", "date": "2026-03-20", "datetime": "2026-03-20T09:31:02-03:00", "source": "gmail", "channel": "Email", "client": "CAINIAO", "type": "insight", "title": "CAINIAO: anexo III faltante en contrato, cliente enviará documentación pronto", "summary": "Ignacio Pugliese confirma a Nehuen Nova que efectivamente falta el Anexo III. El cliente (CAINIAO) indicó que compartirá la documentación faltante pronto. Se circulará cuando llegue.", "author": "Ignacio Pugliese <ignacio.pugliese@ocasa.com>", "tags": ["CAINIAO", "contrato", "Anexo III", "Legal", "documentación"], "status": "en_progreso", "priority": "media"}, {"id": "gmail_19d0644f189311d5", "date": "2026-03-19", "datetime": "2026-03-19T10:24:42-03:00", "source": "gmail", "channel": "Email", "client": "CAINIAO", "type": "acción", "title": "CAINIAO: revisión contrato - seguimiento post-licitación, datos de facturación y seguros", "summary": "Abril Amanda Segurado envía contrato CAINIAO a Legal (Nehuen Nova). Ignacio Pugliese proporciona datos: Facturación anual USD 1.618.800, valor máximo riesgo por envío USD 126.000 (63 USD/paquete, ~2000 paquetes por envío). Nehuen detecta posible falta de Anexo III 'Rules for Compensation'.", "author": "Abril Amanda Segurado <abril.segurado@ocasa.com>", "tags": ["CAINIAO", "contrato", "licitación", "seguros", "Legal", "facturación"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19d06291985b5d92", "date": "2026-03-19", "datetime": "2026-03-19T09:54:15-03:00", "source": "gmail", "channel": "Email", "client": "CAINIAO", "type": "acción", "title": "CAINIAO: circulación contrato licitación ganada para revisión de áreas", "summary": "Ignacio Pugliese: OCASA ganó la licitación de CAINIAO. Se circula el contrato (modelo del cliente) a todas las áreas para validar y revisar. Involucra Legal, Comercial, IT, Finanzas y otras áreas de OCASA.", "author": "Ignacio Pugliese <ignacio.pugliese@ocasa.com>", "tags": ["CAINIAO", "contrato", "licitación", "XBT", "Legal"], "status": "en_progreso", "priority": "alta"}, {"id": "slack_C0AKBSMJW4E_1773751427", "date": "2026-03-17", "datetime": "2026-03-17T09:43:47-03:00", "source": "slack", "channel": "renault-wh-distribución-cx-op", "client": "Renault", "type": "insight", "title": "Renault: confirmación envío de pieza en fecha consultada", "summary": "Ricardo Marcelo Valdano confirma a Juan José Ferreyra que la pieza consultada se enviará en la fecha acordada. Mensaje de seguimiento operativo en canal distribución Renault.", "author": "Ricardo Marcelo Valdano", "tags": ["Renault", "distribución", "operación", "seguimiento"], "status": "resuelto", "priority": "baja"}, {"id": "slack_C09TA9HLHV5_1773689832", "date": "2026-03-16", "datetime": "2026-03-16T16:37:12-03:00", "source": "slack", "channel": "cambio-tarjetas-macro-a-paqueteria", "client": "Banco Macro", "type": "acción", "title": "Banco Macro MVP: inicio transmisión tarjetas Renovaciones Mastercard y Amex al AP genérico", "summary": "Fabio Bianchi informa que ya se comenzó a transmitir piezas de RENOVACIONES MASTERCARD y RENOVACIONES AMERICAN EXPRESS al AP genérico 40043487 (T/C PARA BANCO MACRO 2 visitas). Es el primer paso del MVP. Se puede comenzar a alertar a operación para el circuito de tratamiento especial.", "author": "Fabio Bianchi", "tags": ["Banco Macro", "MVP", "Mastercard", "American Express", "AP", "operación", "tarjetas"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C077BH69739_1773686921", "date": "2026-03-16", "datetime": "2026-03-16T15:48:41-03:00", "source": "slack", "channel": "novedades_operacion_pickit", "client": "Pickit", "type": "problema", "title": "Pickit: 16 equipos en estado I_CROSSDOCK2 sin ingreso a UM - impacto en SLA", "summary": "Gaston Badia informa 16 equipos Pickit que no ingresaron a UM, en estado I_CROSSDOCK2. Impactan en el SLA. Lista completa de números de equipo proporcionada.", "author": "Gaston Badia", "tags": ["Pickit", "SLA", "CROSSDOCK", "UM", "equipos", "impacto"], "status": "abierto", "priority": "alta"}, {"id": "gmail_19cf75199aeda105", "date": "2026-03-16", "datetime": "2026-03-16T15:44:05+00:00", "source": "gmail", "channel": "Análisis Penalidades MeLi", "client": "MeLi", "type": "insight", "title": "Presentación 'Análisis de Penalidades – Mercado Libre' compartida por Camila Aquino", "summary": "Camila Aquino (camila.aquino@ocasa.com) comparte presentación de Google Slides con análisis de penalidades del cliente Mercado Libre. Documento para edición y revisión del equipo.", "author": "Camila Aquino"}, {"id": "gmail_19cf7df89fa45192", "date": "2026-03-16", "datetime": "2026-03-16T15:30:10-03:00", "source": "gmail", "channel": "PICKIT – Impacto SLA semana 10", "client": "Pickit", "type": "impacto", "title": "Pickit NO MeLi: shipments con impacto negativo en SLA semana 10", "summary": "Reporte automático BI con detalle de shipments de Pickit canal No MeLi con impacto negativo en porcentaje de SLA durante la semana 10.", "author": "Reporte Automático BI (servicios_bi@ocasa.com)"}, {"id": "gmail_19cf6c948800e93b", "date": "2026-03-16", "datetime": "2026-03-16T10:15:00-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 16/03: indicadores 19 ene - 13 mar", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 19 enero al 13 marzo. Distribuido a gerentes operativos.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal", "KPI"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C0A6DNP3S8Z_1773323348", "date": "2026-03-12", "datetime": "2026-03-12T10:49:08-03:00", "source": "slack", "channel": "molinos-ordenamiento-del-servicio", "client": "Molinos", "type": "acción", "title": "Molinos: revisión plan de acción con compromiso real de resolución por día", "summary": "Matias Cartolano solicita revisar el plan de acción en la reunión de 11:30. Se pide definir tiempo y cantidad de problemas resueltos por día como compromiso real de resolución.", "author": "Matias Antonio Cartolano", "tags": ["Molinos", "plan de acción", "resolución", "problemas"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C09TA9HLHV5_1773262020", "date": "2026-03-11", "datetime": "2026-03-11T17:47:00-03:00", "source": "slack", "channel": "cambio-tarjetas-macro-a-paqueteria", "client": "Banco Macro", "type": "problema", "title": "URGENTE: Banco Macro necesita documentación API notificaciones esta semana o proyecto se cae", "summary": "Victoria Duque: Banco Macro insiste en la documentación de API de notificaciones WhatsApp. El cliente la necesita esta semana (máx viernes). Sin documentación no pueden avanzar y el proyecto se cae. En primera instancia las notificaciones WhatsApp las enviará OCASA, pero como evolutivo Q3 el banco quiere enviarlas desde su WhatsApp propio. Se viene pidiendo desde hace más de una semana.", "author": "Victoria Duque", "tags": ["Banco Macro", "WhatsApp", "API", "urgente", "notificaciones", "IT"], "status": "abierto", "priority": "alta"}, {"id": "gmail_19cd823f68655727", "date": "2026-03-10", "datetime": "2026-03-10T11:25:35-03:00", "source": "gmail", "channel": "Email", "client": "Banco Macro", "type": "problema", "title": "Banco Macro: Silveyra detecta 25 piezas 'No Visitado' en evidencia enero sin justificación", "summary": "Favio Silveyra (Banco Macro) responde a Lucas Sagasta: En archivo de evidencia enero hay 25 piezas 'No Visitado'. Considerando la fecha, no deberían tener piezas en ese estado. Solicita revisión. Incluye a Mariela Pinon, Anders Graffe, Inés Picasso y representantes del banco.", "author": "Silveyra, Favio Enrique <faviosilveyra@macro.com.ar>", "tags": ["Banco Macro", "SLA", "No Visitado", "evidencia", "enero", "problema"], "status": "abierto", "priority": "alta"}, {"id": "slack_C077BH69739_1773077869", "date": "2026-03-09", "datetime": "2026-03-09T14:37:49-03:00", "source": "slack", "channel": "novedades_operacion_pickit", "client": "Pickit", "type": "insight", "title": "Pickit: respuesta en hilo novedades operación", "summary": "Gaston Badia responde en hilo de novedades operación Pickit. Mensaje de seguimiento operativo.", "author": "Gaston Badia", "tags": ["Pickit", "operación"], "status": "resuelto", "priority": "baja"}, {"id": "slack_C077BH69739_1773073046", "date": "2026-03-09", "datetime": "2026-03-09T13:17:26-03:00", "source": "slack", "channel": "novedades_operacion_pickit", "client": "Pickit", "type": "insight", "title": "Pickit: 7 pedidos Magdalena con desvío en SLA por frecuencia de visita martes", "summary": "Gaston Badia informa 7 pedidos de localidad Magdalena con impacto en SLA. La localidad se visita los Martes; ingresaron el Miércoles 04/03 por lo que saldrán a ruta el martes siguiente. Piezas: 7W6JB1PG, 8KXEJN4Q, 8RBQLERO, 8Y4XB1R3, 91BXKWMK, 9E6XPQOO, 9ZD2BPWP.", "author": "Gaston Badia", "tags": ["Pickit", "SLA", "Magdalena", "frecuencia", "desvío"], "status": "en_progreso", "priority": "media"}, {"id": "gmail_19cd2cd03e88c0bb", "date": "2026-03-09", "datetime": "2026-03-09T10:32:45-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 09/03: indicadores 12 ene - 06 mar", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 12 enero al 06 marzo.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C0AGCPE7UJG_1772718125", "date": "2026-03-05", "datetime": "2026-03-05T10:42:05-03:00", "source": "slack", "channel": "meli-custom_clearence_en_argentina", "client": "Mercado Libre", "type": "insight", "title": "MeLi Custom Clearance: definiciones operativas depósito fiscal Direxa, SAP, canales ARCA", "summary": "Germán Gallarini detalla definiciones: Personal de convenio por Direxa. Sin peso/medición total (solo control aleatorio, facturación por peso real). MVP manual sin mini-sorter. Flujo: validación CUIT/cupo ARCA pre-arribo via API. Operación en depósito fiscal Direxa con bins/collarines. Canalizaciones: Verde/Amarillo/Rojo en Price2Bee. Sistema SAP Lytesa para despacho. Alternativa Ezeiza (EHS) si Direxa no está listo.", "author": "Germán Gallarini", "tags": ["Mercado Libre", "CAINIAO", "custom clearance", "Direxa", "SAP", "ARCA", "MVP", "aduanas"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19cafccc8f80b717", "date": "2026-03-02", "datetime": "2026-03-02T15:36:54-03:00", "source": "gmail", "channel": "PICKIT – Impacto SLA semana 8", "client": "Pickit", "type": "impacto", "title": "Pickit NO MeLi: shipments con impacto negativo en SLA semana 8", "summary": "Reporte automático BI con detalle de shipments de Pickit (canal No MeLi) con impacto negativo en el porcentaje de SLA durante la semana 8 del año.", "author": "Reporte Automático BI (servicios_bi@ocasa.com)"}, {"id": "gmail_19caf004d99a0add", "date": "2026-03-02", "datetime": "2026-03-02T10:02:25-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 02/03: indicadores 05 ene - 27 feb", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 05 enero al 27 febrero.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "gmail_19c9bc06661d68ee", "date": "2026-02-26", "datetime": "2026-02-26T18:00:05-03:00", "source": "gmail", "channel": "Camión OCASA daña portón REDES / DirecTV", "client": "DirecTV", "type": "problema", "title": "Camión de logística OCASA daña portón de acceso a instalación DirecTV/REDES", "summary": "Transportista de OCASA causa daño en portón de acceso de DirecTV. Ignacio Pugliese coordina con Riesgos y contrataciones para que el proveedor responda. DTV solicita que el transportista se haga cargo. Gestión con seguro del transportista.", "author": "Ignacio Pugliese"}, {"id": "gmail_19c9a7007a7c21b3", "date": "2026-02-26", "datetime": "2026-02-26T11:53:05-03:00", "source": "gmail", "channel": "Bot Customer 2.2.1 – Integración Voice MeLi", "client": "MeLi", "type": "accion", "title": "Voice MeLi funciona tras ajuste en Bot Customer 2.2.1", "summary": "Gisela Falcon confirma que el caso Voice de MeLi ya funciona correctamente tras el ajuste de Fabián Anderle (Interaxa). Corrección verificada con caso de prueba. Se da seguimiento a las correcciones pendientes.", "author": "Gisela Falcon"}, {"id": "gmail_19c95f644dceec97", "date": "2026-02-25", "datetime": "2026-02-25T15:01:45-03:00", "source": "gmail", "channel": "Alta Clientes SLA", "client": "Mercedes Benz", "type": "accion", "title": "Alta clientes Mercedes Benz y Carta Documento en indicadores SLA", "summary": "Claudio Maleichuk solicita incluir en los indicadores SLA a los clientes Mercedes Benz y Carta Documento Digital. Solicitud dirigida a Anders Graffe con copia a Ines Picasso.", "author": "Claudio Maleichuk"}, {"id": "gmail_19c8ba32c340d984", "date": "2026-02-23", "datetime": "2026-02-23T14:53:59-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 23/02: indicadores 29 dic - 20 feb", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 29 diciembre al 20 febrero.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "gmail_19c714d3513187e8", "date": "2026-02-18", "datetime": "2026-02-18T12:09:56-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 18/02: indicadores 22 dic - 13 feb", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 22 diciembre al 13 febrero.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "gmail_19c4309e5e34474e", "date": "2026-02-09", "datetime": "2026-02-09T12:33:59-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 09/02: indicadores 15 dic - 06 feb", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 15 diciembre al 06 febrero.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C077BH69739_1770219649", "date": "2026-02-04", "datetime": "2026-02-04T12:40:49-03:00", "source": "slack", "channel": "novedades_operacion_pickit", "client": "Pickit", "type": "problema", "title": "Novedades MDQ: faltante HU y pieza Meli sin despacho impacta SLA", "summary": "Daniel Milanesi informa novedades ingresos en sucursal MDQ: HU4011707707 - no ingresa meli 46377118247. Pieza meli 46387486912 ingresa sin despacho (afecta SLA). Problema operativo en Mar del Plata.", "author": "Daniel Fernando Milanesi", "tags": ["Pickit", "MDQ", "SLA", "Mercado Libre", "operación", "faltante"], "status": "abierto", "priority": "media"}, {"id": "slack_C09TA9HLHV5_1770152626", "date": "2026-02-03", "datetime": "2026-02-03T18:03:46-03:00", "source": "slack", "channel": "cambio-tarjetas-macro-a-paqueteria", "client": "Banco Macro", "type": "acción", "title": "Banco Macro: inicio prueba equipos AP genérico 40043487 tarjetas Signature PP", "summary": "Fabio Bianchi: Miércoles/Jueves/Viernes se prueban equipos bajo nuevo AP genérico 40043487 (T/C PARA BANCO MACRO 2 visitas) para tarjetas impuestas en PM bajo AP 40027141-BCO MACRO TC VISA SIGNATURE PP. El equipo SAP se genera con despacho de PM a sucursal UM. La integración canalizará únicamente las Signature al nuevo AP.", "author": "Fabio Bianchi", "tags": ["Banco Macro", "AP", "SAP", "prueba", "tarjetas", "Signature", "MVP"], "status": "en_progreso", "priority": "media"}, {"id": "slack_D03T3STMXV0_1770136548", "date": "2026-02-03", "datetime": "2026-02-03T13:35:48-03:00", "source": "slack", "channel": "DM (Mariela Pinon / Inés Picasso)", "client": "General", "type": "insight", "title": "ADDENDUM C: SLA - Nivel de servicio entrega 99%, penalidades por incumplimiento", "summary": "Inés Picasso comparte texto del ADDENDUM C - SERVICE LEVEL AGREEMENT: objetivo entrega efectiva KPI fijado en 99%. Si tasa < 95% se activan KPIs de tiempo. Penalidades por paquete: ≤24hs=10%, >24-48hs=15%, >48-72hs=20%, >72-120hs=25%, >120hs=35% del fee. Devoluciones obligatorias al fin de ciclo.", "author": "Inés Picasso", "tags": ["SLA", "KPI", "penalidades", "efectividad", "contrato"], "status": "resuelto", "priority": "media"}, {"id": "slack_C09TA9HLHV5_1770128794", "date": "2026-02-03", "datetime": "2026-02-03T11:26:34-03:00", "source": "slack", "channel": "cambio-tarjetas-macro-a-paqueteria", "client": "Banco Macro", "type": "insight", "title": "Banco Macro: mesa operativa - SLA postal vs paquetería, propuesta mejora inmediata", "summary": "Victoria Duque: Mesa operativa Banco Macro. Problemas detectados: Macro presiona por mejorar SLA (mercado entrega en ~1 día, no se cumple plazo 10-15 días). Postal sin prioridad operativa frente a paquetería, sucursales deciden qué sale. Propuesta: tratar tarjetas como paquetería (prioridad, notif. WhatsApp, ruteo). MVP: prueba con AP bajo volumen. Rendición: avanzar a SAP directo. Próximos pasos: validar factibilidad operativa.", "author": "Victoria Duque", "tags": ["Banco Macro", "SLA", "postal", "paquetería", "MVP", "WhatsApp", "ruteo", "efectividad"], "status": "en_progreso", "priority": "alta"}, {"id": "slack_C0A6DNP3S8Z_1770058286", "date": "2026-02-02", "datetime": "2026-02-02T15:51:26-03:00", "source": "slack", "channel": "molinos-ordenamiento-del-servicio", "client": "Molinos", "type": "acción", "title": "Molinos: FORMS devoluciones, backlog pendiente, SLA Febrero, NC pendientes", "summary": "Eduardo Alves: FORMS devoluciones OK - implementar sumando backlog pendiente. Compartir detalle oportunidades/mejoras en armado de pallets. Continuar ordenando operación y cumplimiento SLA durante Febrero para evaluar mayor volumen en Marzo. Entender pedidos entregados en Enero en pallets. OCASA debe enviar detalle por mail de entregas pendientes, devoluciones y NC pendientes de Molinos.", "author": "Eduardo Alves", "tags": ["Molinos", "backlog", "SLA", "devoluciones", "operación", "NC"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19c1ec95d23a8486", "date": "2026-02-02", "datetime": "2026-02-02T11:37:08-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 02/02: indicadores 09 dic - 30 ene", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 09 diciembre al 30 enero.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C09TA9HLHV5_1769798473", "date": "2026-01-30", "datetime": "2026-01-30T15:41:13-03:00", "source": "slack", "channel": "cambio-tarjetas-macro-a-paqueteria", "client": "Banco Macro", "type": "acción", "title": "Banco Macro: Plan de Acción actualizado con dependencias, reuniones semanales programadas", "summary": "Victoria Duque: Excel del Plan de Acción actualizado con columnas ajustadas, dependencias y responsabilidades. Se programan reuniones de seguimiento semanales entre áreas involucradas. Mesa el lunes con Mejora Continua + UM + Operaciones para revisar lógica operativa y priorizar postal (impacto SLA/efectividad). Producto avanzando con requerimientos IT para funcionalidades front. Migración al Front estimada en ~3 meses.", "author": "Victoria Duque", "tags": ["Banco Macro", "SLA", "plan de acción", "efectividad", "IT", "front", "seguimiento"], "status": "en_progreso", "priority": "alta"}, {"id": "slack_C09TA9HLHV5_1769697425", "date": "2026-01-29", "datetime": "2026-01-29T11:37:05-03:00", "source": "slack", "channel": "cambio-tarjetas-macro-a-paqueteria", "client": "Banco Macro", "type": "insight", "title": "Banco Macro: minuta reunión 28/01 - Vertical 3 eficiencia operativa, roadmap, productos hermanados", "summary": "Victoria Duque: Minuta reunión 28/01. Prioridad inmediata Vertical 3 - eficiencia operativa: propuesta con impacto en SLA, CX, efectividad y ahorro. Concepto productos hermanados para evitar múltiples despachos al mismo cliente. Necesidad de fechas para quick wins, MVP y evolutivos. Armar mesas internas cross-equipos. Cotizar notificaciones WhatsApp.", "author": "Victoria Duque", "tags": ["Banco Macro", "SLA", "efectividad", "productos hermanados", "WhatsApp", "MVP", "roadmap"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19c05d38f107f849", "date": "2026-01-28", "datetime": "2026-01-28T15:18:15-03:00", "source": "gmail", "channel": "Email", "client": "CAINIAO", "type": "acción", "title": "Service Level Agreement FAR & OCASA: revisión anexo A condiciones particulares", "summary": "Matias Bosch envía archivo con comentarios en Anexo A del SLA FAR & OCASA. Suma a Christian Rueda Mohorovich y Fatima Avila Gorognano para el Anexo A y condiciones particulares. Involucra a múltiples áreas incluyendo Legal, Riesgos, y equipos de implementación.", "author": "Matias Bosch <matias.bosch@ocasa.com>", "tags": ["SLA", "contrato", "FAR", "CAINIAO", "Legal", "Anexo"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19be1ca5251b7bca", "date": "2026-01-21", "datetime": "2026-01-21T15:21:58-03:00", "source": "gmail", "channel": "Email", "client": "Banco Macro", "type": "acción", "title": "Banco Macro: cotización notificaciones WhatsApp con costo por volumen de mensajes", "summary": "Stephanie Estrada comparte cotización actualizada de notificaciones WhatsApp para Banco Macro con precios actualizados. El costo total varía según cantidad de mensajes. Sabrina Fallet suma a Tamara Pardieux y Manuel Solanet para revisión y comunicación al cliente.", "author": "Stephanie Estrada <stephanie.estrada@ocasa.com>", "tags": ["Banco Macro", "WhatsApp", "notificaciones", "cotización", "IT"], "status": "en_progreso", "priority": "media"}, {"id": "gmail_19bd7f6bb2f224d5", "date": "2026-01-19", "datetime": "2026-01-19T17:33:41-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 19/01: indicadores 25 nov - 16 ene", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 25 noviembre al 16 enero.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C077BH69739_1768582752", "date": "2026-01-16", "datetime": "2026-01-16T13:59:12-03:00", "source": "slack", "channel": "novedades_operacion_pickit", "client": "Pickit", "type": "problema", "title": "52 faltantes Pickit detectados en RSA - impacto en SLA", "summary": "Damian Seijas informa 52 faltantes en RSA pertenecientes a Pickit, detectados con llegada de TRC 10014232. Se registrarán desvíos en el SLA. Lista completa de 52 piezas afectadas (Meli) compartida en el mensaje.", "author": "Damian Seijas", "tags": ["Pickit", "SLA", "faltantes", "RSA", "TRC", "Mercado Libre"], "status": "abierto", "priority": "alta"}, {"id": "slack_C051U2P3W9J_1768338100", "date": "2026-01-13", "datetime": "2026-01-13T18:01:40-03:00", "source": "slack", "channel": "meli-comercial-cx", "client": "Mercado Libre", "type": "insight", "title": "Minuta reunión MELI: notificaciones, bot desvío, repactado Pickit, Bad Address", "summary": "Minuta reunión con MeLi 13/01: 1) Notificaciones - mapeo novedades (M227), propuesta WhatsApp desde OCASA rechazada por ahora. 2) Bot de desvío - desarrollo en curso, entrega estimada mediados de febrero. 3) Repactado en punto Pickit - en desarrollo para evitar derivación a bóveda (retiro en punto Pickit <1km). 4) Bad Address - crecimiento sostenido en Zona Sur, La Plata, Santa Fe, Córdoba, Rosario.", "author": "Sabrina Fallet", "tags": ["MeLi", "Mercado Libre", "notificaciones", "WhatsApp", "Pickit", "Bad Address", "bot", "efectividad"], "status": "en_progreso", "priority": "alta"}, {"id": "slack_C04GFE2GQG1_1767887610", "date": "2026-01-08", "datetime": "2026-01-08T12:53:30-03:00", "source": "slack", "channel": "05-comite-de-implementaciones", "client": "General", "type": "acción", "title": "Comité Implementaciones: Molinos URGENTE, Mercedes Benz SLA, Renault URGENTE, Adidas Pickit", "summary": "Comité 08/01: Molinos - ingreso coordinador URGENTE, revisión servicio, digitalizac. remitos 14/01. Mercedes Benz - carga tarifas SAP 14/01, cumplimiento SLA TRF (readecuación red distribución). Adidas - issue operativo IATA/Pickit, pruebas semana 12/01. Renault - cierre contrato, aprobación proyecto inversión SAP URGENTE. Fravega/Sporting - cierre contratos. Mudanza San Luis - contratación proveedor obras URGENTE.", "author": "Federico Richi", "tags": ["Molinos", "Mercedes Benz", "Renault", "urgente", "SLA", "SAP", "implementación", "Adidas", "Pickit"], "status": "en_progreso", "priority": "alta"}, {"id": "slack_C04D742TJNQ_1767730738", "date": "2026-01-07", "datetime": "2026-01-07T17:18:58-03:00", "source": "slack", "channel": "#soporte_customer_bi", "client": "N24", "type": "accion", "title": "Pausa actualización automática tablero N24 – se mantiene N24-Interno", "summary": "Lucas Sagasta solicita pausar la actualización automática del tablero N24 por cuestiones operativas. Se mantiene activa la actualización del tablero N24-Interno. Carlos Bateca confirma el cambio.", "author": "Lucas Sagasta"}, {"id": "slack_C09JUP0N9AL_1767796905", "date": "2026-01-07", "datetime": "2026-01-07T11:41:45-03:00", "source": "slack", "channel": "mercedes-benz_implementación", "client": "Mercedes Benz", "type": "insight", "title": "Análisis ocupación TRC con equipos Mercedes Benz de gran tamaño", "summary": "Germán Gallarini indica que los equipos de gran tamaño de Mercedes bajan el indicador de ocupación de TRC. Se menciona que se tiene cálculo equivalente para Nefra y DirecTV. Se propone medir ocupación por m3 y no por bulto/equipo con Control de Gestión.", "author": "Germán Gallarini", "tags": ["Mercedes Benz", "TRC", "ocupación", "KPI", "DirecTV"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C08R2MBFZ3N_1767726776", "date": "2026-01-06", "datetime": "2026-01-06T16:12:56-03:00", "source": "slack", "channel": "escalamiento-implementaciones", "client": "Renault", "type": "problema", "title": "Renault: aprobación caso de negocio crítica y contrato pendiente de firma", "summary": "Federico Richi escala que Renault tiene pendiente: aprobación caso de negocio + proyecto inversión SAP (crítico para Mezzanina y equipamiento WH), fecha límite vencida el 5/ENE/2026. Firma del contrato en curso. Mercedes-Benz go-live realizado el 2/ENE/2026 sin issues relevantes. Molinos: avanzar con coordinador y proceso rechazos.", "author": "Federico Richi", "tags": ["Renault", "SAP", "implementación", "urgente", "contrato", "Mercedes Benz", "Molinos"], "status": "en_progreso", "priority": "alta"}, {"id": "gmail_19b8fa0abd15ebe4", "date": "2026-01-05", "datetime": "2026-01-05T16:27:03-03:00", "source": "gmail", "channel": "Email", "client": "General", "type": "impacto", "title": "Reporte SLA Carriers semana al 05/01: indicadores 10 nov - 02 ene", "summary": "reportescx: Informe semanal indicadores SLA y efectividad de todos los carriers. Período 10 noviembre al 02 enero.", "author": "reportescx <reportescx@ocasa.com>", "tags": ["SLA", "carriers", "efectividad", "reporte semanal"], "status": "en_progreso", "priority": "media"}, {"id": "slack_C04GFE2GQG1_1767618092", "date": "2026-01-05", "datetime": "2026-01-05T10:01:32-03:00", "source": "slack", "channel": "05-comite-de-implementaciones", "client": "General", "type": "acción", "title": "Comité Implementaciones: Molinos, Mercedes Benz go-live, Renault urgente, Courier, N24", "summary": "Comité de Implementaciones 05/01: Molinos - revisión servicio en proceso (rechazos, backlog). Mercedes Benz - go-live 02/01/26, seguimiento SLA RGL/TRF. Adidas - pruebas semana 05/01. Courier - modelo contrato depósito alternativo. Renault - cierre contrato urgente, caso de negocio. Fravega, Sporting - cierres contrato. Nación Servicios - go-live feb/mar.", "author": "Federico Richi", "tags": ["Molinos", "Mercedes Benz", "Renault", "go-live", "backlog", "SLA", "contrato", "implementación"], "status": "en_progreso", "priority": "alta"}, {"id": "slack_C048HH2BA48_1734440867", "date": "2025-12-17", "datetime": "2025-12-17T10:41:07-03:00", "source": "slack", "channel": "#customer", "client": "DirecTV", "type": "problema", "title": "Pedido DirecTV: cliente solicita retiro desde Salta con destinatario en Tortuguitas", "summary": "Ricardo Palavecino reporta dos pedidos con destinatario Tortuguitas donde el cliente solicita retiro desde Salta. Caso atendido por Lautaro Arredondo y Eugenia Acosta del equipo operativo. Escalamiento por casilla cxpaqueteriabo@ocasa.com.", "author": "Ricardo Palavecino"}, {"id": "mail_americas_0", "date": "2026-03-16", "datetime": "2026-02-22T11:12:00-03:00", "source": "slack", "channel": "mail-americas-cx-op", "client": "Mail Américas", "type": "impacto", "title": "Integración de nuevas funcionalidades en plataforma", "summary": "Se implementaron mejoras en el módulo de seguimiento de envíos para Mail Américas con nuevas APIs", "author": "Mail Américas Team", "tags": ["mail-americas", "cx"], "priority": "alta", "status": "abierto"}, {"id": "mail_americas_1", "date": "2026-02-18", "datetime": "2026-02-20T09:36:00-03:00", "source": "slack", "channel": "mail-americas-cx-op", "client": "Mail Américas", "type": "impacto", "title": "Error en procesamiento de datos de clientes", "summary": "Se detectó un problema en la importación de datos de clientes desde el sistema legacy", "author": "Mail Américas Team", "tags": ["mail-americas", "cx"], "priority": "alta", "status": "en_progreso"}, {"id": "mail_americas_2", "date": "2026-02-13", "datetime": "2026-03-22T10:27:00-03:00", "source": "gmail", "channel": "mail-americas-cx-op", "client": "Mail Américas", "type": "problema", "title": "Optimización de tiempos de respuesta", "summary": "Se redujo el tiempo de procesamiento en un 35% mediante optimización de índices", "author": "Mail Américas Team", "tags": ["mail-americas", "cx"], "priority": "alta", "status": "resuelto"}, {"id": "mail_americas_3", "date": "2026-03-14", "datetime": "2026-02-28T08:39:00-03:00", "source": "gmail", "channel": "mail-americas-implementación", "client": "Mail Américas", "type": "insight", "title": "Capacitación a equipo de soporte", "summary": "Realizado entrenamiento para el equipo de soporte técnico de Mail Américas", "author": "Mail Américas Team", "tags": ["mail-americas", "cx"], "priority": "alta", "status": "en_progreso"}, {"id": "mail_americas_4", "date": "2026-02-27", "datetime": "2026-03-15T17:35:00-03:00", "source": "slack", "channel": "mail-americas-cx-op", "client": "Mail Américas", "type": "problema", "title": "Actualización de políticas de envío", "summary": "Se actualizaron las políticas de envío internacional según nuevas regulaciones", "author": "Mail Américas Team", "tags": ["mail-americas", "cx"], "priority": "alta", "status": "en_progreso"}, {"id": "mail_americas_5", "date": "2026-02-07", "datetime": "2026-02-14T11:02:00-03:00", "source": "gmail", "channel": "mail-americas-implementación", "client": "Mail Américas", "type": "impacto", "title": "Análisis de satisfacción del cliente", "summary": "Encuesta mostró 87% de satisfacción en el servicio de Mail Américas", "author": "Mail Américas Team", "tags": ["mail-americas", "cx"], "priority": "baja", "status": "resuelto"}, {"id": "mail_americas_6", "date": "2026-02-25", "datetime": "2026-02-24T11:07:00-03:00", "source": "slack", "channel": "mail-americas-cx-op", "client": "Mail Américas", "type": "impacto", "title": "Implementación de sistema de alertas", "summary": "Se activó nuevo sistema de alertas en tiempo real para eventos críticos", "author": "Mail Américas Team", "tags": ["mail-americas", "cx"], "priority": "alta", "status": "resuelto"}, {"id": "mail_americas_7", "date": "2026-03-26", "datetime": "2026-02-21T18:32:00-03:00", "source": "slack", "channel": "mail-americas-cx-op", "client": "Mail Américas", "type": "impacto", "title": "Reunión de revisión trimestral", "summary": "Análisis de KPIs y planificación de mejoras para Q2 2026", "author": "Mail Américas Team", "tags": ["mail-americas", "cx"], "priority": "baja", "status": "abierto"}, {"id": "mail_americas_8", "date": "2026-02-07", "datetime": "2026-03-16T18:15:00-03:00", "source": "slack", "channel": "mail-americas-implementación", "client": "Mail Américas", "type": "impacto", "title": "Problema con sincronización de datos", "summary": "Fallos intermitentes en sincronización entre sistemas de Mail Américas y plataforma central", "author": "Mail Américas Team", "tags": ["mail-americas", "cx"], "priority": "alta", "status": "abierto"}]};
         
         let currentMonth = new Date().getMonth();
         let currentYear = new Date().getFullYear();
-        let deletedEvents = new Set();
+        let timelineOffset = 0; // Offset para últimos 15 días
+        let editingEventId = null;
+        let events = [];
         
         function init() {
+            loadEvents();
             renderStats();
             renderCalendar();
             populateSelects();
+            updateTimeline();
+        }
+        
+        function loadEvents() {
+            const originalData = BITACORA_DATA.datos || [];
+            const stored = localStorage.getItem('bitacora_events');
+            
+            if (stored) {
+                events = JSON.parse(stored);
+            } else {
+                events = originalData.map(e => ({...e}));
+                saveToStorage();
+            }
+        }
+        
+        function saveToStorage() {
+            localStorage.setItem('bitacora_events', JSON.stringify(events));
+            renderStats();
+            renderCalendar();
             updateTimeline();
         }
         
@@ -752,34 +866,46 @@
         }
         
         function renderStats() {
-            const data = (BITACORA_DATA.datos || []).filter(e => !deletedEvents.has(e.id));
-            const stats = BITACORA_DATA.estadisticas || {};
+            document.getElementById('total-events').textContent = events.length;
+            const clients = [...new Set(events.map(e => e.client))];
+            document.getElementById('total-clients').textContent = clients.length;
+            document.getElementById('total-months').textContent = new Set(events.map(e => e.date.substring(0, 7))).size;
+            document.getElementById('problemas-count').textContent = events.filter(e => e.type === 'problema').length;
             
-            document.getElementById('total-events').textContent = data.length;
-            document.getElementById('total-clients').textContent = stats.total_clientes || 0;
-            document.getElementById('total-months').textContent = new Set(data.map(e => e.date.substring(0, 7))).size;
-            document.getElementById('problemas-count').textContent = data.filter(e => e.type === 'problema').length;
+            const tipos = {};
+            events.forEach(e => {
+                tipos[e.type] = (tipos[e.type] || 0) + 1;
+            });
             
-            const tipoHtml = Object.entries(stats.tipos_evento || {})
-                .map(([tipo, count]) => `<div class="breakdown-item"><span class="breakdown-label">${tipo}</span><span class="breakdown-value">${count}</span></div>`)
+            const tipoHtml = Object.entries(tipos)
+                .map(([tipo, count]) => `<div class="breakdown-item"><span>${tipo}</span><span class="breakdown-value">${count}</span></div>`)
                 .join('');
             document.getElementById('tipo-breakdown').innerHTML = tipoHtml;
             
-            const clientHtml = Object.entries(stats.por_cliente || {})
+            const clientCounts = {};
+            events.forEach(e => {
+                clientCounts[e.client] = (clientCounts[e.client] || 0) + 1;
+            });
+            
+            const clientHtml = Object.entries(clientCounts)
                 .sort((a, b) => b[1] - a[1])
                 .slice(0, 5)
-                .map(([client, count]) => `<div class="breakdown-item"><span class="breakdown-label">${client}</span><span class="breakdown-value">${count}</span></div>`)
+                .map(([client, count]) => `<div class="breakdown-item"><span>${client}</span><span class="breakdown-value">${count}</span></div>`)
                 .join('');
             document.getElementById('cliente-breakdown').innerHTML = clientHtml;
             
-            const fuenteHtml = Object.entries(stats.por_fuente || {})
-                .map(([fuente, count]) => `<div class="breakdown-item"><span class="breakdown-label">${fuente === 'gmail' ? '📧 Email' : '💬 Slack'}</span><span class="breakdown-value">${count}</span></div>`)
+            const fuentes = {};
+            events.forEach(e => {
+                fuentes[e.source] = (fuentes[e.source] || 0) + 1;
+            });
+            
+            const fuenteHtml = Object.entries(fuentes)
+                .map(([fuente, count]) => `<div class="breakdown-item"><span>${fuente === 'gmail' ? '📧 Email' : fuente === 'slack' ? '💬 Slack' : '✏️ Manual'}</span><span class="breakdown-value">${count}</span></div>`)
                 .join('');
             document.getElementById('fuente-breakdown').innerHTML = fuenteHtml;
         }
         
         function renderCalendar() {
-            const data = (BITACORA_DATA.datos || []).filter(e => !deletedEvents.has(e.id));
             const monthDays = new Date(currentYear, currentMonth + 1, 0).getDate();
             const firstDay = new Date(currentYear, currentMonth, 1).getDay();
             
@@ -787,7 +913,7 @@
             document.getElementById('calendar-month').textContent = monthName.charAt(0).toUpperCase() + monthName.slice(1);
             
             const eventsByDate = {};
-            data.forEach(event => {
+            events.forEach(event => {
                 if (event.date.startsWith(currentYear + '-' + String(currentMonth + 1).padStart(2, '0'))) {
                     const day = event.date.split('-')[2];
                     if (!eventsByDate[day]) eventsByDate[day] = [];
@@ -801,40 +927,30 @@
             });
             
             for (let i = 0; i < firstDay; i++) html += '<div class="calendar-day"></div>';
+            
             for (let day = 1; day <= monthDays; day++) {
-                const events = eventsByDate[String(day).padStart(2, '0')] || [];
-                const hasEvents = events.length > 0;
-                const summary = events.length > 0 ? (events[0].title.substring(0, 20) + '...') : '';
-                html += `<div class="calendar-day ${hasEvents ? 'has-events' : ''}" onclick="showCalendarDay('${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}')">
-                    <div class="calendar-day-number">${day}</div>
-                    ${hasEvents ? `<div class="calendar-day-summary">${summary}</div>` : ''}
-                    ${hasEvents ? `<div class="calendar-event-count">${events.length}</div>` : ''}
-                </div>`;
-            }
-            document.getElementById('calendar-grid').innerHTML = html;
-        }
-        
-        function showCalendarDay(dateStr) {
-            const data = (BITACORA_DATA.datos || []).filter(e => !deletedEvents.has(e.id));
-            const events = data.filter(e => e.date === dateStr);
-            
-            if (events.length === 0) {
-                document.getElementById('calendar-events-detail').innerHTML = '<div class="no-data">No hay eventos este día</div>';
-                return;
-            }
-            
-            let html = '<h3 style="margin-top: 20px; color: #1e3c72; margin-bottom: 15px;">Eventos del ' + dateStr + '</h3>';
-            html += events.map(e => `
-                <div class="result-item">
-                    <div class="result-title">${e.title}</div>
-                    <div class="result-meta">
-                        <span>👤 ${e.client}</span>
-                        <span>📌 ${e.type}</span>
-                        <span>${e.source === 'gmail' ? '📧' : '💬'} ${e.source}</span>
+                const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const dayEvents = eventsByDate[String(day).padStart(2, '0')] || [];
+                
+                let eventHtml = dayEvents.map(e => `
+                    <div class="calendar-event-item">
+                        <div class="event-client-label">${e.client.substring(0, 10)}</div>
+                        <div>${e.title.substring(0, 40)}</div>
                     </div>
-                </div>
-            `).join('');
-            document.getElementById('calendar-events-detail').innerHTML = html;
+                `).join('');
+                
+                html += `
+                    <div class="calendar-day">
+                        <div class="calendar-day-number">${day}</div>
+                        <div class="calendar-day-events">${eventHtml || ''}</div>
+                        <div class="calendar-day-actions">
+                            <button class="btn-add-event" onclick="openEventModal('${dateStr}')">+ Evento</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('calendar-grid').innerHTML = html;
         }
         
         function previousMonth() {
@@ -856,33 +972,50 @@
         }
         
         function populateSelects() {
-            const data = (BITACORA_DATA.datos || []).filter(e => !deletedEvents.has(e.id));
-            const clients = [...new Set(data.map(e => e.client))].sort();
+            const clients = [...new Set(events.map(e => e.client))].sort();
             
             let clientHtml = '<option value="">-- Todos los Clientes --</option>';
             clients.forEach(client => {
                 clientHtml += `<option value="${client}">${client}</option>`;
             });
+            
             document.getElementById('client-select').innerHTML = clientHtml;
             document.getElementById('filter-client').innerHTML = clientHtml;
+            
+            let eventClientHtml = '<option value="">-- Seleccione cliente --</option>';
+            clients.forEach(client => {
+                eventClientHtml += `<option value="${client}">${client}</option>`;
+            });
+            document.getElementById('eventClient').innerHTML = eventClientHtml;
         }
         
         function updateTimeline() {
-            const data = (BITACORA_DATA.datos || []).filter(e => !deletedEvents.has(e.id));
             const selectedClient = document.getElementById('client-select').value;
-            const filtered = selectedClient ? data.filter(e => e.client === selectedClient) : data;
+            let filtered = selectedClient ? events.filter(e => e.client === selectedClient) : events;
             
-            if (filtered.length === 0) {
+            // Filtrar últimos 15 días + offset
+            const today = new Date();
+            const startDate = new Date(today.getTime() - (15 - timelineOffset) * 24 * 60 * 60 * 1000);
+            const endDate = new Date(today.getTime() + (timelineOffset * 24 * 60 * 60 * 1000));
+            
+            const dateStr1 = startDate.toISOString().split('T')[0];
+            const dateStr2 = endDate.toISOString().split('T')[0];
+            
+            document.getElementById('timeline-period').textContent = `${dateStr1} a ${dateStr2}`;
+            
+            filtered = filtered.filter(e => e.date >= dateStr1 && e.date <= dateStr2);
+            const sorted = filtered.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+            
+            if (sorted.length === 0) {
                 document.getElementById('timeline-markers').innerHTML = '';
-                document.getElementById('timeline-events').innerHTML = '<div class="no-data">No hay eventos para este cliente</div>';
+                document.getElementById('timeline-events').innerHTML = '<div class="no-data">No hay eventos en este período</div>';
                 return;
             }
             
-            const sorted = filtered.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
-            
-            let markersHtml = sorted.map((event, idx) => {
+            let markersHtml = sorted.map(event => {
+                const isPrincipal = event.type === 'problema' || event.type === 'impacto';
                 return `
-                    <div class="timeline-marker ${event.type.toLowerCase()}" onclick="scrollToEvent('event-${event.id}')">
+                    <div class="timeline-marker ${isPrincipal ? 'principal' : ''}" onclick="scrollToEvent('event-${event.id}')">
                         <div class="timeline-marker-dot"></div>
                         <div class="timeline-marker-label">${event.date.split('-')[2]}<br/>${event.type.substring(0, 3)}</div>
                     </div>
@@ -891,43 +1024,14 @@
             document.getElementById('timeline-markers').innerHTML = markersHtml;
             
             let eventsHtml = sorted.map(event => {
-                const sourceClass = event.source === 'gmail' ? 'source-gmail' : 'source-slack';
-                const sourceIcon = event.source === 'gmail' ? '📧' : '💬';
-                
                 return `
-                    <div class="timeline-event-card ${event.type.toLowerCase()}" id="event-${event.id}">
+                    <div class="timeline-event-card" id="event-${event.id}" onclick="openEventModal('${event.date}', '${event.id}')">
                         <div class="event-header">
                             <div class="event-date">${event.date} ${event.datetime.split('T')[1].substring(0, 5)}</div>
-                            <div class="event-source ${sourceClass}">${sourceIcon} ${event.source.toUpperCase()}</div>
                         </div>
                         <div class="event-title">${event.title}</div>
-                        <div class="event-summary">${event.summary}</div>
-                        <div class="event-details">
-                            <div class="detail-item">
-                                <div class="detail-label">Tipo</div>
-                                <div class="detail-value">${event.type}</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Prioridad</div>
-                                <div class="detail-value">${event.priority || 'N/A'}</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Estado</div>
-                                <div class="detail-value">${event.status || 'N/A'}</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Canal</div>
-                                <div class="detail-value">${event.channel}</div>
-                            </div>
-                            ${event.tags && event.tags.length > 0 ? `<div class="detail-item" style="grid-column: 1/-1;">
-                                <div class="detail-label">Tags</div>
-                                <div class="detail-value">${Array.isArray(event.tags) ? event.tags.join(', ') : event.tags}</div>
-                            </div>` : ''}
-                        </div>
-                        <div class="event-actions">
-                            <button class="btn-expand" onclick="toggleExpand(this.parentElement.parentElement)">Detalles</button>
-                            <button class="btn-delete" onclick="deleteEvent('${event.id}')">Eliminar</button>
-                        </div>
+                        <div class="event-summary">${event.summary || ''}</div>
+                        <div style="font-size: 11px; color: #666;">👤 ${event.client} • 📌 ${event.type}</div>
                     </div>
                 `;
             }).join('');
@@ -935,35 +1039,111 @@
             document.getElementById('timeline-events').innerHTML = eventsHtml;
         }
         
-        function toggleExpand(element) {
-            element.classList.toggle('expanded');
+        function previousTimeline() {
+            timelineOffset -= 15;
+            updateTimeline();
         }
         
-        function deleteEvent(eventId) {
-            deletedEvents.add(eventId);
+        function nextTimeline() {
+            timelineOffset += 15;
             updateTimeline();
-            renderStats();
+        }
+        
+        function openEventModal(dateStr, eventId = null) {
+            editingEventId = eventId;
+            
+            if (eventId) {
+                const event = events.find(e => e.id === eventId);
+                if (event) {
+                    document.getElementById('modalTitle').textContent = 'Editar Evento';
+                    document.getElementById('eventDate').value = event.date;
+                    document.getElementById('eventTitle').value = event.title;
+                    document.getElementById('eventClient').value = event.client;
+                    document.getElementById('eventType').value = event.type;
+                    document.getElementById('eventSummary').value = event.summary || '';
+                    document.getElementById('eventSource').value = event.source;
+                    document.getElementById('deleteBtn').style.display = 'block';
+                }
+            } else {
+                document.getElementById('modalTitle').textContent = 'Nuevo Evento';
+                document.getElementById('eventDate').value = dateStr;
+                document.getElementById('eventTitle').value = '';
+                document.getElementById('eventClient').value = '';
+                document.getElementById('eventType').value = 'problema';
+                document.getElementById('eventSummary').value = '';
+                document.getElementById('eventSource').value = 'manual';
+                document.getElementById('deleteBtn').style.display = 'none';
+            }
+            
+            document.getElementById('eventModal').classList.add('active');
+        }
+        
+        function closeModal() {
+            document.getElementById('eventModal').classList.remove('active');
+            editingEventId = null;
+        }
+        
+        function saveEvent(e) {
+            e.preventDefault();
+            
+            const eventData = {
+                date: document.getElementById('eventDate').value,
+                datetime: document.getElementById('eventDate').value + 'T12:00:00-03:00',
+                title: document.getElementById('eventTitle').value,
+                client: document.getElementById('eventClient').value,
+                type: document.getElementById('eventType').value,
+                summary: document.getElementById('eventSummary').value,
+                source: document.getElementById('eventSource').value,
+                channel: '',
+                author: 'User',
+                tags: [],
+                priority: 'media',
+                status: 'abierto'
+            };
+            
+            if (editingEventId) {
+                const idx = events.findIndex(e => e.id === editingEventId);
+                if (idx >= 0) {
+                    events[idx] = {...events[idx], ...eventData};
+                }
+            } else {
+                eventData.id = 'event_' + Date.now();
+                events.push(eventData);
+            }
+            
+            saveToStorage();
+            closeModal();
             renderCalendar();
+            updateTimeline();
+        }
+        
+        function deleteCurrentEvent() {
+            if (editingEventId && confirm('¿Eliminar evento permanentemente?')) {
+                events = events.filter(e => e.id !== editingEventId);
+                saveToStorage();
+                closeModal();
+                renderCalendar();
+                updateTimeline();
+            }
         }
         
         function scrollToEvent(eventId) {
-            document.getElementById(eventId).scrollIntoView({ behavior: 'smooth', block: 'center' });
-            document.getElementById(eventId).style.animation = 'pulse 0.5s';
+            const el = document.getElementById(eventId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         }
         
         function filterSearch() {
-            const data = (BITACORA_DATA.datos || []).filter(e => !deletedEvents.has(e.id));
             const text = document.getElementById('search-text').value.toLowerCase();
             const type = document.getElementById('filter-type').value;
             const client = document.getElementById('filter-client').value;
-            const source = document.getElementById('filter-source').value;
             
-            let filtered = data.filter(e => {
-                const textMatch = !text || e.title.toLowerCase().includes(text) || e.summary.toLowerCase().includes(text);
-                const typeMatch = !type || e.type.toLowerCase() === type.toLowerCase();
+            let filtered = events.filter(e => {
+                const textMatch = !text || e.title.toLowerCase().includes(text) || (e.summary || '').toLowerCase().includes(text);
+                const typeMatch = !type || e.type === type;
                 const clientMatch = !client || e.client === client;
-                const sourceMatch = !source || e.source === source;
-                return textMatch && typeMatch && clientMatch && sourceMatch;
+                return textMatch && typeMatch && clientMatch;
             });
             
             if (filtered.length === 0) {
@@ -971,23 +1151,24 @@
                 return;
             }
             
-            let html = filtered.map(e => {
-                const sourceClass = e.source === 'gmail' ? 'source-gmail' : 'source-slack';
-                return `
-                    <div class="result-item">
-                        <div class="result-title">${e.title}</div>
-                        <div class="result-meta">
-                            <span>📅 ${e.date}</span>
-                            <span>👤 ${e.client}</span>
-                            <span>📌 ${e.type}</span>
-                            <span class="event-source ${sourceClass}">${e.source.toUpperCase()}</span>
-                        </div>
+            let html = filtered.map(e => `
+                <div class="result-item" onclick="openEventModal('${e.date}', '${e.id}')">
+                    <div class="result-title">${e.title}</div>
+                    <div class="result-meta">
+                        <span>📅 ${e.date}</span>
+                        <span>👤 ${e.client}</span>
+                        <span>📌 ${e.type}</span>
                     </div>
-                `;
-            }).join('');
+                </div>
+            `).join('');
             
             document.getElementById('search-results').innerHTML = html;
         }
+        
+        // Cierre de modal con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
         
         window.addEventListener('load', init);
     </script>
